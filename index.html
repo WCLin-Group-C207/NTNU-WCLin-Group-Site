@@ -248,8 +248,11 @@ body::before {
   border-radius: 2px;
   font-size: clamp(0.9rem, 1vw, 1rem);
   color: var(--color-muted);
-  margin-left: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
-  margin-right: auto;
+
+  max-width: min(680px, calc(100vw - 2 * var(--gutter)));
+  margin-left: auto;
+  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
+  box-sizing: border-box;
 }
 .hero-meta strong { color: var(--color-ink); font-weight: 600; }
 
@@ -296,17 +299,26 @@ body::before {
     padding-top: 78px;
     background-position: 62% center;
   }
+
   .hero::after {
     background:
       linear-gradient(90deg, rgba(250,247,240,0.98) 0%, rgba(250,247,240,0.90) 54%, rgba(250,247,240,0.56) 100%),
       linear-gradient(180deg, rgba(250,247,240,0.88) 0%, rgba(250,247,240,0.42) 45%, rgba(250,247,240,0.70) 100%);
   }
+
   .hero-mark { display: none; }
+
   .hero-label, .hero-title, .hero-lead, .hero-meta, .hero-cta {
     margin-left: var(--gutter);
     margin-right: var(--gutter);
   }
-  .hero-meta { display: flex; }
+
+  .hero-meta {
+    display: flex;
+    width: auto;
+    max-width: none;
+    margin-top: 18px;
+  }
 }
 
 /* ==========================================================================
