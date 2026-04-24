@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members · NanoMaterials & Spintronics Laboratory</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-ink:       #1a2238;
+  --color-accent:    #a82740;
+  --color-cream:     #faf7f0;
+  --color-paper:     #ffffff;
+  --color-rule:      #e4dfd0;
+  --color-muted:     #6b7280;
+  --color-soft:      #f0ebdc;
+  --font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+  --font-body:    Arial, 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --max-width: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--color-cream); color: var(--color-ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: 0.035; z-index: 1; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+.nav { position: sticky; top: 0; background: rgba(250,247,240,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-rule); z-index: 100; }
+.nav-inner { max-width: var(--max-width); margin: 0 auto; padding: 18px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.nav-brand { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+.nav-brand::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--color-accent); }
+.nav-links { display: flex; gap: 4px; list-style: none; flex-wrap: wrap; }
+.nav-links a { padding: 8px 14px; font-size: 0.88rem; font-weight: 500; border-radius: 999px; transition: all 0.2s; opacity: 0.72; }
+.nav-links a:hover { opacity: 1; background: var(--color-soft); }
+.nav-links a.active { opacity: 1; background: var(--color-ink); color: var(--color-cream); }
+.nav-toggle { display: none; background: none; border: 1px solid var(--color-rule); padding: 8px 12px; border-radius: 6px; font-size: 1.2rem; cursor: pointer; }
+@media (max-width: 960px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-cream); flex-direction: column; padding: 12px var(--gutter); gap: 2px; border-bottom: 1px solid var(--color-rule); }
+  .nav-links.open { display: flex; }
+}
+
+.page-header { max-width: var(--max-width); margin: 0 auto; padding: clamp(50px, 8vw, 80px) var(--gutter) 40px; border-bottom: 1px solid var(--color-rule); }
+.page-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--color-accent); font-weight: 500; margin-bottom: 16px; }
+.page-title { font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 4rem); font-weight: 400; letter-spacing: -0.03em; }
+.page-lead { max-width: 680px; margin-top: 18px; color: var(--color-muted); font-size: 1.02rem; }
+
+.members-section { max-width: var(--max-width); margin: 0 auto; padding: 60px var(--gutter) 20px; }
+.section-head { display: flex; align-items: baseline; gap: 20px; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 1px solid var(--color-rule); }
+.section-head h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 500; letter-spacing: -0.01em; }
+.section-count { font-family: var(--font-display); font-style: italic; color: var(--color-muted); font-size: 0.95rem; }
+
+/* ===== 成員卡片網格 ===== */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.member-photo {
+  aspect-ratio: 4/5;
+  background: var(--color-soft);
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+.member-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.5s; filter: grayscale(0.15) contrast(1.02); }
+.member:hover .member-photo img { transform: scale(1.03); filter: grayscale(0) contrast(1.05); }
+.member-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--color-ink), #2a3458);
+  color: var(--color-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 400;
+  font-style: italic;
+}
+.member-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+}
+.member-name {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.member-name-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  display: block;
+  margin-top: 2px;
+}
+.member-edu { font-size: 0.82rem; line-height: 1.55; color: var(--color-muted); }
+.member-edu li { list-style: none; padding-left: 14px; position: relative; margin-bottom: 2px; }
+.member-edu li::before { content: "—"; position: absolute; left: 0; color: var(--color-accent); }
+.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 4px; }
+.member-contact a:hover { border-bottom: 1px solid currentColor; }
+
+/* Alumni 表格 */
+.alumni-section { max-width: var(--max-width); margin: 0 auto; padding: 60px var(--gutter); }
+.alumni-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.alumni-table thead th {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--color-ink);
+  color: var(--color-muted);
+}
+.alumni-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--color-rule);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.alumni-table tbody tr:hover { background: var(--color-soft); }
+.alumni-name { font-weight: 500; color: var(--color-ink); white-space: nowrap; }
+.alumni-degrees { color: var(--color-accent); font-family: var(--font-display); font-style: italic; font-size: 0.82rem; letter-spacing: 0.05em; white-space: nowrap; }
+.alumni-current { color: var(--color-muted); }
+
+@media (max-width: 720px) {
+  .alumni-table, .alumni-table thead, .alumni-table tbody { display: block; }
+  .alumni-table thead { display: none; }
+  .alumni-table tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--color-rule); }
+  .alumni-table td { display: block; padding: 3px 0; border: 0; }
+}
+
+/* Footer */
+.footer { background: var(--color-cream); border-top: 1px solid var(--color-rule); padding: 50px var(--gutter) 30px; margin-top: 80px; }
+.footer-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 500; margin-bottom: 14px; }
+.footer p, .footer li { font-size: 0.88rem; line-height: 1.7; color: var(--color-muted); }
+.footer ul { list-style: none; }
+.footer a:hover { color: var(--color-accent); }
+.footer-bottom { max-width: var(--max-width); margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--color-rule); display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--color-muted); flex-wrap: wrap; gap: 12px; }
+@media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">WCLin Group</a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="group-leader.html">Group Leader</a></li>
+      <li><a href="members.html" class="active">Members</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="facilities.html">Facilities</a></li>
+      <li><a href="exchange-awards.html">Awards</a></li>
+      <li><a href="photos.html">Gallery</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-kicker">People</div>
+  <h1 class="page-title">Members</h1>
+  <p class="page-lead">A mixed cohort of Ph.D., Master's, and undergraduate researchers — contributing to magnetic thin-film, 2D-material, and spintronics projects.</p>
+</header>
+
+<!-- ==========================================================================
+     【博士班】— 新增成員請複製整個 <article class="member"> 區塊
+     ========================================================================== -->
+<section class="members-section">
+  <div class="section-head">
+    <h2>Ph.D. Students</h2>
+    <span class="section-count">three researchers</span>
+  </div>
+
+  <div class="member-grid">
+
+    <!-- ▼ 單一成員範本 ▼ -->
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCNwzDXT6F5hkpvxVTxRQ-HMfxbc5zp1BWOw8_ltdvv67VlLjtxbIZnfW97zpOBemPyRDqf9x5xopvGNNyrra1VrxRTwB_s7p4BBwG8vbZu_vNLcdggxyQf_SEn-H6gCdEGZuxXw0eN7jGRFOWTCTCxHbFchFOBzDt3_mUdxSewWQHpLDCjqwlynqqQzmCmyXonxa0WhXO3QOUchNOhuvfINa1VLGlo59p1=w1280" alt="Ming-Hsien Hsu">
+        <span class="member-badge">D4</span>
+      </div>
+      <div>
+        <h3 class="member-name">許明賢<span class="member-name-en">Ming-Hsien Hsu</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, Tamkang University (2020)</li>
+          <li>M.S. Physics, Tamkang University (2022)</li>
+          <li>Ph.D. Physics, NTNU (2022 – Present)</li>
+        </ul>
+      </div>
+    </article>
+    <!-- ▲ 成員範本結束 ▲ -->
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCZChzYbdwghLrFHtbG_PkqrsOTpxBRJ6MFTYRI-V9OVQwkkpUAGxUEOfiIh7aWlBGKglYDwLPId5iefkRSjgpyGmYt0pkEejLc5nrjkVKfd-dIvR1Gb7SpoqoGd9eEVtNCJ3sUl8-EBknG_8pWII3qrNaRdTfmfMAOapBAmt7P9iRBVR8yL8CT5NCxwEu6d99TOUx5FS0DFAjB3rM1n16zd9IdvKY9pcz_c5k=w1280" alt="Yan-Ru Chu">
+        <span class="member-badge">D4</span>
+      </div>
+      <div>
+        <h3 class="member-name">朱彥儒<span class="member-name-en">Yan-Ru Chu</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, Tamkang University (2020)</li>
+          <li>M.S. Physics, Tamkang University (2022)</li>
+          <li>Ph.D. Physics, NTNU (2022 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUB7hJgTj2dnvui__hKyUulpanw4z1sQIbNqTUi1eynD222uQwpwzbJWgO_2Aq2V-gjJQ0hat5_FLcsJGYVImP0yMXxM7jXnS-TZK-2Nl7PUAIcsXIcFwRu48UUaR5_-cotUNP1WsVWtKEUTjXxIrp8i3FECwsvyeIjOgQVe71uQJSlClHIIIis1lHl1N_02LvtxixiTIp70q9pfjhESEt4XOig0qHEZXl8yn1A=w1280" alt="Po-Wei Chen">
+        <span class="member-badge">D3</span>
+      </div>
+      <div>
+        <h3 class="member-name">陳柏維<span class="member-name-en">Po-Wei Chen</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2023)</li>
+          <li>Ph.D. Dual-Degree, Osaka University &amp; NTNU (2024 – Present)</li>
+        </ul>
+        <p class="member-contact"><a href="mailto:81241005S@ntnu.edu.tw">81241005S@ntnu.edu.tw</a></p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     【碩士班】
+     ========================================================================== -->
+<section class="members-section">
+  <div class="section-head">
+    <h2>Master's Students</h2>
+    <span class="section-count">five researchers</span>
+  </div>
+
+  <div class="member-grid">
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDnXnEF8L-n7fLc-dJHiuYgh8FG9CzEZOIxGwH3jZlqIls_A5b8JTDVivaryqiBTd43TwasZ8KxMr6lIL_lL1rbCO0If4oFA--xzf4OwWvJ64RpCZ08Jt7g0lAYrJaGX4lYaOcCgyhstXatFCh_8b1rV_6562AS6-DmxnFq8aESMEVjVbehdBKkL1cgJ7u1RGz9A2q8e5e8XRFWek6Bs1r0ZsGzJ2-t6L-dpYQ=w1280" alt="Po-Hao Lai">
+        <span class="member-badge">M2</span>
+      </div>
+      <div>
+        <h3 class="member-name">賴伯澔<span class="member-name-en">Po-Hao Lai</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Optoelectric Physics, CCU (2024)</li>
+          <li>M.S. Physics, NTNU (2024 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUAGwNqNf-rHs4MXRfoeblfSwDLYI4ILQqrQenJapjuhxceMWfyxQq3hhJ46H7RbsR6g3jolSScSvpCdyCKE48hIxy9x5Ib70p5OM1NyhMjdtDhWcgXEmsxODAs5-sgqjhf1Gl--L7bLMSqlFj-rrXxgxeY0GsG-7AL1BvV5WDBxTPg1vveFTLz6-DIh1Dh8QeFR23vjQ0wU5z_jxGP1NID-takX5wUH76bJyq0=w1280" alt="Cheng-Ying Hsiao">
+        <span class="member-badge">M1</span>
+      </div>
+      <div>
+        <h3 class="member-name">蕭誠穎<span class="member-name-en">Cheng-Ying Hsiao</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2025)</li>
+          <li>M.S. Physics, NTNU (2025 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDCrgBGwOB-o8CPmhQclNwgqgZrc1UCE940wLH9snCO-hgAafSN_j8kd7WjeUkTPMQy-kIDLHfWBzUw3zkdWrUSZz-nxXiqwV1aavgc_fVZx4dluKeuFOuj0So1-16zGcat3jNaJPhpopVude9qPBb7KruGWDbX491MwcE3Yr2RGzLY55TEQsaBWO-hDbilBcDTTiTYocmnwKPcS724rApFbPnoDOSj3ROTxFw=w1280" alt="Hsin-Sung Chen">
+        <span class="member-badge">M1</span>
+      </div>
+      <div>
+        <h3 class="member-name">陳新松<span class="member-name-en">Hsin-Sung Chen</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2025)</li>
+          <li>M.S. Physics, NTNU (2025 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 沒有照片的成員，使用 placeholder -->
+    <article class="member">
+      <div class="member-photo">
+        <div class="member-placeholder">林</div>
+        <span class="member-badge">M1</span>
+      </div>
+      <div>
+        <h3 class="member-name">林良諭<span class="member-name-en">Liang-Yu Lin</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Aerospace &amp; Systems Eng., Feng Chia University (2022)</li>
+          <li>M.S. Physics, NTNU (2025 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUC4JB4ofSr9lBFvQ2P4Bh59kq7S6rcFaDhGxm1Na--3UwCkbkHcs-w0-XZ7JKKKJ9AY12ZNoO1MS9pcgsuxA-BogPx5VYUpwAR8XOAcr7wWK-GDGVtHKHuf0iVXXCLETVQ_jrthjGK6XwIAY9Doz4af6WqqvqI3gn9gr3201Tk0rz66D8-6Rp8XadgHHoOBHkrXdHYStyE1gYiFVhHADG7u9N2l78tgOYUZ=w1280" alt="Tanya Evangeline Dorothy Charles Shantha Kumar">
+        <span class="member-badge">M1</span>
+      </div>
+      <div>
+        <h3 class="member-name">Tanya E. D. C. S. Kumar<span class="member-name-en">International Student</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, Women's Christian College, India (2025)</li>
+          <li>M.S. Physics, NTNU (2025 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     【大學部】
+     ========================================================================== -->
+<section class="members-section">
+  <div class="section-head">
+    <h2>Undergraduate Students</h2>
+    <span class="section-count">six researchers</span>
+  </div>
+
+  <div class="member-grid">
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCjNdaUHrd8wZe2RUYSwTDJj83nCGBbEuZFAfM3k1APBKwtuXM0xnbc6XPWnK-aamlqoeFX9xfoZgN_JxpgyrO2aMwUnp18EuJuUpQxSsUvfpVtSFsrvLwhu-Ig6cAODYwJQag2j4BYpi1dlasNZcVGXTE4EJfKOfzzOCfCf_2Iu6YsAM9ZDeknB1VzghtAUBshHNRTPtNKX6F0UAahdnb5SRfigw0sJA=w1280" alt="Shao-Chuan Chang">
+        <span class="member-badge">B4</span>
+      </div>
+      <div>
+        <h3 class="member-name">張紹詮<span class="member-name-en">Shao-Chuan Chang</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2022 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCff3_nzRdZxeuTgxn-SRgkfQ4Fa6Fh1Ey2hRpJhAu8AjDHmfvUBuWEjG9Vw-LkAPlD294oN41_8GLKviKLnjhqZtgrs4fITLrlAPU1fyfYAGKSalaEvf85RAq63cc6ONELk1vuObqNocz9rYpVDwnRBJQK21tnCA_6jEvWGRaJDj3gAZPJFgn66Gh7XBkQXOx7jSXNvgPdjG2xm-K4Biyc3Mj_n6PcjOzD=w1280" alt="Chen-Yu Ou">
+        <span class="member-badge">B3</span>
+      </div>
+      <div>
+        <h3 class="member-name">歐宸毓<span class="member-name-en">Chen-Yu Ou</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2023 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <div class="member-placeholder">許</div>
+        <span class="member-badge">B3</span>
+      </div>
+      <div>
+        <h3 class="member-name">許晉銓<span class="member-name-en">Chin-Chuan Hsu</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2023 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUAYuZkKnAogi7hfCkWzZzwfG9AuYMvr-_7N65mimEMKHckby3ZCmwyv_-yglEKGwuZDrzzu7vznh4YPWbownk2zvbbl8YxIMaEwMdS052ggjjcg09oPYRbC9ZKq4oLn5-GIbjQYL1v-4Ui5CcG0JKAw_Ne801F87BFf3DPhPhNRQPj2XhQT8VJX3rN_wxaApj8K8mz8rlWphnIEzV13HgklDAqMKCt216kuXZc=w1280" alt="Ko-Fan Chen">
+        <span class="member-badge">B2</span>
+      </div>
+      <div>
+        <h3 class="member-name">陳可凡<span class="member-name-en">Ko-Fan Chen</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2024 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUArEci06QhmybGx9jEqrGZE-OOsgYHAWTgetTrXEr2CeDJKMo6xz5gNYQJagerNP5WwJuKj6NYz6ylxygRD41rt9J2D_PG9xvj2tQv6N-pwFXL-IAFAVzU9blGDctO9LocJVX7ZUxbETcsHHgCFDGZqahOkk-zFuBI_Wwq2UNZBeNDc2uYy-RT6_6CXVDP3kEYL6mM1ly5ifTXv1FDBtvGA4F6BjhaGslUthKU=w1280" alt="Ming-Yang Ho">
+        <span class="member-badge">B2</span>
+      </div>
+      <div>
+        <h3 class="member-name">何明陽<span class="member-name-en">Ming-Yang Ho</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2024 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="member">
+      <div class="member-photo">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBMYWo8HXPLqj7LgBU_-3Yv0YwagfJC5QYd9QTwOTgrJxkSLYBnPdKIW3M5qUCIKQ-CEJ0-p77NYkN6rHMGYeSuv0eF1JiOQ_eNLPIekkKJPVLv0vewiHb08UXM1VaO4QTc9etO0a2Rtbn9dGHKzU6m1Dc4dl0KajZuE-O0fnEQHjMmWurCaQDxg4_3AbKDFsXNL3qUFtYr4bSfCvM7TH4gk2iohg0FjQ=w1280" alt="Rui-Che Li">
+        <span class="member-badge">B2</span>
+      </div>
+      <div>
+        <h3 class="member-name">李睿哲<span class="member-name-en">Rui-Che Li</span></h3>
+        <ul class="member-edu">
+          <li>B.S. Physics, NTNU (2024 – Present)</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     【Alumni 傑出校友】
+     ========================================================================== -->
+<section class="alumni-section">
+  <div class="section-head">
+    <h2>Alumni</h2>
+    <span class="section-count">past members &amp; their current positions</span>
+  </div>
+
+  <table class="alumni-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Degrees</th>
+        <th>Current Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="alumni-name">張博鈞 <span class="member-name-en" style="display:inline;">Po-Chun Chang</span></td>
+        <td class="alumni-degrees">B · M · D</td>
+        <td class="alumni-current">Postdoctoral Researcher, Department of Physics, Tamkang University</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">許銓喆 <span class="member-name-en" style="display:inline;">Chuan-Che Hsu</span></td>
+        <td class="alumni-degrees">B · M · D</td>
+        <td class="alumni-current">Assistant Professor, Department of Physics, Chung Yuan Christian University</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">廖澤銘 <span class="member-name-en" style="display:inline;">Chal-Ming Liu</span></td>
+        <td class="alumni-degrees">B · M · D</td>
+        <td class="alumni-current">Postdoctoral Researcher, National Synchrotron Radiation Research Center</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">廖黎杰 <span class="member-name-en" style="display:inline;">Li-Jie Liaw</span></td>
+        <td class="alumni-degrees">M · D</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">劉仕渝 <span class="member-name-en" style="display:inline;">Shi-Yu Liu</span></td>
+        <td class="alumni-degrees">D</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">張玟翔</td>
+        <td class="alumni-degrees">B · M</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">林子恩</td>
+        <td class="alumni-degrees">M</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">謝濬澤</td>
+        <td class="alumni-degrees">M</td>
+        <td class="alumni-current">Taiwan Semiconductor Manufacturing Company (TSMC)</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">許聖郁</td>
+        <td class="alumni-degrees">B · M</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">許博翔 <span class="member-name-en" style="display:inline;">Po-Hsian Hsu</span></td>
+        <td class="alumni-degrees">M</td>
+        <td class="alumni-current">Vanguard International Semiconductor Corporation</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">游雅婷 <span class="member-name-en" style="display:inline;">Ya-Ting Yu</span></td>
+        <td class="alumni-degrees">M</td>
+        <td class="alumni-current">Taiwan Semiconductor Manufacturing Company (TSMC)</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">劉子齊 <span class="member-name-en" style="display:inline;">Zi-Qi Liu</span></td>
+        <td class="alumni-degrees">B · M</td>
+        <td class="alumni-current">Vanguard International Semiconductor Corporation</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">沈如芸</td>
+        <td class="alumni-degrees">M</td>
+        <td class="alumni-current">Taiwan Semiconductor Manufacturing Company (TSMC)</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">王裕鈞 <span class="member-name-en" style="display:inline;">Yu-Chun Wang</span></td>
+        <td class="alumni-degrees">B</td>
+        <td class="alumni-current">Ph.D. Candidate, Department of Physics, National Taiwan University</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">林冠璋</td>
+        <td class="alumni-degrees">B</td>
+        <td class="alumni-current">Ph.D. Candidate, Department of Physics, National Taiwan University</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">張期元 <span class="member-name-en" style="display:inline;">Chi-Yuan Chang</span></td>
+        <td class="alumni-degrees">B</td>
+        <td class="alumni-current">Process Engineer, TSMC</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">蕭杞璇</td>
+        <td class="alumni-degrees">B</td>
+        <td class="alumni-current">—</td>
+      </tr>
+      <tr>
+        <td class="alumni-name">趙昱鈞 <span class="member-name-en" style="display:inline;">Yu-Chun Chao</span></td>
+        <td class="alumni-degrees">B</td>
+        <td class="alumni-current">Master Student, Department of Electronic Physics, NYCU</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>NanoMaterials &amp; Spintronics Laboratory</h4>
+      <p>Department of Physics<br>National Taiwan Normal University<br>88 Sec. 4, Ting-Chou Rd., Taipei 116, Taiwan</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:wclin@ntnu.edu.tw">wclin@ntnu.edu.tw</a></li>
+        <li>Office: +886-2-7734-6086</li>
+        <li>Lab: +886-2-7734-6080</li>
+        <li>Fax: +886-2-2932-6408</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <ul>
+        <li><a href="https://scholar.lib.ntnu.edu.tw/zh/persons/wen-chin-lin/" target="_blank" rel="noopener">NTNU Scholars</a></li>
+        <li><a href="https://www.phy.ntnu.edu.tw/" target="_blank" rel="noopener">Department of Physics</a></li>
+        <li><a href="https://www.ntnu.edu.tw/" target="_blank" rel="noopener">NTNU</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2007&ndash;2026 Wen-Chin Lin Group. All rights reserved.</div>
+    <div>Designed by 陳可凡 &amp; 陳柏維 · Rebuilt 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>

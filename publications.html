@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications · NanoMaterials & Spintronics Laboratory</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-ink:       #1a2238;
+  --color-accent:    #a82740;
+  --color-cream:     #faf7f0;
+  --color-paper:     #ffffff;
+  --color-rule:      #e4dfd0;
+  --color-muted:     #6b7280;
+  --color-soft:      #f0ebdc;
+  --font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+  --font-body:    Arial, 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --max-width: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--color-cream); color: var(--color-ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: 0.035; z-index: 1; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+.nav { position: sticky; top: 0; background: rgba(250,247,240,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-rule); z-index: 100; }
+.nav-inner { max-width: var(--max-width); margin: 0 auto; padding: 18px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.nav-brand { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+.nav-brand::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--color-accent); }
+.nav-links { display: flex; gap: 4px; list-style: none; flex-wrap: wrap; }
+.nav-links a { padding: 8px 14px; font-size: 0.88rem; font-weight: 500; border-radius: 999px; transition: all 0.2s; opacity: 0.72; }
+.nav-links a:hover { opacity: 1; background: var(--color-soft); }
+.nav-links a.active { opacity: 1; background: var(--color-ink); color: var(--color-cream); }
+.nav-toggle { display: none; background: none; border: 1px solid var(--color-rule); padding: 8px 12px; border-radius: 6px; font-size: 1.2rem; cursor: pointer; }
+@media (max-width: 960px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-cream); flex-direction: column; padding: 12px var(--gutter); gap: 2px; border-bottom: 1px solid var(--color-rule); }
+  .nav-links.open { display: flex; }
+}
+
+.page-header { max-width: var(--max-width); margin: 0 auto; padding: clamp(50px, 8vw, 80px) var(--gutter) 40px; border-bottom: 1px solid var(--color-rule); }
+.page-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--color-accent); font-weight: 500; margin-bottom: 16px; }
+.page-title { font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 4rem); font-weight: 400; letter-spacing: -0.03em; }
+.page-lead { max-width: 680px; margin-top: 18px; color: var(--color-muted); font-size: 1.02rem; }
+
+/* Stats */
+.stats {
+  max-width: var(--max-width);
+  margin: 40px auto 0;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+.stat {
+  padding: 28px 24px;
+  border-right: 1px solid var(--color-rule);
+}
+.stat:last-child { border-right: 0; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
+.stat-num em { font-style: italic; color: var(--color-accent); }
+.stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-muted);
+  margin-top: 8px;
+  font-weight: 500;
+}
+@media (max-width: 720px) { .stat { border-right: 0; border-bottom: 1px solid var(--color-rule); } .stat:last-child { border-bottom: 0; } }
+
+/* Controls */
+.controls {
+  max-width: var(--max-width);
+  margin: 40px auto 0;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+}
+@media (max-width: 720px) { .controls { grid-template-columns: 1fr; } }
+.search-box {
+  position: relative;
+}
+.search-box::before {
+  content: "⌕";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+#searchInput {
+  width: 100%;
+  padding: 14px 20px 14px 48px;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+#searchInput:focus { outline: 2px solid var(--color-ink); outline-offset: -1px; border-color: transparent; }
+#searchInput::placeholder { color: var(--color-muted); }
+
+#yearSelect, #sortSelect {
+  padding: 14px 40px 14px 18px;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%236b7280' fill='none' stroke-width='1.5' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 10px;
+}
+
+.result-info {
+  max-width: var(--max-width);
+  margin: 20px auto 0;
+  padding: 0 var(--gutter);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+.result-info strong { color: var(--color-accent); font-weight: 500; }
+
+/* Publication list */
+.pub-list {
+  max-width: var(--max-width);
+  margin: 20px auto 0;
+  padding: 0 var(--gutter) 60px;
+  list-style: none;
+}
+.pub-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 28px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-rule);
+  align-items: start;
+}
+.pub-item:last-child { border-bottom: 0; }
+
+/* Thumbnail — 年份 OR 實際圖片 */
+.pub-thumb {
+  aspect-ratio: 1 / 1;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+.pub-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.pub-thumb-year {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  text-align: center;
+  line-height: 1;
+}
+.pub-thumb-year::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(250, 247, 240, 0.2);
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .pub-item { grid-template-columns: 70px 1fr; gap: 16px; }
+  .pub-thumb-year { font-size: 1.1rem; }
+}
+
+/* Publication content */
+.pub-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.pub-body h3 a { color: var(--color-ink); transition: color 0.2s; }
+.pub-body h3 a:hover { color: var(--color-accent); }
+.pub-authors {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.pub-authors .self { color: var(--color-accent); font-weight: 600; }
+.pub-journal {
+  font-size: 0.9rem;
+  color: var(--color-ink);
+}
+.pub-journal em {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-accent);
+}
+.pub-tags {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pub-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+.pub-tag.role-corresp { color: var(--color-accent); border-color: currentColor; }
+.pub-tag.role-cocorresp { color: #b8651a; border-color: currentColor; }
+.pub-tag.year-tag { color: var(--color-ink); }
+
+.no-result {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer { background: var(--color-cream); border-top: 1px solid var(--color-rule); padding: 50px var(--gutter) 30px; }
+.footer-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 500; margin-bottom: 14px; }
+.footer p, .footer li { font-size: 0.88rem; line-height: 1.7; color: var(--color-muted); }
+.footer ul { list-style: none; }
+.footer a:hover { color: var(--color-accent); }
+.footer-bottom { max-width: var(--max-width); margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--color-rule); display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--color-muted); flex-wrap: wrap; gap: 12px; }
+@media (max-width: 720px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">WCLin Group</a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="group-leader.html">Group Leader</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+      <li><a href="facilities.html">Facilities</a></li>
+      <li><a href="exchange-awards.html">Awards</a></li>
+      <li><a href="photos.html">Gallery</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-kicker">Research Output</div>
+  <h1 class="page-title">Publications</h1>
+  <p class="page-lead">Peer-reviewed publications from 2000 to the present — searchable by title, author, or journal. Role annotations (CORRESP. / CO-CORR.) indicate Prof. Lin's authorship contribution.</p>
+</header>
+
+<!-- ==========================================================================
+     【統計數字】— 可手動修改
+     ========================================================================== -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num" id="totalCount"><em>127</em></div>
+    <div class="stat-label">Total Papers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2000&ndash;2026</div>
+    <div class="stat-label">Years Active</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" id="showingCount">127</div>
+    <div class="stat-label">Currently Showing</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num"><em>50+</em></div>
+    <div class="stat-label">Corresponding Author</div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     【搜尋/篩選控制】
+     ========================================================================== -->
+<div class="controls">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search by title, author, or journal...">
+  </div>
+  <select id="yearSelect">
+    <option value="">All years</option>
+  </select>
+  <select id="sortSelect">
+    <option value="newest">Newest first</option>
+    <option value="oldest">Oldest first</option>
+  </select>
+</div>
+
+<div class="result-info">
+  Showing <strong id="resultText">127 of 127</strong> papers
+</div>
+
+<!-- ==========================================================================
+     【論文列表】— 由 JavaScript 動態渲染
+     ========================================================================== -->
+<ul class="pub-list" id="pubList"></ul>
+
+<!-- ==========================================================================
+     【論文資料】完整 127 篇
+     
+     編輯說明：
+     - 每篇論文是一個物件 { ... }
+     - thumbnail: "" 留空時，會自動用年份當縮圖
+     - thumbnail: "assets/images/p001.jpg" 會顯示該圖片
+     - role: "corresp" = 通訊作者 | "cocorresp" = 共同通訊 | "" = 作者之一
+     ========================================================================== -->
+<script>
+const publications = [
+  // ========== 2026 ==========
+  { year: 2026, title: "Hydrogen-Sensitive Antisymmetric Magnetoresistance in Co/Pd Multilayers Driven by Anomalous Hall Effect and Domain Wall Motion", authors: "Chu Y.R., Hsieh C.T., Chen C.Y., Liaw L.J., Kimura T., Hong J.Y., Lin W.C.", journal: "ACS Sensors", volume: "11, 1, 148-156", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-sensitive-antisymmetric-magnetoresistance-in-copd-multil/", role: "corresp", thumbnail: "" },
+
+  // ========== 2025 ==========
+  { year: 2025, title: "Enhanced Stability of Gr, h-BN and Gr/h-BN protected MoS₂ flakes under laser illumination", authors: "Liu C.M., Hsu S.Y., Chen H.S., Hsu C.C., Lan Y.W., Chiu H.C., Lin W.C.", journal: "Applied Surface Science Advances", volume: "25, 100687", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/enhanced-stability-of-gr-h-bn-and-grh-bn-protected-mossub2sub-fla/", role: "corresp", thumbnail: "" },
+  { year: 2025, title: "Hydrogen absorption-induced rotation of magnetic anisotropy and tunable electrical transport in FePd alloy thin films", authors: "Liaw L.J., Liu Z.Q., Raheel M., Chen P.W., Obinata S., Chang P.C., Hsu P.H., Hsu Y.Y., Kimura T., Shao Y.C., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "1014, 178748", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-absorption-induced-rotation-of-magnetic-anisotropy-and-t/", role: "corresp", thumbnail: "" },
+  { year: 2025, title: "Hydrogen-induced spin reorientation in [Co/Pd]₈ multilayers: A comparative study with magnetic and 2D-hBN capping layers", authors: "Hsu M.H., Yu Y.T., Mohan G., Liu C.M., Lin W.C.", journal: "Surfaces and Interfaces", volume: "78, 108104", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-induced-spin-reorientation-in-copdsub8sub-multilayers-a-/", role: "corresp", thumbnail: "" },
+  { year: 2025, title: "Hydrogen-mediated control of magnetic anisotropy and magnetic domain structure in Co/Pd multilayer", authors: "Chu Y.R., Lu X.W., Hsieh C.T., Huang C.Y., Hsu P.H., Liaw L.J., Liu C.M., Lin W.C.", journal: "Applied Physics Letters", volume: "126, 1, 012404", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-mediated-control-of-magnetic-anisotropy-and-magnetic-dom/", role: "corresp", thumbnail: "" },
+  { year: 2025, title: "Hydrogen-modulated magnetism in palladium-based nanostructures for sensing and reversible control of spintronic devices", authors: "Mohan G., Gopakumar N.N., Hsu M.H., Chu Y.R., Lin W.C.", journal: "JPhys Materials", volume: "8, 4, 042003", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-modulated-magnetism-in-palladium-based-nanostructures-fo/", role: "corresp", thumbnail: "" },
+  { year: 2025, title: "Localized creation of bubble domains in Fe₃GaTe₂ by conductive atomic force microscopy", authors: "Liu C.M., Liu Y.J., Chang P.C., Chen P.W., Haze M., Hsu M.H., Gopakumar N.N., Zhou Y., Tung Y.H., Hammouda S., Du C.H., Hasegawa Y., Su Y., Chiu H.C., Lin W.C.", journal: "Applied Surface Science Advances", volume: "26, 100718", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/localized-creation-of-bubble-domains-in-fesub3subgatesub2sub-by-c/", role: "corresp", thumbnail: "" },
+
+  // ========== 2024 ==========
+  { year: 2024, title: "Erratum to 'Laser-induced desorption for patterning photo luminance in C60/MoS₂ heterostructure'", authors: "Hsu C.C., Ma K.Y., Liu C.M., Hsu C.C., Lan Y.W., Lin W.C.", journal: "Surfaces and Interfaces", volume: "45, 103439", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/erratum-to-laser-induced-desorption-for-patterning-photo-luminanc/", role: "corresp", thumbnail: "" },
+  { year: 2024, title: "Field-free magnetic rotation in FePd alloy films controlled by reversible hydrogenation", authors: "Liaw L.J., Chang P.C., Wang Y.C., Liu Z.Q., Chen P.W., Liao Y.T., Chuang T.H., Wei D.H., Chern M.Y., Lo F.Y., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "983, 173754", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/field-free-magnetic-rotation-in-fepd-alloy-films-controlled-by-re/", role: "corresp", thumbnail: "" },
+  { year: 2024, title: "Photoluminescence patterns via single-layer exfoliation in Gr/MoS₂ heterostructure using contact-mode atomic force microscopy", authors: "Liu C.M., Chang W.H., Chu E.D., Yin C.H., Lan Y.W., Chiu H.C., Lin W.C.", journal: "Applied Surface Science", volume: "644, 158778", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/photoluminescence-patterns-via-single-layer-exfoliation-in-grmoss/", role: "corresp", thumbnail: "" },
+
+  // ========== 2023 ==========
+  { year: 2023, title: "Direct Magnetism Modulation of CsPbBr₃ Quantum Dots/Cobalt Heterostructures by Laser Illumination for Spintronic Applications", authors: "Liu S.Y., Chen T.H., Wu B.T., Hsu P.H., Lin Z.E., Wang W.H., Yen M.C., Lee C.J., Lee Y.J., Lin W.C.", journal: "ACS Applied Nano Materials", volume: "6, 16, 14841-14848", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/direct-magnetism-modulation-of-cspbbrsub3sub-quantum-dotscobalt-h-2/", role: "corresp", thumbnail: "" },
+  { year: 2023, title: "Efficient Electrical Manipulation of the Magnetization Process in an Epitaxially Controlled Co₂FeSi/BaTiO₃ Multiferroic Interface", authors: "Hu S., Yamada S., Chang P.C., Lin W.C., Hamaya K., Kimura T.", journal: "Physical Review Applied", volume: "20, 3, 034029", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/efficient-electrical-manipulation-of-the-magnetization-process-in/", role: "", thumbnail: "" },
+  { year: 2023, title: "Field and temperature-controlled positive and negative exchange biases in CoO/YIG bilayers on GGG(111)", authors: "Chang P.C., Liu S.Y., Lin H.L., Hu S., Kimura T., Lo F.Y., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "968, 172081", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/field-and-temperature-controlled-positive-and-negative-exchange-b/", role: "corresp", thumbnail: "" },
+  { year: 2023, title: "Hydrogenation Effect on Interlayer Coupling and Magneto-Transport Properties of Pd/Co/Mg/Fe Multilayers", authors: "Liaw L.J., Liu Z.Q., Chen P.W., Liu S.Y., Dhanarajagopal A., Lo F.Y., Hong J.Y., Lin W.C.", journal: "ACS Omega", volume: "8, 30, 26948-26954", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-effect-on-interlayer-coupling-and-magneto-transport/", role: "corresp", thumbnail: "" },
+  { year: 2023, title: "Hydrogen-Controlled Spin Reorientation Transition in a Nanometer-Thick FePd Layer on Co/[Pt/Co]₄/Pt Multilayers for Applications in Spintronics", authors: "Hsueh K.J., Chang P.C., Liaw L.J., Dhanarajagopal A., Lin M.T., Lin W.C.", journal: "ACS Applied Nano Materials", volume: "6, 4, 2784-2790", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-controlled-spin-reorientation-transition-in-a-nanometer-/", role: "corresp", thumbnail: "" },
+  { year: 2023, title: "Hydrogen-induced magnetic and structural changes in Pd/Co/Mg multilayer", authors: "Liaw L.J., Chang P.C., Chen P.W., Liu Z.Q., Liu S.Y., Hsieh C.T., Dhanarajgopal A., Chern M.Y., Lo F.Y., Lin W.C.", journal: "Surfaces and Interfaces", volume: "36, 102503", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-induced-magnetic-and-structural-changes-in-pdcomg-multil/", role: "corresp", thumbnail: "" },
+
+  // ========== 2022 ==========
+  { year: 2022, title: "Chirality-Induced Noncollinear Magnetization and Asymmetric Domain-Wall Propagation in Hydrogenated CoPd Thin Films", authors: "Wang W.H., Pan C.Y., Liu C.M., Lin W.C., Jiang P.H.", journal: "ACS Applied Materials and Interfaces", volume: "14, 17, 20151-20158", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/chirality-induced-noncollinear-magnetization-and-asymmetric-domai/", role: "", thumbnail: "" },
+  { year: 2022, title: "Impact of Co²⁺ on the magneto-optical response of MAPbBr₃: An inspective study of doping and quantum confinement effect", authors: "Dutta S., Yang L., Liu S.Y., Liu C.M., Liaw L.J., Som S., Mohapatra A., Sankar R., Lin W.C., Chao Y.C.", journal: "Materials Today Physics", volume: "27, 100843", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/impact-of-cosup2sup-on-the-magneto-optical-response-of-mapbbrsub3/", role: "", thumbnail: "" },
+  { year: 2022, title: "Improvement from discrete to uniform wetting of organic perovskite on ferromagnetic metals through a heterointerface", authors: "Liu S.Y., Lin Z.E., Wu B.T., Chen T.H., Hung H.C., Yin C.H., Hsieh C.T., Liu C.M., Liaw L.J., Hsu S.Y., Chang P.C., Chao Y.C., Lin W.C.", journal: "Applied Surface Science", volume: "601, 154180", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/improvement-from-discrete-to-uniform-wetting-of-organic-perovskit/", role: "corresp", thumbnail: "" },
+  { year: 2022, title: "Laser-induced desorption for patterning photo luminance in C60/MoS₂ heterostructure", authors: "Hsu C.C., Ma K.Y., Liu C.M., Hsu C.C., Lan Y.W., Lin W.C.", journal: "Surfaces and Interfaces", volume: "33, 102241", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/laser-induced-desorption-for-patterning-photo-luminance-in-csub60/", role: "corresp", thumbnail: "" },
+  { year: 2022, title: "Strain-induced magnetic anisotropy of REIG thin films grown on YAG(111) substrates by pulsed laser deposition", authors: "Liu S.Y., Lin Z.Y., Chang Y.R., Liao Y.T., Wu P.H., Huang S.Y., Lin W.C., Lo F.Y.", journal: "Journal of Alloys and Compounds", volume: "922, 166217", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/strain-induced-magnetic-anisotropy-of-reig-thin-films-grown-on-ya/", role: "", thumbnail: "" },
+
+  // ========== 2021 ==========
+  { year: 2021, title: "Dependence of magnetic domain patterns on plasma-induced differential oxidation of CoPd thin films", authors: "Wang W.H., Liu C.M., Chuang T.H., Wei D.H., Lin W.C., Jiang P.H.", journal: "Surfaces and Interfaces", volume: "27, 101582", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/dependence-of-magnetic-domain-patterns-on-plasma-induced-differen/", role: "", thumbnail: "" },
+  { year: 2021, title: "Direct observation of magnetic process in quasi-antiferromagnet by high-resolution Kerr microscopy", authors: "Hashimoto N., Horiike S., Kurokawa Y., Tanaka T., Chang P.C., Lin W.C., Yuasa H.", journal: "Japanese Journal of Applied Physics", volume: "60, SB, SBBI05", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/direct-observation-of-magnetic-process-in-quasi-antiferromagnet-b-2/", role: "", thumbnail: "" },
+  { year: 2021, title: "Discrete interfacial effects of organic lead halide perovskite coating on magnetic underlayer: MAPbBr₃/FePd heterostructure", authors: "Yeh S.S., Liu S.Y., Hsu C.C., Hung H.C., Niu M.C., Lo P.H., Chao Y.C., Lin W.C.", journal: "Surfaces and Interfaces", volume: "24, 101133", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/discrete-interfacial-effects-of-organic-lead-halide-perovskite-co-2/", role: "corresp", thumbnail: "" },
+  { year: 2021, title: "Exchange-bias dependent diffusion rate of hydrogen discovered from evolution of hydrogen-induced noncollinear magnetic anisotropy in FePd thin films", authors: "Wang W.H., Cheng Y.S., Sheu H.S., Lin W.C., Jiang P.H.", journal: "Physical Review B", volume: "104, 22, 224420", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/exchange-bias-dependent-diffusion-rate-of-hydrogen-discovered-fro/", role: "", thumbnail: "" },
+  { year: 2021, title: "Hydrogenation effect on magnetic single domains of high-temperature-deposited uniform Co_xPd_{1−x}/MoS₂ flakes", authors: "Liu C.M., Hsu C.C., Lin W.C.", journal: "Journal of Magnetism and Magnetic Materials", volume: "531, 167911", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-effect-on-magnetic-single-domains-of-high-temperatu-2/", role: "corresp", thumbnail: "" },
+  { year: 2021, title: "Interfacial exchange coupling-modulated magnetism in the insulating heterostructure of CoOx/yttrium iron garnet", authors: "Chang P.C., Mudinepalli V.R., Liu S.Y., Lin H.L., Hsu C.C., Liao Y.T., Obinata S., Kimura T., Chern M.Y., Lo F.Y., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "875, 159948", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/interfacial-exchange-coupling-modulated-magnetism-in-the-insulati-2/", role: "corresp", thumbnail: "" },
+  { year: 2021, title: "Interfacial magnetic coupling in Co/antiferromagnetic van der Waals compound FePS₃", authors: "Dhanarajgopal A., Chang P.C., Liu S.Y., Chuang T.H., Wei D.H., Kuo C.C., Kuo C.N., Lue C.S., Lin W.C.", journal: "Applied Surface Science", volume: "567, 150864", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/interfacial-magnetic-coupling-in-coantiferromagnetic-van-der-waal-2/", role: "corresp", thumbnail: "" },
+  { year: 2021, title: "Reduction in magnetic coercivity of Co nanomagnets by Fe alloying", authors: "Yang H.H., Hsu C.C., Asakawa K., Lin W.C., Hasegawa Y.", journal: "Nanoscale", volume: "13, 39, 16719-16725", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/reduction-in-magnetic-coercivity-of-co-nanomagnets-by-fe-alloying/", role: "", thumbnail: "" },
+  { year: 2021, title: "Robust perpendicular magnetization of Co nanomagnets against alloy composition", authors: "Yang H.H., Hsu C.C., Lin W.C., Hasegawa Y.", journal: "Physical Review B", volume: "104, 3, 035422", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/robust-perpendicular-magnetization-of-co-nanomagnets-against-allo-2/", role: "", thumbnail: "" },
+  { year: 2021, title: "Twisted light induced magnetic anisotropy changes in an interlayer exchange coupling system", authors: "Lu C.I., Wang S.A., Simbulan K.B., Liu C.M., Wang X., Yu G., Lin W.C., Lu T.H., Lan Y.W.", journal: "Nanoscale Horizons", volume: "6, 6, 462-467", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/twisted-light-induced-magnetic-anisotropy-changes-in-an-interlaye-2/", role: "", thumbnail: "" },
+
+  // ========== 2020 ==========
+  { year: 2020, title: "Organic/metal interface-modulated magnetism in [Fe/C60]₃ multilayers and Fe-C60 composites", authors: "Hsu C.C., Hsu K.L., Chang P.C., Liu S.Y., Hsu C.C., Lin W.C.", journal: "Nanotechnology", volume: "31, 32, 325701", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/organicmetal-interface-modulated-magnetism-in-fecsub60subsub3sub--2/", role: "corresp", thumbnail: "" },
+  { year: 2020, title: "Plasma-induced magnetic patterning of FePd thin films without and with exchange bias", authors: "Wang W.H., Chang P.C., Jiang P.H., Lin W.C.", journal: "Applied Surface Science", volume: "527, 146831", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/plasma-induced-magnetic-patterning-of-fepd-thin-films-without-and-2/", role: "corresp", thumbnail: "" },
+  { year: 2020, title: "Thermally modulated hydrogenation in Fe_xPd_{1-x} alloy films: Temperature-driven peculiar variation of magnetism", authors: "Chang P.C., Chuang T.H., Wei D.H., Lin W.C.", journal: "Applied Physics Letters", volume: "116, 10", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/thermally-modulated-hydrogenation-in-fesubxsubpdsub1-xsub-alloy-f-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2019 ==========
+  { year: 2019, title: "Height reversal in Au coverage on MoS₂ flakes/SiO₂: Thermal control of interfacial nucleation", authors: "Shen Y.H., Hsu C.C., Chang P.C., Lin W.C.", journal: "Applied Physics Letters", volume: "114, 18, 181601", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/height-reversal-in-au-coverage-on-mossub2sub-flakessiosub2sub-the-2/", role: "corresp", thumbnail: "" },
+  { year: 2019, title: "Magnetic patterning through graphene protection against oxidation and interlayer diffusion", authors: "Liu C.M., Wang W.H., Jiang P.H., Lin W.C.", journal: "Nanotechnology", volume: "30, 45, 455301", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/magnetic-patterning-through-graphene-protection-against-oxidation-2/", role: "corresp", thumbnail: "" },
+  { year: 2019, title: "Morphology and magnetism of CoPd coverage on MoS₂ flakes/SiO₂", authors: "Hsu C.C., Liu C.M., Lin Z.Y., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "785, 436-444", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/morphology-and-magnetism-of-copd-coverage-on-mossub2sub-flakessio/", role: "corresp", thumbnail: "" },
+  { year: 2019, title: "Visualizing hydrogen diffusion in magnetic film through magneto-optical Kerr effect", authors: "Chang P.C., Chang Y.Y., Wang W.H., Lo F.Y., Lin W.C.", journal: "Communications Chemistry", volume: "2, 1, 89", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/visualizing-hydrogen-diffusion-in-magnetic-film-through-magneto-o-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2018 ==========
+  { year: 2018, title: "Hydrogenation-induced strengthening of exchange bias coupling in antiferromagnetic Pd-rich alloy films", authors: "Wang B.Y., Shih C.W., Tsai M.S., Chen C.J., Lin K., Li J.J., Huang C.W., Lin W.C., Weng S.C.", journal: "Journal of Alloys and Compounds", volume: "748, 223-229", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-induced-strengthening-of-exchange-bias-coupling-in--2/", role: "cocorresp", thumbnail: "" },
+  { year: 2018, title: "Hydrogen-mediated magnetic domain formation and domain wall motion in Co₃₀Pd₇₀ alloy films", authors: "Chang P.C., Liu C.M., Hsu C.C., Lin W.C.", journal: "Scientific Reports", volume: "8, 1, 6656", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-mediated-magnetic-domain-formation-and-domain-wall-motio-2/", role: "corresp", thumbnail: "" },
+  { year: 2018, title: "Interfacial magnetic coupling in hetero-structure of Fe/double-perovskite NdBaMn₂O₆ single crystal", authors: "Lin W.C., Tsai C.L., Ogawa K., Yamada S., Gandhi A.C., Lin J.G.", journal: "Applied Physics Letters", volume: "112, 16, 162403", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/interfacial-magnetic-coupling-in-hetero-structure-of-fedouble-per-2/", role: "corresp", thumbnail: "" },
+  { year: 2018, title: "Realization of an H₂/CO dual-gas sensor using CoPd magnetic structures", authors: "Liang J.Y., Chou Y.J., Yin C.W., Lin W.C., Lin H.J., Chen P.W., Tseng Y.C.", journal: "Applied Physics Letters", volume: "113, 18, 182401", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/realization-of-an-hsub2subco-dual-gas-sensor-using-copd-magnetic-/", role: "", thumbnail: "" },
+  { year: 2018, title: "Reversible 90-Degree Rotation of Fe Magnetic Moment Using Hydrogen", authors: "Hsu C.C., Chang P.C., Chen Y.H., Liu C.M., Wu C.T., Yen H.W., Lin W.C.", journal: "Scientific Reports", volume: "8, 1, 3251", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/reversible-90-degree-rotation-of-fe-magnetic-moment-using-hydroge-2/", role: "corresp", thumbnail: "" },
+  { year: 2018, title: "Single crystalline silicene consist of various superstructures using a flexible ultrathin Ag(111) template on Si(111)", authors: "Hsu H.C., Lu Y.H., Su T.L., Lin W.C., Fu T.Y.", journal: "Semiconductor Science and Technology", volume: "33, 7, 075004", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/single-crystalline-silicene-consist-of-various-superstructures-us-2/", role: "", thumbnail: "" },
+  { year: 2018, title: "Superparamagnetic ground state of CoFeB/MgO magnetic tunnel junction with dual-barrier", authors: "Tran T.N., Lam T.N., Yang C.Y., Lin W.C., Chen P.W., Tseng Y.C.", journal: "Applied Surface Science", volume: "457, 529-535", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/superparamagnetic-ground-state-of-cofebmgo-magnetic-tunnel-juncti-2/", role: "", thumbnail: "" },
+
+  // ========== 2017 ==========
+  { year: 2017, title: "Electric-field effects on magnetism of Fe/NCZF/PZT composite thin film", authors: "Mudinepalli V.R., Chang P.C., Hsu C.C., Lo F.Y., Chang H.W., Lin W.C.", journal: "Journal of Magnetism and Magnetic Materials", volume: "432, 90-95", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/electric-field-effects-on-magnetism-of-fenczfpzt-composite-thin-f-2/", role: "corresp", thumbnail: "" },
+  { year: 2017, title: "Grain boundary engineering for improving conductivity of polycrystalline SrTiO₃", authors: "Tzeng W.L., Yen H.W., Lin W.C., Shih S.J.", journal: "Ceramics International", volume: "43, 2, 2361-2367", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/grain-boundary-engineering-for-improving-conductivity-of-polycrys-2/", role: "", thumbnail: "" },
+  { year: 2017, title: "Hydrogenation effect on uniaxial magnetic anisotropy of a Co_xPd_{1−x} alloy microstructure", authors: "Mudinepalli V.R., Chen Y.C., Chang P.C., Hsu C.C., Tsai C.Y., Chiu H.C., Wu C.T., Yen H.W., Shih S.J., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "695, 2365-2373", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-effect-on-uniaxial-magnetic-anisotropy-of-a-cosubxs-2/", role: "corresp", thumbnail: "" },
+  { year: 2017, title: "Hydrogenation-induced reversible spin reorientation transition in Co₅₀Pd₅₀ alloy thin films", authors: "Chang P.C., Chen Y.C., Hsu C.C., Mudinepalli V.R., Chiu H.C., Lin W.C.", journal: "Journal of Alloys and Compounds", volume: "710, 37-46", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-induced-reversible-spin-reorientation-transition-in-2/", role: "corresp", thumbnail: "" },
+  { year: 2017, title: "Magnetic decoupling of Fe coverage across atomic step of MoS₂ flakes on SiO₂ surface", authors: "Hsu C.C., Lin Z.Y., Chang P.C., Chiu H.C., Chen H.W., Liu H.L., Bisio F., Lin W.C.", journal: "Journal of Physics D: Applied Physics", volume: "50, 41, 415001", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/magnetic-decoupling-of-fe-coverage-across-atomic-step-of-mossub2s-2/", role: "corresp", thumbnail: "" },
+  { year: 2017, title: "Modulation of magnetic anisotropy through self-assembled surface nanoclusters: Evolution of morphology and magnetism in Co–Pd alloy films", authors: "Hsu C.C., Chiu H.C., Mudinepalli V.R., Chen Y.C., Chang P.C., Wu C.T., Yen H.W., Lin W.C.", journal: "Applied Surface Science", volume: "416, 133-143", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/modulation-of-magnetic-anisotropy-through-self-assembled-surface--2/", role: "corresp", thumbnail: "" },
+  { year: 2017, title: "Using magnetic structure of Co₄₀Pd₆₀/Cu for the sensing of hydrogen", authors: "Liang J.Y., Pai Y.C., Lam T.N., Lin W.C., Chan T.S., Lai C.H., Tseng Y.C.", journal: "Applied Physics Letters", volume: "111, 2, 023503", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/using-magnetic-structure-of-cosub40subpdsub60subcu-for-the-sensin-2/", role: "", thumbnail: "" },
+  { year: 2017, title: "Voltage-induced Interface Reconstruction and Electrical Instability of the Ferromagnet-Semiconductor Device", authors: "Chang S.J., Chang P.C., Lin W.C., Lo S.H., Chang L.C., Lee S.F., Tseng Y.C.", journal: "Scientific Reports", volume: "7, 1, 339", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/voltage-induced-interface-reconstruction-and-electrical-instabili-2/", role: "", thumbnail: "" },
+
+  // ========== 2016 ==========
+  { year: 2016, title: "Annealing-induced alloy formation in Pd/Fe bilayers on Si(111) for hydrogen sensing", authors: "Mudinepalli V.R., Tsai C.J., Chuang Y.C., Chang P.C., Plusnin N., Lin W.C.", journal: "Applied Surface Science", volume: "366, 38-45", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/annealing-induced-alloy-formation-in-pdfe-bilayers-on-si1-1-1-for-2/", role: "corresp", thumbnail: "" },
+  { year: 2016, title: "Conventional and Spark Plasma Sintered Ba₀.₈Pb₀.₂TiO₃ Nano Ceramics: Structural, Dielectric, and Ferroelectric Properties", authors: "Mudinepalli V.R., Leng F., Lin W.C., Murty B.S.", journal: "Metallurgical and Materials Transactions A", volume: "47, 6, 2579-2586", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/conventional-and-spark-plasma-sintered-basub08subpbsub02subtiosub-2/", role: "", thumbnail: "" },
+  { year: 2016, title: "Hydrogen absorption-induced reversible change in magnetic properties of Co-Pd alloy films", authors: "Lin W.C., Wang B.Y., Huang H.Y., Tsai C.J., Mudinepalli V.R.", journal: "Journal of Alloys and Compounds", volume: "661, 20-26", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-absorption-induced-reversible-change-in-magnetic-propert-2/", role: "corresp", thumbnail: "" },
+  { year: 2016, title: "Preparation and characterisation of finegrained Barium lead titanate ceramics by spark plasma sintering technique", authors: "Mudinepalli V.R., Leng F., Lin W.C., Murty B.S.", journal: "Materials Research Innovations", volume: "20, 2, 81-85", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/preparation-and-characterisation-of-finegrained-barium-lead-titan-2/", role: "", thumbnail: "" },
+  { year: 2016, title: "Structural, dielectric and ferroelectric properties of lead-free Na₀.₅Bi₀.₅TiO₃ ceramics prepared by spark plasma sintering technique", authors: "Mudinepalli V.R., Leng F., Reddy M.P., Lin W.C., Murty B.S.", journal: "Indian Journal of Physics", volume: "90, 2, 131-138", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/structural-dielectric-and-ferroelectric-properties-of-lead-free-n-2/", role: "", thumbnail: "" },
+  { year: 2016, title: "Voltage induced reversible and irreversible change of magnetic coercivity in Co/ZnO heterostructure", authors: "Hsu C.C., Chang P.C., Mudinepalli V.R., Hsieh T.C., Lo F.Y., Lin W.C.", journal: "Journal of Applied Physics", volume: "119, 9, 093905", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/voltage-induced-reversible-and-irreversible-change-of-magnetic-co-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2015 ==========
+  { year: 2015, title: "Effect of grain size on dielectric and ferroelectric properties of nanostructured Ba₀.₈Sr₀.₂TiO₃ ceramics", authors: "Mudinepalli V.R., Feng L., Lin W.C., Murty B.S.", journal: "Journal of Advanced Ceramics", volume: "4, 1, 46-53", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/effect-of-grain-size-on-dielectric-and-ferroelectric-properties-o-2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Effects of surface oxidation on the exchange-bias properties of the single-crystal antiferromagnetic/ferromagnetic junction Mn/Co/Cu(001)", authors: "Caminale M., Moroni R., Torelli P., Panaccione G., Lin W.C., Canepa M., Mattera L., Bisio F.", journal: "Physical Review B", volume: "91, 9, 094435", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/effects-of-surface-oxidation-on-the-exchange-bias-properties-of-t-2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Hydrogen-mediated long-range magnetic ordering in Pd-rich alloy film", authors: "Lin W.C., Tsai C.J., Huang H.Y., Wang B.Y., Mudinepalli V.R., Chiu H.C.", journal: "Applied Physics Letters", volume: "106, 1, 012404", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-mediated-long-range-magnetic-ordering-in-pd-rich-alloy-f-2/", role: "corresp", thumbnail: "" },
+  { year: 2015, title: "Magnetic anisotropic properties of Pd/Co/Pd trilayer films studied by X-ray absorption spectroscopy and magnetic circular dichroism", authors: "Saravanan K., Kao C.H., Shao Y.C., Wang Y.F., Wang B.Y., Wang H.T., Tsai C.J., Lin W.C., Pao C.W., Tsai H.M., Jang L.Y., Lin H.J., Lee J.F., Pong W.F.", journal: "RSC Advances", volume: "5, 25, 19014-19019", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/magnetic-anisotropic-properties-of-pdcopd-trilayer-films-studied--2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Modulation of magnetic coercivity in Ni thin films by reversible control of strain", authors: "Lin W.C., Huang C.W., Ting Y.C., Lo F.Y., Chern M.Y.", journal: "Journal of Magnetism and Magnetic Materials", volume: "381, 446-450", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/modulation-of-magnetic-coercivity-in-ni-thin-films-by-reversible--2/", role: "corresp", thumbnail: "" },
+  { year: 2015, title: "Nanopatterning of magnetic domains: Fe coverage of self-assembled alumina nanostructure", authors: "Wu C.B., Wang B.Y., Lin W.C., Gai Z., Lin M.T.", journal: "Applied Physics Express", volume: "8, 9, 093002", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/nanopatterning-of-magnetic-domains-fe-coverage-of-self-assembled--2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Phase transitions of the ferroelectric Na₀.₅Bi₀.₅TiO₃ by dielectric and internal friction measurements", authors: "Mudinepalli V.R., Ramamanohar Reddy N., Lin W.C., Siva Kumar K.V., Murty B.S.", journal: "Advanced Materials Letters", volume: "6, 1, 27-32", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/phase-transitions-of-the-ferroelectric-nasub05subbisub05subtiosub-2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Spark Plasma Sintering Temperature Effect on Structural, Dielectric and Ferroelectric Properties of Ba₀.₉Sr₀.₁TiO₃ Nanocrystalline Ceramics", authors: "Mudinepalli V.R., Lin W.C., Song S.H., Murty B.S.", journal: "Journal of Electronic Materials", volume: "44, 11, 4308-4315", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/spark-plasma-sintering-temperature-effect-on-structural-dielectri-2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Surface morphology, magnetism and chemical state of Fe coverage on MoS₂ substrate", authors: "Hsu H.C., Wu C.B., Hsu K.L., Chang P.C., Fu T.Y., Mudinepalli V.R., Lin W.C.", journal: "Applied Surface Science", volume: "357, 551-557", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/surface-morphology-magnetism-and-chemical-state-of-fe-coverage-on-2/", role: "corresp", thumbnail: "" },
+  { year: 2015, title: "Thermal evolution of Fe on Ge(111)-c(2×8) surface and the effect of (√3×√3)R30° Ag-Ge buffer layer", authors: "Hsu H.C., Jhou M.K., Lin W.C., Fu T.Y.", journal: "Applied Surface Science", volume: "355, 778-783", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/thermal-evolution-of-fe-on-ge1-1-1-c2-8-surface-and-the-effect-of-2/", role: "", thumbnail: "" },
+  { year: 2015, title: "Voltage-induced reversible and irreversible changes in the magnetic coercivity of Fe, Co/ZnO heterostructures", authors: "Chang P., Hsu C., Lin W.C.", journal: "IEEE International Magnetics Conference", volume: "7157165", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/voltage-induced-reversible-and-irreversible-changes-in-the-magnet-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2014 ==========
+  { year: 2014, title: "Controllable sealing of leaky alumina films on NiAl(100) surface by catalytic oxidation", authors: "Liu K.T., Chen J.W., Liao Y.W., Lin W.C., Wu C.B., Kuo C.C., Lin M.T., Song K.J.", journal: "Journal of Applied Physics", volume: "115, 4, 044310", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/controllable-sealing-of-leaky-alumina-films-on-nial100-surface-by-2/", role: "", thumbnail: "" },
+  { year: 2014, title: "Critical hydrogenation effect on magnetic coercivity of perpendicularly magnetized Co/Pd multilayer nanostructures", authors: "Lin W.C., Tsai C.J., Liu X.M., Adeyeye A.O.", journal: "Journal of Applied Physics", volume: "116, 7, 073904", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/critical-hydrogenation-effect-on-magnetic-coercivity-of-perpendic-2/", role: "corresp", thumbnail: "" },
+  { year: 2014, title: "Growth, thermal stability and magnetism of Ni ultrathin films on O-3×3/W(111) surface", authors: "Tsai C.J., Hsueh K.J., Plusnin N., Kuo C.C., Lin W.C.", journal: "Applied Surface Science", volume: "313, 166-171", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/growth-thermal-stability-and-magnetism-of-ni-ultrathin-films-on-o-2/", role: "corresp", thumbnail: "" },
+  { year: 2014, title: "Reentrant surface anisotropy in the antiferromagnetic/ferromagnetic bilayer Mn/Co/Cu(001)", authors: "Caminale M., Moroni R., Torelli P., Lin W.C., Canepa M., Mattera L., Bisio F.", journal: "Physical Review Letters", volume: "112, 3, 037201", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/reentrant-surface-anisotropy-in-the-antiferromagneticferromagneti-2/", role: "", thumbnail: "" },
+  { year: 2014, title: "Soft perpendicular magnetization and spin reorientation transition of Fe films on NiAl(001)", authors: "Lin Y.C., Wu C.B., Li W.S., Chen Y.C., Huang Z.Y., Lin W.C., Lin M.T.", journal: "Applied Physics Express", volume: "7, 2, 023005", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/soft-perpendicular-magnetization-and-spin-reorientation-transitio-2/", role: "", thumbnail: "" },
+  { year: 2014, title: "Thermal stability and magnetism of Co and Fe ultrathin films on faceted Pd/W{112} surface", authors: "Chiu C.C., Lin W.C., Song K.J.", journal: "Journal of Applied Physics", volume: "115, 1, 013905", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/thermal-stability-and-magnetism-of-co-and-fe-ultrathin-films-on-f-2/", role: "", thumbnail: "" },
+  { year: 2014, title: "Voltage-induced reversible changes in the magnetic coercivity of Fe/ZnO heterostructures", authors: "Lin W.C., Chang P.C., Tsai C.J., Shieh T.C., Lo F.Y.", journal: "Applied Physics Letters", volume: "104, 6, 062411", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/voltage-induced-reversible-changes-in-the-magnetic-coercivity-of--2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2013 ==========
+  { year: 2013, title: "Enhanced perpendicular magnetic anisotropy in Fe/Mn bilayers by incorporating ultrathin ferromagnetic underlayer through magnetic proximity effect", authors: "Wang B.Y., Chiu C.C., Lin W.C., Lin M.T.", journal: "Applied Physics Letters", volume: "103, 4, 042407", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/enhanced-perpendicular-magnetic-anisotropy-in-femn-bilayers-by-in-2/", role: "", thumbnail: "" },
+  { year: 2013, title: "Good control of spatial and size ordering of Fe nanoparticles by Xe-gas-assisted growth with a seeding layer", authors: "Kuo C.C., Lin W.C., Chang H.Y., Song K.J.", journal: "Applied Physics Express", volume: "6, 2, 025501", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/good-control-of-spatial-and-size-ordering-of-fe-nanoparticles-by--2/", role: "", thumbnail: "" },
+  { year: 2013, title: "Hydrogen absorption induced reversible effect on magneto-optical property of Pd/Fe, Pd/Co and Pd/Ni bilayers", authors: "Lin W.C., Chi C.S., Ho T.Y., Tsai C.J.", journal: "Thin Solid Films", volume: "531, 487-490", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-absorption-induced-reversible-effect-on-magneto-optical--2/", role: "corresp", thumbnail: "" },
+  { year: 2013, title: "Hydrogen adsorption promoted perpendicular magnetic anisotropy in nano-structured Fe coverage on Pd/W{112} faceting surface", authors: "Chiu C.C., Lin W.C., Yeh Y.C., Song K.J.", journal: "Applied Physics Letters", volume: "102, 24, 242403", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogen-adsorption-promoted-perpendicular-magnetic-anisotropy-in-2/", role: "", thumbnail: "" },
+  { year: 2013, title: "Hydrogenation induced reversible modulation of perpendicular magnetic coercivity in Pd/Co/Pd films", authors: "Lin W.C., Tsai C.J., Wang B.Y., Kao C.H., Pong W.F.", journal: "Applied Physics Letters", volume: "102, 25, 252404", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-induced-reversible-modulation-of-perpendicular-magn-2/", role: "corresp", thumbnail: "" },
+  { year: 2013, title: "Magnetism modulation of Fe/ZnO heterostructure by interface oxidation", authors: "Lin W.C., Chang P.C., Tsai C.J., Hsieh T.C., Lo F.Y.", journal: "Applied Physics Letters", volume: "103, 21, 212405", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/magnetism-modulation-of-fezno-heterostructure-by-interface-oxidat-2/", role: "corresp", thumbnail: "" },
+  { year: 2013, title: "Modulation of magnetic anisotropy in Fe/Si(111) thin films through interface property", authors: "Lin W.C., Ho T.Y., Chi C.S., Tsai C.J.", journal: "Thin Solid Films", volume: "542, 355-359", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/modulation-of-magnetic-anisotropy-in-fesi111-thin-films-through-i-2/", role: "corresp", thumbnail: "" },
+  { year: 2013, title: "Oxygen surfactant-assisted growth and dewetting of Co films on O-3×3/W(111)", authors: "Hsueh K.J., Tsai C.J., Wu S.Y., Chou H.L., Bisio F., Kuo C.C., Lin W.C.", journal: "Journal of Applied Physics", volume: "114, 20, 203907", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/oxygen-surfactant-assisted-growth-and-dewetting-of-co-films-on-o--2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2012 ==========
+  { year: 2012, title: "Flipping magnetization induced by noncollinear ferromagnetic-antiferromagnetic exchange coupling", authors: "Wang B.Y., Chuang C.H., Wong S.S., Chiou J.J., Lin W.C., Chan Y.L., Wei D.H., Lin M.T.", journal: "Physical Review B", volume: "85, 9, 094412", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/flipping-magnetization-induced-by-noncollinear-ferromagnetic-anti-2/", role: "", thumbnail: "" },
+  { year: 2012, title: "Hydrogenation-induced change of magneto optical Kerr effect in Pd/Fe bilayers", authors: "Lin W.C., Chi C.S., Ho T.Y., Tsai C.J., Lo F.Y., Chuang H.C., Chern M.Y.", journal: "Journal of Applied Physics", volume: "112, 6, 063914", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/hydrogenation-induced-change-of-magneto-optical-kerr-effect-in-pd-2/", role: "corresp", thumbnail: "" },
+  { year: 2012, title: "Uniaxial magnetic anisotropy in Pd/Fe bilayers on Al₂O₃(0001) induced by oblique deposition", authors: "Chi C.S., Wang B.Y., Pong W.F., Ho T.Y., Tsai C.J., Lo F.Y., Chern M.Y., Lin W.C.", journal: "Journal of Applied Physics", volume: "111, 12, 123918", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/uniaxial-magnetic-anisotropy-in-pdfe-bilayers-on-al-sub2subo-sub3-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2011 ==========
+  { year: 2011, title: "Canted magnetization in Fe thin films on highly oriented pyrolytic graphite", authors: "Lin W.C., Lo F.Y., Huang Y.Y., Wang C.H., Chern M.Y.", journal: "Journal of Applied Physics", volume: "110, 8, 083911", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/canted-magnetization-in-fe-thin-films-on-highly-oriented-pyrolyti-2/", role: "corresp", thumbnail: "" },
+  { year: 2011, title: "Combination of exchange-bias and long-range interlayer couplings in Fe/fct-Mn/Co trilayers", authors: "Wang C.H., Huang Y.Y., Lin W.C.", journal: "Journal of Applied Physics", volume: "109, 10, 103908", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/combination-of-exchange-bias-and-long-range-interlayer-couplings--2/", role: "corresp", thumbnail: "" },
+  { year: 2011, title: "Driving magnetization perpendicular by antiferromagnetic-ferromagnetic exchange coupling", authors: "Wang B.Y., Jih N.Y., Lin W.C., Chuang C.H., Hsu P.J., Peng C.W., Yeh Y.C., Chan Y.L., Wei D.H., Chiang W.C., Lin M.T.", journal: "Physical Review B", volume: "83, 10, 104417", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/driving-magnetization-perpendicular-by-antiferromagnetic-ferromag-2/", role: "", thumbnail: "" },
+  { year: 2011, title: "Growth and magnetism of low-temperature deposited Fe/Si(111) films as an intermediate layer for suppression of silicide formation", authors: "Tu W.T., Wang C.H., Huang Y.Y., Lin W.C.", journal: "Journal of Applied Physics", volume: "109, 2, 023908", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/growth-and-magnetism-of-low-temperature-deposited-fesi111-films-a-2/", role: "corresp", thumbnail: "" },
+  { year: 2011, title: "Magnetization reversal processes of epitaxial Fe₃Si films on GaAs(001)", authors: "Liu Y.C., Chang P., Huang S.Y., Chang L.J., Lin W.C., Lee S.F., Hong M., Kwo J.", journal: "Journal of Applied Physics", volume: "109, 7, 07D508", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/magnetization-reversal-processes-of-epitaxial-fesub3subsi-films-o-2/", role: "", thumbnail: "" },
+  { year: 2011, title: "Stable canted magnetization in Co thin films on highly oriented pyrolytic graphite induced by template defects", authors: "Lin W.C., Huang Y.Y., Ho T.Y., Wang C.H.", journal: "Applied Physics Letters", volume: "99, 17, 172502", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/stable-canted-magnetization-in-co-thin-films-on-highly-oriented-p-2/", role: "corresp", thumbnail: "" },
+  { year: 2011, title: "Strong crystal anisotropy of magneto-transport property in Fe₃Si epitaxial film", authors: "Hung H.Y., Huang S.Y., Chang P., Lin W.C., Liu Y.C., Lee S.F., Hong M., Kwo J.", journal: "Journal of Crystal Growth", volume: "323, 1, 372-375", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/strong-crystal-anisotropy-of-magneto-transport-property-in-fesub3-2/", role: "", thumbnail: "" },
+
+  // ========== 2010 ==========
+  { year: 2010, title: "Coverage dependence of magnetic domain structure and magnetic anisotropy in supported Fe nanoparticles on Al₂O₃/NiAl(100)", authors: "Lin W.C., Wu C.B., Hsu P.J., Yen H.Y., Gai Z., Gao L., Shen J., Lin M.T.", journal: "Journal of Applied Physics", volume: "108, 3, 034312", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/coverage-dependence-of-magnetic-domain-structure-and-magnetic-ani-2/", role: "corresp", thumbnail: "" },
+  { year: 2010, title: "Higher Order Photoemission from Metal Surfaces", authors: "Winkelmann A., Chiang C.T., Bisio F., Lin W.C., Kirschner J., Petek H.", journal: "Dynamics at Solid State Surfaces and Interfaces", volume: "1, 33-51", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/higher-order-photoemission-from-metal-surfaces-2/", role: "", thumbnail: "" },
+  { year: 2010, title: "Manipulated nucleation of Fe nanostructures on Au(111) with combined growth methods", authors: "Lin W.C., Chang H.Y., Hu Y.C., Lin Y.Y., Hsu C.H., Kuo C.C.", journal: "Nanotechnology", volume: "21, 1, 015606", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/manipulated-nucleation-of-fe-nanostructures-on-au111-with-combine-2/", role: "corresp", thumbnail: "" },
+  { year: 2010, title: "Nucleation of Fe nanoparticle chains and nanostripes on Au(111) stepped surface", authors: "Lin W.C., Chang H.Y., Lin Y.Y., Hu Y.C., Hsu C.H., Kuo C.C.", journal: "Journal of Applied Physics", volume: "107, 1, 014301", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/nucleation-of-fe-nanoparticle-chains-and-nanostripes-on-au111-ste-2/", role: "corresp", thumbnail: "" },
+  { year: 2010, title: "Spin-polarized multi-photon photoemission and surface electronic structure of Cu(001)", authors: "Lin W.C., Winkelmann A., Chiang C.T., Bisio F., Kirschner J.", journal: "New Journal of Physics", volume: "12, 083022", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/spin-polarized-multi-photon-photoemission-and-surface-electronic--2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2009 ==========
+  { year: 2009, title: "Band structure effects in surface second harmonic generation: The case of Cu(001)", authors: "Bisio F., Winkelmann A., Lin W.C., Chiang C.T., Nývlt M., Petek H., Kirschner J.", journal: "Physical Review B", volume: "80, 12, 125432", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/band-structure-effects-in-surface-second-harmonic-generation-the--2/", role: "", thumbnail: "" },
+  { year: 2009, title: "Dimensionality Control and Magnetism of Fe on Nanopatterned Au(111) Surface", authors: "Lin W.C., Chang H.Y., Hu Y.C., Kuo C.C.", journal: "IEEE Transactions on Magnetics", volume: "45, 10, 4037-4040", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/dimensionality-control-and-magnetism-of-fe-on-nanopatterned-au111-2/", role: "corresp", thumbnail: "" },
+  { year: 2009, title: "Fabrication of Fe nanoparticle assemblies on Au(111) with Xe buffer layer and low temperature growth", authors: "Lin W.C., Chang H.Y., Hu Y.T., Kuo C.C.", journal: "Japanese Journal of Applied Physics", volume: "48, 8, 08JB07", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/fabrication-of-fe-nanoparticle-assemblies-on-au111-with-xe-buffer-2/", role: "corresp", thumbnail: "" },
+  { year: 2009, title: "Nanoscale magnetic configurations of supported Fe nanoparticle assemblies studied by scanning electron microscopy with spin analysis", authors: "Lin W.C., Gai Z., Gao L., Shen J., Hsu P.J., Yen H.Y., Lin M.T.", journal: "Physical Review B", volume: "80, 2, 024407", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/nanoscale-magnetic-configurations-of-supported-fe-nanoparticle-as-2/", role: "corresp", thumbnail: "" },
+  { year: 2009, title: "Resonant coherent three-photon photoemission from Cu(001)", authors: "Winkelmann A., Lin W.C., Chiang C.T., Bisio F., Petek H., Kirschner J.", journal: "Physical Review B", volume: "80, 15, 155128", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/resonant-coherent-three-photon-photoemission-from-cu001-2/", role: "", thumbnail: "" },
+
+  // ========== 2008 ==========
+  { year: 2008, title: "Electronically patterning through one-dimensional nanostripes with high density of states on single-crystalline Al₂O₃ domain", authors: "Hsu P.J., Wu C.B., Yen H.Y., Wong S.S., Lin W.C., Lin M.T.", journal: "Applied Physics Letters", volume: "93, 14, 143104", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/electronically-patterning-through-one-dimensional-nanostripes-wit-2/", role: "", thumbnail: "" },
+  { year: 2008, title: "Interferometric control of spin-polarized electron populations at a metal surface observed by multiphoton photoemission", authors: "Winkelmann A., Lin W.C., Bisio F., Petek H., Kirschner J.", journal: "Physical Review Letters", volume: "100, 20, 206601", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/interferometric-control-of-spin-polarized-electron-populations-at-2/", role: "", thumbnail: "" },
+
+  // ========== 2007 ==========
+  { year: 2007, title: "Comparison of the crystalline structure, morphology, and magnetic properties of γ-phase MnCu₃Au(100) ultrathin films by varying the growth temperature", authors: "Lin W.C., Chen T.Y., Lin L.C., Wang B.Y., Liao Y.W., Song K.J., Lin M.T.", journal: "Physical Review B", volume: "75, 5, 054419", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/comparison-of-the-crystalline-structure-morphology-and-magnetic-p-2/", role: "corresp", thumbnail: "" },
+  { year: 2007, title: "Enhanced exchange bias coupling in Fe/Fe_xMn_{1-x} bilayer by reducing vertical lattice constants", authors: "Lin W.C., Wang B.Y., Chen T.Y., Lin L.C., Liao Y.W., Pan W., Jih N.Y., Song K.J., Lin M.T.", journal: "Applied Physics Letters", volume: "90, 5, 052502", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/enhanced-exchange-bias-coupling-in-fefesubxsubmnsub1-xsub-bilayer-2/", role: "corresp", thumbnail: "" },
+  { year: 2007, title: "Ultrafast optical spin injection into image-potential states of Cu(001)", authors: "Winkelmann A., Bisio F., Ocaña R., Lin W.C., Nývlt M., Petek H., Kirschner J.", journal: "Physical Review Letters", volume: "98, 22, 226601", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/ultrafast-optical-spin-injection-into-image-potential-states-of-c-2/", role: "", thumbnail: "" },
+
+  // ========== 2006 ==========
+  { year: 2006, title: "Controlled growth of Co nanoparticle assembly on nanostructured template Al₂O₃/NiAl(100)", authors: "Lin W.C., Wong S.S., Huang P.C., Wu C.B., Xu B.R., Chiang C.T., Yen H.Y., Lin M.T.", journal: "Applied Physics Letters", volume: "89, 15, 153111", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/controlled-growth-of-co-nanoparticle-assembly-on-nanostructured-t-2/", role: "corresp", thumbnail: "" },
+  { year: 2006, title: "Depth-dependent fct to fcc strain relaxation in Co_xNi_{1-x}/Cu₃Au(100) alloy films", authors: "Wang B.Y., Lin W.C., Liao Y.W., Song K.J., Lin M.T.", journal: "Surface Science", volume: "600, 19, 4517-4526", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/depth-dependent-fct-to-fcc-strain-relaxation-in-cosubxsubnisub1-x-2/", role: "", thumbnail: "" },
+  { year: 2006, title: "Enhanced Curie temperatures in Fe and Co magnetic nanoparticle assembly on single-crystalline Al₂O₃/NiAl(100) with normal metal capping layer", authors: "Lin W.C., Huang P.C., Song K.J., Lin M.T.", journal: "Applied Physics Letters", volume: "88, 15, 153117", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/enhanced-curie-temperatures-in-fe-and-co-magnetic-nanoparticle-as-2/", role: "corresp", thumbnail: "" },
+  { year: 2006, title: "Structural phase diagram, magnetism, and exchange-biased behavior of Fe films on Fe_xMn_{1-x}/Cu(001)", authors: "Pan W., Lin W.C., Jih N.Y., Chuang C.H., Chen Y.C., Kuo C.C., Huang P.C., Lin M.T.", journal: "Physical Review B", volume: "74, 22, 224430", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/structural-phase-diagram-magnetism-and-exchange-biased-behavior-o-2/", role: "", thumbnail: "" },
+
+  // ========== 2005 ==========
+  { year: 2005, title: "Alloying and strain relaxation effects on spin-reorientation transitions in Co_xNi_{1-x}Cu₃Au(100) ultrathin films", authors: "Lin W.C., Wang B.Y., Liao Y.W., Song K.J., Lin M.T.", journal: "Physical Review B", volume: "71, 18, 184413", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/alloying-and-strain-relaxation-effects-on-spin-reorientation-tran-2/", role: "corresp", thumbnail: "" },
+  { year: 2005, title: "Effect of magnetic alloying on magnetic anisotropy in ultrathin fcc Ni-like films", authors: "Kuo C.C., Lin W.C., Chuang S.F., Lin M.T.", journal: "Surface Science", volume: "576, 1-3, 76-82", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/effect-of-magnetic-alloying-on-magnetic-anisotropy-in-ultrathin-f-2/", role: "", thumbnail: "" },
+  { year: 2005, title: "Growth, structure, and magnetism of γ-phase Mn ultrathin films on Cu₃Au(100)", authors: "Lin W.C., Lin L.C., Chen T.Y., Wang B.Y., Song K.J., Lin M.T.", journal: "Journal of Applied Physics", volume: "97, 10, 10K112", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/growth-structure-and-magnetism-of-%CE%B3-phase-mn-ultrathin-films-on-c-2/", role: "corresp", thumbnail: "" },
+  { year: 2005, title: "Self-aligned Co nanoparticle chains supported by single-crystalline Al₂O₃/NiAl(100) template", authors: "Lin W.C., Kuo C.C., Luo M.F., Song K.J., Lin M.T.", journal: "Applied Physics Letters", volume: "86, 4, 043105", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/self-aligned-co-nanoparticle-chains-supported-by-single-crystalli-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2003 ==========
+  { year: 2003, title: "Erratum: Self-limiting size distribution of supported cobalt nanoclusters at room temperature", authors: "Gwo S., Chou C.P., Wu C.L., Ye Y.J., Tsai S.J., Lin W.C., Lin M.T.", journal: "Physical Review Letters", volume: "90, 24, 249901", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/erratum-self-limiting-size-distribution-of-supported-cobalt-nanoc-2/", role: "", thumbnail: "" },
+  { year: 2003, title: "Self-limiting size distribution of supported cobalt nanoclusters at room temperature", authors: "Gwo S., Chou C.P., Wu C.L., Ye Y.J., Tsai S.J., Lin W.C., Lin M.T.", journal: "Physical Review Letters", volume: "90, 18, 185506", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/self-limiting-size-distribution-of-supported-cobalt-nanoclusters--3/", role: "", thumbnail: "" },
+
+  // ========== 2002 ==========
+  { year: 2002, title: "Anomalous temperature-driven magnetization switching in Co_xNi_{1-x}/Cu(100) binary alloy films", authors: "Kuo C.C., Lin W.C., Lin M.T.", journal: "Journal of Magnetism and Magnetic Materials", volume: "239, 1-3, 298-300", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/anomalous-temperature-driven-magnetization-switching-in-cosubxsub-2/", role: "", thumbnail: "" },
+  { year: 2002, title: "Comparative study of the d-band filling effect on the magnetic behavior of Co_xNi_{1-x} and Fe_xNi_{1-x} ultrathin films on Cu(100)", authors: "Kuo C.C., Chuang S.F., Pan W., Lin W.C., Lin M.T.", journal: "Journal of Applied Physics", volume: "91, 7185-7187", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/comparative-study-of-the-d-band-filling-effect-on-the-magnetic-be-2/", role: "", thumbnail: "" },
+  { year: 2002, title: "Dramatic depression of Curie temperature for magnetic Co/Cu(100) ultrathin films upon deposition at elevated temperature", authors: "Kuo C.C., Chiu C.L., Lin W.C., Lin M.T.", journal: "Surface Science", volume: "520, 3, 121-127", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/dramatic-depression-of-curie-temperature-for-magnetic-cocu1-0-0-u-2/", role: "", thumbnail: "" },
+
+  // ========== 2001 ==========
+  { year: 2001, title: "Effect of growth temperature on Curie temperature of magnetic ultrathin films Co/Cu(100)", authors: "Kuo C.C., Lin W.C., Chiu C.L., Huang H.L., Lin M.T.", journal: "Journal of Applied Physics", volume: "89, 7153-7155", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/effect-of-growth-temperature-on-curie-temperature-of-magnetic-ult-2/", role: "", thumbnail: "" },
+  { year: 2001, title: "Growth, crystalline structure and magnetic properties of ultrathin alloy films Co_xNi_{1-x}/Cu(100)", authors: "Lin W.C., Kuo C.C., Chiu C.L., Lin M.T.", journal: "Surface Science", volume: "478, 1-2, 9-17", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/growth-crystalline-structure-and-magnetic-properties-of-ultrathin-2/", role: "corresp", thumbnail: "" },
+  { year: 2001, title: "Spin-reorientation transition in magnetic alloy films Co_xNi_{1-x}/Cu(100)", authors: "Lin W.C., Kuo C.C., Chiu C.L., Lin M.T.", journal: "Journal of Applied Physics", volume: "89, 7139-7141", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/spin-reorientation-transition-in-magnetic-alloy-films-cosubxsubni-2/", role: "corresp", thumbnail: "" },
+
+  // ========== 2000 ==========
+  { year: 2000, title: "Critical evolution of spin-reorientation transition in magnetic Co_xNi_{1-x}/Cu(100) films upon precise variation of d-band filling", authors: "Lin M.T., Lin W.C., Kuo C.C., Chiu C.L.", journal: "Physical Review B", volume: "62, 21, 14268-14272", url: "https://scholar.lib.ntnu.edu.tw/zh/publications/critical-evolution-of-spin-reorientation-transition-in-magnetic-c-2/", role: "", thumbnail: "" }
+];
+
+// ==========================================================================
+// 【渲染與搜尋邏輯】此區一般不需修改
+// ==========================================================================
+const searchInput = document.getElementById('searchInput');
+const yearSelect  = document.getElementById('yearSelect');
+const sortSelect  = document.getElementById('sortSelect');
+const pubList     = document.getElementById('pubList');
+const resultText  = document.getElementById('resultText');
+const showingCount = document.getElementById('showingCount');
+const totalCount  = document.getElementById('totalCount');
+
+// 統計
+totalCount.innerHTML = `<em>${publications.length}</em>`;
+
+// 年份選單
+const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
+years.forEach(y => {
+  const opt = document.createElement('option');
+  opt.value = y;
+  opt.textContent = y;
+  yearSelect.appendChild(opt);
+});
+
+// 將「Lin W.C.」這類自身名字高亮
+function highlightSelf(authors) {
+  return authors.replace(/(Lin W\.C\.|Lin W\. C\.)/g, '<span class="self">$1</span>');
+}
+
+// 角色標籤
+function roleTag(role) {
+  if (role === 'corresp')  return '<span class="pub-tag role-corresp">Corresp.</span>';
+  if (role === 'cocorresp') return '<span class="pub-tag role-cocorresp">Co-Corresp.</span>';
+  return '';
+}
+
+// 渲染論文
+function renderPubs() {
+  const kw = searchInput.value.toLowerCase().trim();
+  const yr = yearSelect.value;
+  const sort = sortSelect.value;
+
+  let filtered = publications.filter(p => {
+    if (yr && p.year != yr) return false;
+    if (!kw) return true;
+    const hay = (p.title + p.authors + p.journal).toLowerCase();
+    return hay.includes(kw);
+  });
+
+  filtered.sort((a, b) => sort === 'newest' ? b.year - a.year : a.year - b.year);
+
+  resultText.textContent = `${filtered.length} of ${publications.length}`;
+  showingCount.textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    pubList.innerHTML = '<li class="no-result">No publications match your search.</li>';
+    return;
+  }
+
+  pubList.innerHTML = filtered.map(p => {
+    const thumb = p.thumbnail
+      ? `<img src="${p.thumbnail}" alt="">`
+      : `<span class="pub-thumb-year">${p.year}</span>`;
+    return `
+      <li class="pub-item">
+        <div class="pub-thumb">${thumb}</div>
+        <div class="pub-body">
+          <h3><a href="${p.url}" target="_blank" rel="noopener">${p.title}</a></h3>
+          <p class="pub-authors">${highlightSelf(p.authors)}</p>
+          <p class="pub-journal"><em>${p.journal}</em> &nbsp;·&nbsp; ${p.volume}</p>
+          <div class="pub-tags">
+            <span class="pub-tag year-tag">${p.year}</span>
+            ${roleTag(p.role)}
+          </div>
+        </div>
+      </li>`;
+  }).join('');
+}
+
+searchInput.addEventListener('input', renderPubs);
+yearSelect.addEventListener('change', renderPubs);
+sortSelect.addEventListener('change', renderPubs);
+renderPubs();
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>NanoMaterials &amp; Spintronics Laboratory</h4>
+      <p>Department of Physics<br>National Taiwan Normal University<br>88 Sec. 4, Ting-Chou Rd., Taipei 116, Taiwan</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:wclin@ntnu.edu.tw">wclin@ntnu.edu.tw</a></li>
+        <li>Office: +886-2-7734-6086</li>
+        <li>Lab: +886-2-7734-6080</li>
+        <li>Fax: +886-2-2932-6408</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <ul>
+        <li><a href="https://scholar.lib.ntnu.edu.tw/zh/persons/wen-chin-lin/" target="_blank" rel="noopener">NTNU Scholars</a></li>
+        <li><a href="https://www.phy.ntnu.edu.tw/" target="_blank" rel="noopener">Department of Physics</a></li>
+        <li><a href="https://www.ntnu.edu.tw/" target="_blank" rel="noopener">NTNU</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2007&ndash;2026 Wen-Chin Lin Group. All rights reserved.</div>
+    <div>Designed by 陳可凡 &amp; 陳柏維 · Rebuilt 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
