@@ -238,7 +238,7 @@ body::before {
   margin-right: auto;
 }
 .hero-meta {
-  display: inline-flex;
+  display: flex;
   gap: 20px;
   flex-wrap: wrap;
   padding: 14px 18px;
@@ -250,7 +250,7 @@ body::before {
   color: var(--color-muted);
 
   max-width: min(680px, calc(100vw - 2 * var(--gutter)));
-  margin-left: auto;
+  margin-left: calc(100vw - min(680px, calc(100vw - 2 * var(--gutter))));
   margin-right: 0;
   box-sizing: border-box;
 }
