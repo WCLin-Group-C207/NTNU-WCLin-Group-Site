@@ -65,6 +65,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   display: flex;
   flex-direction: column;
   gap: 14px;
+  height: 100%;
 }
 .member-photo {
   aspect-ratio: 4/5;
@@ -111,10 +112,30 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   font-size: 0.92rem;
   display: block;
   margin-top: 2px;
+  white-space: nowrap;
 }
-.member-edu { font-size: 0.82rem; line-height: 1.55; color: var(--color-muted); }
-.member-edu li { list-style: none; padding-left: 14px; position: relative; margin-bottom: 2px; }
-.member-edu li::before { content: "—"; position: absolute; left: 0; color: var(--color-accent); }
+.member-edu {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  min-height: 78px;
+}
+.member-edu li {
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 2px;
+}
+.member-edu li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+.member-edu li {
+  word-break: normal;
+  overflow-wrap: normal;
+}
 .member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 4px; }
 .member-contact a:hover { border-bottom: 1px solid currentColor; }
 
@@ -242,7 +263,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <h3 class="member-name">陳柏維<span class="member-name-en">Po-Wei Chen</span></h3>
         <ul class="member-edu">
           <li>B.S. Physics, NTNU (2023)</li>
-          <li>Ph.D. Physics (Dual-Degree), The University of Osaka &amp; NTNU (2024 – Present)</li>
+          <li>Ph.D. Physics (Dual-Degree), UOsaka &amp; NTNU (2024 – Present)</li>
         </ul>
         <p class="member-contact"><a href="mailto:81241005S@ntnu.edu.tw">81241005S@ntnu.edu.tw</a></p>
       </div>
