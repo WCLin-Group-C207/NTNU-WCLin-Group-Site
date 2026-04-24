@@ -137,15 +137,25 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   word-break: normal;
   overflow-wrap: normal;
 }
+.member-contact {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-top: 0;
+}
+
 .member-contact:first-of-type {
   font-weight: 600;
   color: var(--color-ink);
+  margin-top: 8px;
 }
+
 .member-contact:first-of-type a {
   color: var(--color-accent);
 }
-.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 2Dpx; }
-.member-contact a:hover { border-bottom: 1px solid currentColor; }
+
+.member-contact + .member-contact {
+  margin-top: 2px;
+}
 
 
 /* Alumni 表格 */
