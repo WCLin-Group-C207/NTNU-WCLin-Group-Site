@@ -154,7 +154,7 @@ body::before {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background-image: url("/NTNU-WCLin-Group-Site/assets/images/skyrmion.png");
+  background-image: url("assets/images/skyrmion.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -249,9 +249,9 @@ body::before {
   font-size: clamp(0.9rem, 1vw, 1rem);
   color: var(--color-muted);
 
-  max-width: min(680px, calc(100vw - 2 * var(--gutter)));
+  max-width: 680px;
   margin-left: auto;
-  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2 + var(--gutter)));
+  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
   box-sizing: border-box;
 }
 .hero-meta strong { color: var(--color-ink); font-weight: 600; }
