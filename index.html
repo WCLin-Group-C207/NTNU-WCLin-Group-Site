@@ -163,6 +163,12 @@ body::before {
       rgba(250, 247, 240, 0.20) 78%,
       rgba(250, 247, 240, 0.00) 100%
     ),
+    radial-gradient(circle at 88% 12%,
+      rgba(250,247,240,0.65) 0%,
+      rgba(250,247,240,0.35) 18%,
+      rgba(250,247,240,0.10) 38%,
+      rgba(250,247,240,0.00) 60%
+    ),
     linear-gradient(180deg,
       rgba(250, 247, 240, 0.30) 0%,
       rgba(250, 247, 240, 0.00) 25%,
@@ -170,9 +176,8 @@ body::before {
       rgba(250, 247, 240, 0.25) 100%
     ),
     url("assets/images/skyrmion-hero.png");
-  background-size: auto 100%, auto 100%, 60% 100%;
-  background-position: center, center, right center;
-  background-position: center center;
+  background-size: auto 100%, auto 100%, min(720px, 48vw) 100%;
+  background-position: center, center, right max(var(--gutter), calc((100vw - var(--max-width)) / 2)) center;
   background-repeat: no-repeat;
 }
 .hero > * {
