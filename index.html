@@ -251,7 +251,7 @@ body::before {
 
   max-width: min(680px, calc(100vw - 2 * var(--gutter)));
   margin-left: auto;
-  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
+  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2 + var(--gutter)));
   box-sizing: border-box;
 }
 .hero-meta strong { color: var(--color-ink); font-weight: 600; }
@@ -260,7 +260,7 @@ body::before {
 .hero-mark {
   position: absolute;
   top: clamp(34px, 5vw, 70px);
-  right: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
+  right: max(var(--gutter), calc((100vw - var(--max-width)) / 2 + var(--gutter)));
   font-family: var(--font-display);
   font-size: 0.76rem;
   text-align: right;
