@@ -205,7 +205,7 @@ body::before {
   letter-spacing: -0.04em;
   margin-bottom: 28px;
   color: var(--color-ink);
-  .hero-title { max-width: min(var(--max-width), 820px); }
+  max-width: min(var(--max-width), 820px);
   margin-left: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
   margin-right: auto;
   text-shadow: 0 1px 0 rgba(250, 247, 240, 0.72);
@@ -216,7 +216,7 @@ body::before {
   font-weight: 300;
 }
 .hero-lead {
-  .hero-lead { max-width: 640px; }
+  max-width: 640px;
   font-size: clamp(1rem, 1.45vw, 1.15rem);
   line-height: 1.7;
   color: var(--color-ink);
