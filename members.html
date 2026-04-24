@@ -138,10 +138,13 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   overflow-wrap: normal;
 }
 .member-contact:first-of-type {
-  font-weight: 800;
+  font-weight: 500;
   color: var(--color-ink);
 }
-.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 2Dpx; }
+.member-contact:first-of-type a {
+  color: var(--color-accent);
+}
+.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 12px; }
 .member-contact a:hover { border-bottom: 1px solid currentColor; }
 
 
