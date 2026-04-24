@@ -151,33 +151,49 @@ body::before {
   min-height: clamp(620px, 82vh, 880px);
   margin: 0;
   padding: clamp(92px, 12vw, 170px) var(--gutter) clamp(70px, 9vw, 120px);
+
   position: relative;
   overflow: hidden;
   isolation: isolate;
-   background-image:
+
+  /* 👉 滑鼠微動用變數 */
+  --mx: 50%;
+  --my: 50%;
+
+  background-image:
     linear-gradient(90deg,
-      rgba(250, 247, 240, 1.00) 0%,
-      rgba(250, 247, 240, 1.00) 38%,
-      rgba(250, 247, 240, 0.90) 48%,
-      rgba(250, 247, 240, 0.55) 60%,
-      rgba(250, 247, 240, 0.20) 78%,
-      rgba(250, 247, 240, 0.00) 100%
+      rgba(250,247,240,1.00) 0%,
+      rgba(250,247,240,1.00) 36%,
+      rgba(250,247,240,0.85) 48%,
+      rgba(250,247,240,0.55) 60%,
+      rgba(250,247,240,0.20) 75%,
+      rgba(250,247,240,0.00) 100%
     ),
+
     linear-gradient(180deg,
-      rgba(250, 247, 240, 0.30) 0%,
-      rgba(250, 247, 240, 0.00) 25%,
-      rgba(250, 247, 240, 0.00) 75%,
-      rgba(250, 247, 240, 0.25) 100%
+      rgba(250,247,240,0.30) 0%,
+      rgba(250,247,240,0.00) 25%,
+      rgba(250,247,240,0.00) 75%,
+      rgba(250,247,240,0.25) 100%
     ),
+
     url("assets/images/skyrmion-hero.png");
-  background-size: auto 100%, auto 100%, auto 100%, min(1140px, 48vw) 100%;
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    min(1100px, 46vw) 100%;
+
   background-position:
     center center,
     center center,
-    center center,
-    right max(var(--gutter), calc((100vw - var(--max-width)) / 2)) center;
+    calc(var(--mx)) calc(var(--my));
+
   background-repeat: no-repeat;
-  .hero::after {
+
+  transition: background-position 0.2s ease-out;
+}
+.hero::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -185,16 +201,16 @@ body::before {
   pointer-events: none;
 
   background:
-    /* 原本整體霧（保留一致感） */
+    /* 主閱讀區（穩定） */
     linear-gradient(90deg,
-      rgba(250,247,240,0.94) 0%,
-      rgba(250,247,240,0.94) 34%,
+      rgba(250,247,240,0.96) 0%,
+      rgba(250,247,240,0.96) 34%,
       rgba(250,247,240,0.70) 50%,
       rgba(250,247,240,0.25) 68%,
       rgba(250,247,240,0.00) 100%
     ),
 
-    /* ⭐ 上方紅框（露出圖片） */
+    /* 上方透圖 */
     radial-gradient(circle at 30% 18%,
       rgba(250,247,240,0.0) 0%,
       rgba(250,247,240,0.0) 18%,
@@ -203,7 +219,7 @@ body::before {
       rgba(250,247,240,1.0) 78%
     ),
 
-    /* ⭐ 下方紅框（露出圖片） */
+    /* 下方透圖 */
     radial-gradient(circle at 32% 72%,
       rgba(250,247,240,0.0) 0%,
       rgba(250,247,240,0.0) 20%,
@@ -211,6 +227,10 @@ body::before {
       rgba(250,247,240,0.80) 62%,
       rgba(250,247,240,1.0) 82%
     );
+}
+.hero > * {
+  position: relative;
+  z-index: 2;
 }
 .hero > * {
   max-width: var(--max-width);
@@ -321,31 +341,34 @@ body::before {
 }
 
 @media (max-width: 720px) {
+
   .hero {
     min-height: auto;
-    padding-top: 78px;
-    background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%,
-    cover;
+    padding: 96px var(--gutter) 72px;
 
-  background-position:
-    center center,
-    center center,
-    center center,
-    center center;
-}
- .hero::after {
+    background-size:
+      100% 100%,
+      100% 100%,
+      cover;
+
+    background-position:
+      center center,
+      center center,
+      center center;
+  }
+
+  .hero::after {
     background:
       linear-gradient(180deg,
         rgba(250,247,240,0.98) 0%,
-        rgba(250,247,240,0.92) 35%,
-        rgba(250,247,240,0.70) 60%,
-        rgba(250,247,240,0.20) 85%,
+        rgba(250,247,240,0.94) 35%,
+        rgba(250,247,240,0.75) 60%,
+        rgba(250,247,240,0.25) 85%,
         rgba(250,247,240,0.00) 100%
       );
   }
+
+}
 
   .hero-mark { display: none; }
 
@@ -885,5 +908,20 @@ body::before {
   </div>
 </footer>
 
+<script>
+const hero = document.querySelector('.hero');
+
+hero.addEventListener('mousemove', (e) => {
+  const rect = hero.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width;
+  const y = (e.clientY - rect.top) / rect.height;
+
+  const moveX = 50 + (x - 0.5) * 6;
+  const moveY = 50 + (y - 0.5) * 4;
+
+  hero.style.setProperty('--mx', moveX + '%');
+  hero.style.setProperty('--my', moveY + '%');
+});
+</script>
 </body>
 </html>
