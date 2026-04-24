@@ -125,6 +125,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   list-style: none;
   padding-left: 14px;
   position: relative;
+  margin-bottom: 2px;
 }
 .member-edu li::before {
   content: "—";
@@ -136,11 +137,12 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   word-break: normal;
   overflow-wrap: normal;
 }
-.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 4Dpx; }
-.member-contact a:hover { border-bottom: 1px solid currentColor; }
 .member-contact:first-of-type {
   font-weight: 500;
 }
+.member-contact { font-size: 0.8rem; color: var(--color-accent); margin-top: 2Dpx; }
+.member-contact a:hover { border-bottom: 1px solid currentColor; }
+
 
 /* Alumni 表格 */
 .alumni-section { max-width: var(--max-width); margin: 0 auto; padding: 60px var(--gutter); }
