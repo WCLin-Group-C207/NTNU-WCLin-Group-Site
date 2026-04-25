@@ -148,25 +148,36 @@ body::before {
 .hero {
   width: 100%;
   max-width: none;
-  min-height: clamp(500px, 62vh, 660px);
+  min-height: clamp(620px, 82vh, 880px);
   margin: 0;
-  padding: clamp(80px, 10vw, 130px) var(--gutter) clamp(40px, 5vw, 70px);
+  padding: clamp(92px, 12vw, 170px) var(--gutter) clamp(70px, 9vw, 120px);
   position: relative;
   overflow: hidden;
   isolation: isolate;
    background-image:
-    /* 整體均勻輕霧 — 讓全版面都有點米色感、能看到圖 */
-    linear-gradient(0deg, rgba(250,247,240,0.28), rgba(250,247,240,0.28)),
-    /* 上下兩端的淡霧（保留邊緣的優雅感） */
+    linear-gradient(90deg,
+      rgba(250, 247, 240, 0.00) 0%,
+      rgba(250, 247, 240, 0.20) 38%,
+      rgba(250, 247, 240, 0.90) 48%,
+      rgba(250, 247, 240, 0.55) 60%,
+      rgba(250, 247, 240, 0.20) 78%,
+      rgba(250, 247, 240, 0.00) 100%
+    ),
+    radial-gradient(circle at 88% 12%,
+      rgba(250,247,240,0.65) 0%,
+      rgba(250,247,240,0.35) 18%,
+      rgba(250,247,240,0.10) 38%,
+      rgba(250,247,240,0.00) 60%
+    ),
     linear-gradient(180deg,
-      rgba(250,247,240,0.40) 0%,
-      rgba(250,247,240,0.00) 18%,
-      rgba(250,247,240,0.00) 82%,
-      rgba(250,247,240,0.30) 100%
+      rgba(250, 247, 240, 0.30) 0%,
+      rgba(250, 247, 240, 0.00) 25%,
+      rgba(250, 247, 240, 0.00) 75%,
+      rgba(250, 247, 240, 0.25) 100%
     ),
     url("assets/images/skyrmion-hero.png");
-  background-size: auto 100%, auto 100%, cover;
-  background-position: center, center, center;
+  background-size: auto 100%, auto 100%, auto 100%, cover;
+  background-position: center, center, right max(var(--gutter), calc((100vw - var(--max-width)) / 2)) center;
   background-repeat: no-repeat;
   .hero::after {
   content: "";
@@ -176,16 +187,32 @@ body::before {
   pointer-events: none;
 
   background:
-  /* 中央橫向滿寬的霧化條帶 — 凸顯文字 */
-  linear-gradient(180deg,
-    rgba(250,247,240,0.00) 0%,
-    rgba(250,247,240,0.00) 12%,
-    rgba(250,247,240,0.78) 28%,
-    rgba(250,247,240,1.00) 50%,
-    rgba(250,247,240,0.78) 72%,
-    rgba(250,247,240,0.00) 88%,
-    rgba(250,247,240,0.00) 100%
-  );
+    /* 原本整體霧（保留一致感） */
+    linear-gradient(90deg,
+      rgba(250,247,240,0.92) 0%,
+      rgba(250,247,240,0.92) 32%,
+      rgba(250,247,240,0.65) 48%,
+      rgba(250,247,240,0.18) 65%,
+      rgba(250,247,240,0.00) 100%
+    ),
+
+    /* ⭐ 上方紅框（露出圖片） */
+    radial-gradient(circle at 30% 18%,
+      rgba(250,247,240,0.0) 0%,
+      rgba(250,247,240,0.0) 18%,
+      rgba(250,247,240,0.25) 36%,
+      rgba(250,247,240,0.75) 60%,
+      rgba(250,247,240,1.0) 78%
+    ),
+
+    /* ⭐ 下方紅框（露出圖片） */
+    radial-gradient(circle at 32% 72%,
+      rgba(250,247,240,0.0) 0%,
+      rgba(250,247,240,0.0) 20%,
+      rgba(250,247,240,0.30) 40%,
+      rgba(250,247,240,0.80) 62%,
+      rgba(250,247,240,1.0) 82%
+    );
 }
 .hero > * {
   position: relative;
