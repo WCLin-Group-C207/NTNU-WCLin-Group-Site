@@ -328,41 +328,137 @@ body::before {
 
 @media (max-width: 720px) {
   .hero {
-    min-height: auto;
-    padding-top: 78px;
+    min-height: 560px;
+    padding: 86px var(--gutter) 64px;
     background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%,
-    cover;
-
-  background-position:
-    center center,
-    center center,
-    center center,
-    center center;
-}
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      cover;
+    background-position:
+      center center,
+      78% 10%,
+      center center,
+      58% center;
+  }
 
   .hero::after {
     background:
-      linear-gradient(90deg, rgba(250,247,240,0.98) 0%, rgba(250,247,240,0.90) 54%, rgba(250,247,240,0.56) 100%),
-      linear-gradient(180deg, rgba(250,247,240,0.88) 0%, rgba(250,247,240,0.42) 45%, rgba(250,247,240,0.70) 100%);
+      linear-gradient(180deg,
+        rgba(250,247,240,0.96) 0%,
+        rgba(250,247,240,0.94) 30%,
+        rgba(250,247,240,0.86) 58%,
+        rgba(250,247,240,0.70) 78%,
+        rgba(250,247,240,0.42) 100%
+      ),
+      linear-gradient(90deg,
+        rgba(250,247,240,0.96) 0%,
+        rgba(250,247,240,0.88) 58%,
+        rgba(250,247,240,0.66) 100%
+      );
   }
 
   .hero-mark { display: none; }
 
-  .hero-label, .hero-title, .hero-lead, .hero-meta, .hero-cta {
+  .hero-label,
+  .hero-title,
+  .hero-lead,
+  .hero-meta,
+  .hero-cta {
     margin-left: var(--gutter);
     margin-right: var(--gutter);
   }
 
-  .hero-meta {
-    display: none;
-    width: auto;
+  .hero-label {
+    display: block;
     max-width: none;
-    margin-top: 18px;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    letter-spacing: 0.16em;
+    margin-bottom: 18px;
+  }
+  .hero-label::after {
+    display: block;
+    width: 58px;
+    max-width: none;
+    margin-top: 12px;
+  }
+
+  .hero-title {
+    max-width: none;
+    font-size: clamp(2.35rem, 11vw, 3.65rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    margin-bottom: 22px;
+  }
+
+  .hero-lead {
+    max-width: none;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    text-align: left;
+    opacity: 0.95;
+    margin-bottom: 28px;
+  }
+
+  .hero-cta {
+    width: fit-content;
+    max-width: calc(100% - 2 * var(--gutter));
+    padding: 12px 18px;
+    font-size: 0.76rem;
+    letter-spacing: 0.10em;
+  }
+
+  .hero-meta { display: none; }
+
+  .section {
+    padding: 46px var(--gutter);
+  }
+
+  .section-head {
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .section-link {
+    display: inline-block;
+    margin-top: 14px;
+  }
+
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-card {
+    padding: 28px 24px;
   }
 }
+
+@media (max-width: 420px) {
+  .hero {
+    min-height: 590px;
+    padding-top: 78px;
+    background-position:
+      center center,
+      78% 10%,
+      center center,
+      60% center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.18rem, 12.5vw, 3.05rem);
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-lead {
+    font-size: 0.94rem;
+  }
+}
+
 
 /* ==========================================================================
    【章節標題】通用
