@@ -332,34 +332,40 @@ body::before {
   .hero {
     min-height: 560px;
     padding: 86px var(--gutter) 64px;
+
+    background-image:
+      linear-gradient(180deg,
+        rgba(250,247,240,0.90) 0%,
+        rgba(250,247,240,0.82) 30%,
+        rgba(250,247,240,0.64) 58%,
+        rgba(250,247,240,0.46) 78%,
+        rgba(250,247,240,0.34) 100%
+      ),
+      linear-gradient(90deg,
+        rgba(250,247,240,0.88) 0%,
+        rgba(250,247,240,0.70) 55%,
+        rgba(250,247,240,0.36) 100%
+      ),
+      url("assets/images/skyrmion-hero.png");
+
     background-size:
       100% 100%,
       100% 100%,
-      100% 100%,
       cover;
+
     background-position:
       center center,
-      78% 10%,
       center center,
-      58% center;
+      center center;
+
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      no-repeat;
   }
 
   .hero::after {
-    background:
-      linear-gradient(180deg,
-        rgba(250,247,240,0.96) 0%,
-        rgba(250,247,240,0.94) 22%,
-        rgba(250,247,240,0.90) 45%,
-        rgba(250,247,240,0.84) 68%,
-        rgba(250,247,240,0.72) 86%,
-        rgba(250,247,240,0.60) 100%
-      ),
-      linear-gradient(90deg,
-        rgba(250,247,240,0.96) 0%,
-        rgba(250,247,240,0.92) 55%,
-        rgba(250,247,240,0.78) 82%,
-        rgba(250,247,240,0.62) 100%
-      );
+    display: none;
   }
 
   .hero-mark { display: none; }
