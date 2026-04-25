@@ -269,6 +269,25 @@ body::before {
   text-align: justify;
   hyphens: auto;
 }
+.hero-meta {
+  display: none;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  border: 1px solid rgba(164, 39, 64, 0.22);
+  background: rgba(250, 247, 240, 0.62);
+  backdrop-filter: blur(8px);
+  border-radius: 2px;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--color-muted);
+
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: max(var(--gutter), calc((100vw - var(--max-width)) / 2));
+  box-sizing: border-box;
+}
+.hero-meta strong { color: var(--color-ink); font-weight: 600; }
+
 
   max-width: 680px;
   margin-left: auto;
