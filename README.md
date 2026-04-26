@@ -25,7 +25,7 @@ NTNU-WCLin-Group-Site/
 ├── publications.html          # Searchable publication list
 ├── facilities.html            # Instruments / facilities
 ├── exchange-awards.html       # Awards, exchange, scholarships, visits
-├── photos.html                # Gallery page; see filename note below
+├── gallery.html                # Gallery page; see filename note below
 ├── assets/
 │   └── images/
 │       ├── skyrmion-hero.png  # Home hero background
@@ -36,35 +36,6 @@ NTNU-WCLin-Group-Site/
 │       ├── VSM.jpg
 │       └── ...
 └── README.md
-```
-
-### Important filename note: Gallery page
-
-In the navigation bar, the Gallery link currently points to:
-
-```html
-<a href="photos.html">Gallery</a>
-```
-
-Therefore, the actual Gallery file should be named:
-
-```text
-photos.html
-```
-
-If the file is named `gallery.html`, either rename it to `photos.html`, or change all navigation links from:
-
-```html
-photos.html
-```
-
-to:
-
-```html
-gallery.html
-```
-
-The filename and link must match exactly. GitHub Pages is case-sensitive.
 
 ---
 
@@ -905,7 +876,7 @@ If you create a new tag class, add CSS:
 
 ---
 
-## 13. Gallery page — `photos.html` or `gallery.html`
+## 13. Gallery page — `gallery.html`
 
 The Gallery page uses photo sections and photo grids.
 
@@ -1219,7 +1190,7 @@ research.html
 publications.html
 facilities.html
 exchange-awards.html
-photos.html
+gallery.html
 ```
 
 ### Main image folder
