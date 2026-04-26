@@ -651,6 +651,29 @@ body::before {
 }
 
 /* ==========================================================================
+   【首頁影片網址】
+   ========================================================================== */
+
+<section class="section lab-video">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker">Laboratory Introduction</div>
+      <h2 class="section-title">Featured Video</h2>
+    </div>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/a-mjDCo4HNE"
+      title="NanoMaterials & Spintronics Lab Introduction"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+/* ==========================================================================
    【加入我們 CTA】
    ========================================================================== */
 .cta {
@@ -690,6 +713,39 @@ body::before {
 }
 .cta-btn:hover { transform: translateY(-2px); }
 @media (max-width: 720px) { .cta-inner { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ==========================================================================
+   【首頁影片區格式】
+   ========================================================================== */
+.lab-video {
+  padding-top: clamp(40px, 6vw, 80px);
+  padding-bottom: clamp(40px, 6vw, 80px);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 720px) {
+  .video-wrapper {
+    border-radius: 12px;
+  }
+}
 
 /* ==========================================================================
    【頁尾 Footer】——8 個頁面都使用相同的這段
