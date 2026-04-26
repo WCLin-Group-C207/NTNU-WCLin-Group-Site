@@ -156,7 +156,7 @@ index.html
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
       <li><a href="exchange-awards.html">Awards</a></li>
-      <li><a href="photos.html">Gallery</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </div>
 </nav>
@@ -1046,13 +1046,13 @@ https://wclin-group-c207.github.io/NTNU-WCLin-Group-Site/assets/images/IMAGE_NAM
 檢查：
 
 ```html
-<a href="photos.html">Gallery</a>
+<a href="gallery.html">Gallery</a>
 ```
 
 是否真的有：
 
 ```text
-photos.html
+gallery.html
 ```
 
 ### 手機版 menu 打不開
