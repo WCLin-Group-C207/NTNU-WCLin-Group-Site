@@ -25,7 +25,7 @@ NTNU-WCLin-Group-Site/
 ├── publications.html          # 論文列表與搜尋篩選功能
 ├── facilities.html            # 實驗設備
 ├── exchange-awards.html       # 國際交流、獲獎與獎學金
-├── photos.html                # 相簿 / Gallery 頁面
+├── gallery.html                # 相簿 / Gallery 頁面
 ├── assets/
 │   └── images/
 │       ├── skyrmion-hero.png  # 首頁主視覺背景圖
@@ -36,42 +36,6 @@ NTNU-WCLin-Group-Site/
 │       ├── VSM.jpg
 │       └── ...
 └── README.md
-```
-
-### Gallery 檔名注意事項
-
-目前導覽列的 Gallery 連結通常寫成：
-
-```html
-<a href="photos.html">Gallery</a>
-```
-
-因此相簿頁面檔名應該是：
-
-```text
-photos.html
-```
-
-如果實際檔名是：
-
-```text
-gallery.html
-```
-
-則需要做其中一件事：
-
-1. 將 `gallery.html` 改名為 `photos.html`
-2. 或把所有頁面導覽列中的 `photos.html` 改成 `gallery.html`
-
-GitHub Pages 對大小寫非常嚴格，因此：
-
-```text
-photos.html
-Photos.html
-gallery.html
-```
-
-都會被視為不同檔案。
 
 ---
 
@@ -931,7 +895,7 @@ Facilities 頁以卡片顯示設備。
 
 ---
 
-## 13. Gallery / Photos 頁
+## 13. Gallery 頁
 
 相簿頁通常由 photo sections 與 photo grids 組成。
 
@@ -1225,7 +1189,7 @@ research.html
 publications.html
 facilities.html
 exchange-awards.html
-photos.html
+gallery.html
 ```
 
 ### 圖片資料夾
