@@ -144,7 +144,7 @@ Each page has a navigation block similar to:
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
       <li><a href="exchange-awards.html">Awards</a></li>
-      <li><a href="photos.html">Gallery</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </div>
 </nav>
@@ -1019,19 +1019,19 @@ Check whether the filename matches the link exactly.
 Example:
 
 ```html
-<a href="photos.html">Gallery</a>
+<a href="gallery.html">Gallery</a>
 ```
 
 requires:
 
 ```text
-photos.html
+gallery.html
 ```
 
 not:
 
 ```text
-gallery.html
+photots.html
 ```
 
 ### Problem: mobile menu does not open
