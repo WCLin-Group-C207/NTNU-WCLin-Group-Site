@@ -100,10 +100,15 @@ body::before {
 }
 .nav-brand::before {
   content: "";
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--color-accent);
+  width: 32px;
+  height: 32px;
   display: inline-block;
+  background-image: url("assets/images/NMSLab-cream-bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0;
+  flex-shrink: 0;
 }
 .nav-links {
   display: flex;
