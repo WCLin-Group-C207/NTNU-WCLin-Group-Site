@@ -1,8 +1,42 @@
 ﻿# 編輯器/系統雜項
 .vscode/
+.idea/
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# 常見的暫存/備份檔
+# 暫存/備份檔
 *.bak
 *~
+*.tmp
+*.swp
+
+# 敏感資訊/設定檔
+.env
+.env.local
+config.local.js
+*apikey*
+*secret*
+
+# Claude Code 個人設定（每個協作者各自的權限/hook 觸發開關，不共用）
+.claude/settings.local.json
+
+# Node.js 相關（如果之後有人引入打包工具）
+node_modules/
+package-lock.json
+dist/
+build/
+
+# 設計原始檔（通常不是網站運作需要的檔案）
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# 壓縮檔/備份包
+*.zip
+*.rar
+*.tar.gz
+
+# 作業系統產生的其他雜項
+$RECYCLE.BIN/
