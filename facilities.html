@@ -72,7 +72,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .page-header { max-width: var(--max-width); margin: 0 auto; padding: clamp(50px, 8vw, 80px) var(--gutter) 40px; border-bottom: 1px solid var(--color-rule); }
 .page-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--color-accent); font-weight: 500; margin-bottom: 16px; }
 .page-title { font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 4rem); font-weight: 400; letter-spacing: -0.03em; }
-.page-lead { max-width: 680px; margin-top: 18px; color: var(--color-muted); font-size: 1.02rem; }
 
 /* Facility grid */
 .facilities {
@@ -115,15 +114,39 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   line-height: 1.2;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  min-height: 2.4em; /* reserve 2 lines so 1- vs 2-line titles don't stagger the row */
 }
 .facility-subtitle {
   font-size: 0.8rem;
   color: var(--color-muted);
   font-style: italic;
+  line-height: 1.5;
   margin-bottom: 14px;
+  min-height: 3em; /* reserve 2 lines so subtitle length doesn't stagger the row */
+}
+.facility-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 24px; /* reserve the slot so cards without tags still align with ones that have them */
+  margin-bottom: 14px;
+}
+.facility-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  border: 1px solid var(--color-rule);
+  padding: 5px 9px;
+  border-radius: 2px;
+  background: var(--color-cream);
 }
 .facility-desc {
   font-size: 0.9rem;
@@ -131,8 +154,18 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   color: var(--color-ink);
   opacity: 0.82;
   margin-bottom: 18px;
-  flex: 1;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
+.facility-note {
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+.facility-body .facility-desc + .facility-note { margin-top: -8px; }
 .facility-specs {
   padding-top: 14px;
   border-top: 1px solid var(--color-rule);
@@ -141,17 +174,69 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   line-height: 1.6;
 }
 .facility-specs strong { color: var(--color-ink); font-weight: 600; }
-.facility-link {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 0.82rem;
-  color: var(--color-accent);
+
+.facility-more-btn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 500;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: auto;
   align-self: start;
+  cursor: pointer;
 }
-.facility-link:hover { opacity: 0.7; }
+.facility-more-btn:hover { text-decoration: underline; }
+
+.facility-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+}
+.facility-modal[hidden] { display: none; }
+.facility-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 34, 56, 0.55);
+}
+.facility-modal-panel {
+  position: relative;
+  background: var(--color-paper);
+  width: 100%;
+  max-width: 460px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px;
+  border-radius: 2px;
+  box-shadow: 0 12px 32px rgba(26, 34, 56, 0.18);
+}
+.facility-modal-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+.facility-modal-panel .facility-num { margin-bottom: 8px; }
+.facility-modal-panel .facility-title { margin-bottom: 4px; min-height: 0; }
+.facility-modal-panel .facility-subtitle { margin-bottom: 14px; min-height: 0; }
+.facility-modal-panel .facility-desc { margin-bottom: 0; }
+.facility-modal-panel .facility-specs { margin-top: 18px; }
+.facility-modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted);
+}
+.facility-modal-close:hover { color: var(--color-ink); }
 
 /* Footer */
 .footer { background: var(--color-cream); border-top: 1px solid var(--color-rule); padding: 50px var(--gutter) 30px; }
@@ -186,7 +271,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 <header class="page-header">
   <div class="page-kicker">Instrumentation</div>
   <h1 class="page-title">Facilities</h1>
-  <p class="page-lead">Our laboratory maintains a suite of instruments for thin-film deposition, magnetic imaging, surface characterization, and structural analysis — supporting in-house projects and collaborations with partner groups.</p>
 </header>
 
 <!-- ==========================================================================
@@ -194,65 +278,117 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
      ========================================================================== -->
 <section class="facilities">
 
-  <!-- ▼ AFM ▼ -->
-  <article class="facility">
-    <div class="facility-photo">
-      <img src="assets/images/AFM.jpg" alt="Atomic Force Microscope">
-    </div>
-    <div class="facility-body">
-      <div class="facility-num">01</div>
-      <h2 class="facility-title">Atomic Force Microscope</h2>
-      <div class="facility-subtitle">Surface topography and conductive AFM</div>
-      <p class="facility-desc">
-        High-resolution imaging of surface morphology, lateral force mapping, and conductive-AFM measurements for electrically-driven domain manipulation in 2D magnetic materials.
-      </p>
-      <div class="facility-specs">
-        <strong>Capabilities:</strong> Tapping / Contact / Conductive modes<br>
-        <strong>Applications:</strong> bubble domain creation, PL patterning in 2D heterostructures
-      </div>
-      <a href="facilities/atomic-force-microscope.html" class="facility-link">Details →</a>
-    </div>
-  </article>
-
   <!-- ▼ MOKE ▼ -->
   <article class="facility">
     <div class="facility-photo">
       <img src="assets/images/Kerr-Microscope.jpg" alt="Magneto-optical Kerr Microscope">
     </div>
     <div class="facility-body">
-      <div class="facility-num">02</div>
+      <div class="facility-num">01</div>
       <h2 class="facility-title">Magneto-optical Kerr Microscope</h2>
-      <div class="facility-subtitle">Real-space domain imaging &amp; hysteresis</div>
+      <div class="facility-subtitle">Magnetic Domain Imaging</div>
+      <div class="facility-tags">
+        <span class="facility-tag">Gas Environment</span>
+        <span class="facility-tag">Variable Temperature</span>
+      </div>
       <p class="facility-desc">
-        Visualizes magnetic domain structure, domain-wall motion, and hysteresis loops with sub-micron resolution. Used extensively for hydrogen-induced domain dynamics studies.
+        Real-space imaging of magnetic domain structure and domain-wall dynamics using the magneto-optical Kerr effect, enabling direct visualization of magnetization reversal and hysteresis behavior.
       </p>
+      <p class="facility-note">This instrument is also shared with NTNU's Instrumentation Center.</p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-magneto-optical-kerr-microscope">more ▾</button>
+    </div>
+  </article>
+
+  <div class="facility-modal" id="modal-magneto-optical-kerr-microscope" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-magneto-optical-kerr-microscope-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/Kerr-Microscope.jpg" alt="Magneto-optical Kerr Microscope">
+      <div class="facility-num">01</div>
+      <h2 id="modal-magneto-optical-kerr-microscope-title" class="facility-title">Magneto-optical Kerr Microscope</h2>
+      <div class="facility-subtitle">Magnetic Domain Imaging</div>
+      <p class="facility-desc">
+        Real-space imaging of magnetic domain structure and domain-wall dynamics using the magneto-optical Kerr effect, enabling direct visualization of magnetization reversal and hysteresis behavior.
+      </p>
+      <p class="facility-note">This instrument is also shared with NTNU's Instrumentation Center.</p>
       <div class="facility-specs">
         <strong>Modes:</strong> Polar / Longitudinal / Transverse Kerr<br>
         <strong>Applications:</strong> domain imaging, M–H loops, time-resolved diffusion mapping
       </div>
-      <a href="facilities/magneto-optical-kerr-microscope.html" class="facility-link">Details →</a>
+    </div>
+  </div>
+
+  <!-- ▼ AFM ▼ -->
+  <article class="facility">
+    <div class="facility-photo">
+      <img src="assets/images/AFM.jpg" alt="Atomic Force Microscope">
+    </div>
+    <div class="facility-body">
+      <div class="facility-num">02</div>
+      <h2 class="facility-title">Atomic Force Microscope</h2>
+      <div class="facility-subtitle">Surface Characterization</div>
+      <div class="facility-tags"></div>
+      <p class="facility-desc">
+        High-resolution imaging of surface topography at the nanometer scale by scanning a sharp probe across the sample surface, revealing morphology, roughness, and fine surface features.
+      </p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-atomic-force-microscope">more ▾</button>
     </div>
   </article>
 
-  <!-- ▼ CVD ▼ -->
+  <div class="facility-modal" id="modal-atomic-force-microscope" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-atomic-force-microscope-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/AFM.jpg" alt="Atomic Force Microscope">
+      <div class="facility-num">02</div>
+      <h2 id="modal-atomic-force-microscope-title" class="facility-title">Atomic Force Microscope</h2>
+      <div class="facility-subtitle">Surface Characterization</div>
+      <p class="facility-desc">
+        High-resolution imaging of surface topography at the nanometer scale by scanning a sharp probe across the sample surface, revealing morphology, roughness, and fine surface features.
+      </p>
+      <div class="facility-specs">
+        <strong>Capabilities:</strong> Tapping / Contact / Conductive modes<br>
+        <strong>Applications:</strong> bubble domain creation, PL patterning in 2D heterostructures
+      </div>
+    </div>
+  </div>
+
+  <!-- ▼ VSM ▼ -->
   <article class="facility">
     <div class="facility-photo">
-      <img src="assets/images/CVD.jpg" alt="Chemical Vapor Deposition">
+      <img src="assets/images/VSM.jpg" alt="Vibrating Sample Magnetometer">
     </div>
     <div class="facility-body">
       <div class="facility-num">03</div>
-      <h2 class="facility-title">Chemical Vapor Deposition</h2>
-      <div class="facility-subtitle">In collaboration with Prof. Fang-Yuh Lo's group</div>
+      <h2 class="facility-title">Vibrating Sample Magnetometer</h2>
+      <div class="facility-subtitle">Magnetic Property Measurement</div>
+      <div class="facility-tags"></div>
       <p class="facility-desc">
-        Growth of 2D materials (graphene, hBN, TMDs) and oxide thin films on various substrates for heterostructure fabrication and interface studies.
+        Quantitative measurement of a sample's magnetic moment as a function of applied field and temperature, used to characterize hysteresis loops, saturation magnetization, and Curie temperature.
       </p>
-      <div class="facility-specs">
-        <strong>Materials grown:</strong> Graphene, hBN, MoS₂, perovskite oxides<br>
-        <strong>Substrates:</strong> SiO₂/Si, sapphire, transparent conductive oxides
-      </div>
-      <a href="facilities/chemical-vapor-deposition.html" class="facility-link">Details →</a>
+      <p class="facility-note">This instrument is co-managed with Prof. Fang-Yuh Lo's group and shared with NTNU's Instrumentation Center.</p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-vibrating-sample-magnetometer">more ▾</button>
     </div>
   </article>
+
+  <div class="facility-modal" id="modal-vibrating-sample-magnetometer" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-vibrating-sample-magnetometer-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/VSM.jpg" alt="Vibrating Sample Magnetometer">
+      <div class="facility-num">03</div>
+      <h2 id="modal-vibrating-sample-magnetometer-title" class="facility-title">Vibrating Sample Magnetometer</h2>
+      <div class="facility-subtitle">Magnetic Property Measurement</div>
+      <p class="facility-desc">
+        Quantitative measurement of a sample's magnetic moment as a function of applied field and temperature, used to characterize hysteresis loops, saturation magnetization, and Curie temperature.
+      </p>
+      <p class="facility-note">This instrument is co-managed with Prof. Fang-Yuh Lo's group and shared with NTNU's Instrumentation Center.</p>
+      <div class="facility-specs">
+        <strong>Field range:</strong> typically up to ±2 T<br>
+        <strong>Temperature:</strong> variable (low-T option available)
+      </div>
+    </div>
+  </div>
 
   <!-- ▼ UHV e-beam ▼ -->
   <article class="facility">
@@ -262,17 +398,67 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     <div class="facility-body">
       <div class="facility-num">04</div>
       <h2 class="facility-title">UHV e-beam Evaporation</h2>
-      <div class="facility-subtitle">Ultra-high vacuum thin-film deposition</div>
+      <div class="facility-subtitle">Thin-Film Deposition</div>
       <p class="facility-desc">
-        Electron-beam evaporation in UHV environment for clean, layer-controlled growth of magnetic thin films, multilayers, and alloy systems with sub-monolayer precision.
+        Physical vapor deposition of thin films under ultra-high vacuum, using an electron beam to evaporate source materials for precise, contamination-free layer growth.
+      </p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-uhv-e-beam-evaporation">more ▾</button>
+    </div>
+  </article>
+
+  <div class="facility-modal" id="modal-uhv-e-beam-evaporation" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-uhv-e-beam-evaporation-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/UHV-e-beam-PVD.jpg" alt="UHV e-beam Evaporation System">
+      <div class="facility-num">04</div>
+      <h2 id="modal-uhv-e-beam-evaporation-title" class="facility-title">UHV e-beam Evaporation</h2>
+      <div class="facility-subtitle">Thin-Film Deposition</div>
+      <p class="facility-desc">
+        Physical vapor deposition of thin films under ultra-high vacuum, using an electron beam to evaporate source materials for precise, contamination-free layer growth.
       </p>
       <div class="facility-specs">
         <strong>Base pressure:</strong> 10⁻¹⁰ Torr range<br>
         <strong>Materials:</strong> Fe, Co, Ni, Pd, Pt, Cu, Mn, noble gases
       </div>
-      <a href="facilities/uhv-e-beam-evaporation-system.html" class="facility-link">Details →</a>
+    </div>
+  </div>
+
+  <!-- ▼ CVD ▼ -->
+  <article class="facility">
+    <div class="facility-photo">
+      <img src="assets/images/CVD.jpg" alt="Chemical Vapor Deposition">
+    </div>
+    <div class="facility-body">
+      <div class="facility-num">05</div>
+      <h2 class="facility-title">Chemical Vapor Deposition</h2>
+      <div class="facility-subtitle">Materials Growth, Synthesis &amp; Annealing</div>
+      <p class="facility-desc">
+        Growth of thin films and 2D materials through gas-phase chemical reactions on a heated substrate, along with post-growth annealing to control crystallinity and material quality.
+      </p>
+      <p class="facility-note">This system is operated in collaboration with Prof. Fang-Yuh Lo's group.</p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-chemical-vapor-deposition">more ▾</button>
     </div>
   </article>
+
+  <div class="facility-modal" id="modal-chemical-vapor-deposition" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-chemical-vapor-deposition-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/CVD.jpg" alt="Chemical Vapor Deposition">
+      <div class="facility-num">05</div>
+      <h2 id="modal-chemical-vapor-deposition-title" class="facility-title">Chemical Vapor Deposition</h2>
+      <div class="facility-subtitle">Materials Growth, Synthesis &amp; Annealing</div>
+      <p class="facility-desc">
+        Growth of thin films and 2D materials through gas-phase chemical reactions on a heated substrate, along with post-growth annealing to control crystallinity and material quality.
+      </p>
+      <p class="facility-note">This system is operated in collaboration with Prof. Fang-Yuh Lo's group.</p>
+      <div class="facility-specs">
+        <strong>Materials grown:</strong> Graphene, hBN, MoS₂, perovskite oxides<br>
+        <strong>Substrates:</strong> SiO₂/Si, sapphire, transparent conductive oxides
+      </div>
+    </div>
+  </div>
 
   <!-- ▼ Raman ▼ -->
   <article class="facility">
@@ -280,39 +466,35 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
       <img src="assets/images/Raman.jpg" alt="Raman Spectrometer">
     </div>
     <div class="facility-body">
-      <div class="facility-num">05</div>
+      <div class="facility-num">06</div>
       <h2 class="facility-title">Raman Spectrometer</h2>
-      <div class="facility-subtitle">Shared NTNU Physics facility</div>
+      <div class="facility-subtitle">Structural &amp; Vibrational Analysis</div>
       <p class="facility-desc">
-        Vibrational spectroscopy for material identification, layer-number determination in 2D materials, strain/doping analysis, and photoluminescence characterization.
+        Vibrational spectroscopy technique that probes molecular and lattice vibrations to identify material composition, crystal structure, strain, and layer number in low-dimensional materials.
       </p>
+      <p class="facility-note">This instrument is also shared with NTNU's Instrumentation Center.</p>
+      <button type="button" class="facility-more-btn" data-modal-target="modal-raman-spectrometer">more ▾</button>
+    </div>
+  </article>
+
+  <div class="facility-modal" id="modal-raman-spectrometer" hidden>
+    <div class="facility-modal-backdrop" data-modal-close></div>
+    <div class="facility-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-raman-spectrometer-title">
+      <button type="button" class="facility-modal-close" data-modal-close aria-label="Close">×</button>
+      <img class="facility-modal-photo" src="assets/images/Raman.jpg" alt="Raman Spectrometer">
+      <div class="facility-num">06</div>
+      <h2 id="modal-raman-spectrometer-title" class="facility-title">Raman Spectrometer</h2>
+      <div class="facility-subtitle">Structural &amp; Vibrational Analysis</div>
+      <p class="facility-desc">
+        Vibrational spectroscopy technique that probes molecular and lattice vibrations to identify material composition, crystal structure, strain, and layer number in low-dimensional materials.
+      </p>
+      <p class="facility-note">This instrument is also shared with NTNU's Instrumentation Center.</p>
       <div class="facility-specs">
         <strong>Excitation:</strong> Multi-wavelength laser lines<br>
         <strong>Applications:</strong> 2D material layer counting, strain mapping, PL spectra
       </div>
-      <a href="facilities/raman-spectrometer.html" class="facility-link">Details →</a>
     </div>
-  </article>
-
-  <!-- ▼ VSM ▼ -->
-  <article class="facility">
-    <div class="facility-photo">
-      <img src="assets/images/VSM.jpg" alt="Vibrating Sample Magnetometer">
-    </div>
-    <div class="facility-body">
-      <div class="facility-num">06</div>
-      <h2 class="facility-title">Vibrating Sample Magnetometer</h2>
-      <div class="facility-subtitle">Bulk magnetization measurements</div>
-      <p class="facility-desc">
-        Quantitative magnetization measurements (M–H loops, M–T curves) across temperature and magnetic field ranges — the workhorse for characterizing new magnetic samples.
-      </p>
-      <div class="facility-specs">
-        <strong>Field range:</strong> typically up to ±2 T<br>
-        <strong>Temperature:</strong> variable (low-T option available)
-      </div>
-      <a href="facilities/vibrating-sample-magnetometer.html" class="facility-link">Details →</a>
-    </div>
-  </article>
+  </div>
 
 </section>
 
@@ -346,6 +528,29 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     <div>Designed by Ko-Fan Chen &amp; Po-Wei Chen · Rebuilt 2026</div>
   </div>
 </footer>
+
+<script>
+document.addEventListener('click', function (e) {
+  var openBtn = e.target.closest('[data-modal-target]');
+  if (openBtn) {
+    var modal = document.getElementById(openBtn.dataset.modalTarget);
+    if (modal) { modal.hidden = false; document.body.style.overflow = 'hidden'; }
+    return;
+  }
+  if (e.target.closest('[data-modal-close]')) {
+    var openModal = e.target.closest('.facility-modal');
+    if (openModal) { openModal.hidden = true; document.body.style.overflow = ''; }
+  }
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.facility-modal:not([hidden])').forEach(function (modal) {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    });
+  }
+});
+</script>
 
 </body>
 </html>
