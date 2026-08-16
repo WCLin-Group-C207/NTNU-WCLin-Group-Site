@@ -307,8 +307,20 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 @media (max-width: 720px) {
   .alumni-table, .alumni-table thead, .alumni-table tbody { display: block; }
   .alumni-table thead { display: none; }
-  .alumni-table tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--color-rule); }
-  .alumni-table td { display: block; padding: 3px 0; border: 0; }
+  .alumni-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+    row-gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .alumni-table td { display: block; padding: 0; border: 0; }
+  .alumni-date { order: 1; font-size: 0.78rem; }
+  .alumni-name { order: 2; white-space: normal; max-width: 55%; }
+  .alumni-degrees { order: 3; margin-left: auto; padding-left: 10px; }
+  .alumni-current { order: 4; flex-basis: 100%; }
 }
 
 /* Footer */
