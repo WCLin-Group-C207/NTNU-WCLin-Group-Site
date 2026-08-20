@@ -905,12 +905,76 @@ Typical structure:
 3. Use descriptive `alt` text.
 4. Keep filenames simple and case-consistent.
 
-Recommended filenames:
+### Gallery photo naming convention
+
+Photos under `assets/images/gallery/{year}/...` must follow this filename format:
 
 ```text
-lab-meeting-2026-01.jpg
-conference-osaka-2026.jpg
+AAAABBB-CCCC-DDD-EE.jpg
 ```
+
+| Field | Meaning | Example |
+|---|---|---|
+| `AAAA` | 4-digit year | `2022` |
+| `BBB`  | 3-letter month abbreviation (Jan/Feb/Mar/…/Dec) | `Jul` |
+| `CCCC` | Conference / program / event name — prefer a known abbreviation, otherwise the full name | `TPS`, `TAMT`, `MMM` |
+| `DDD`  | Country abbreviation | `TW`, `JP`, `KR`, `US` |
+| `EE`   | 2-digit sequence number, increments for multiple photos from the same event | `01`, `02` |
+
+Example: `2022Jul-TAMT-TW-01.jpg`
+
+**Use `XXX` for any unknown field** — never leave it blank, use a question mark, or guess a value. Example with unknown month:
+
+```text
+2016XXX-MMM-US-01.jpg
+```
+
+### Three category definitions (conference / program / event)
+
+Photos in each year folder are split into three categories by activity type:
+
+- **conference**: domestic and international academic conferences. Known abbreviations so far:
+  - `MMM`
+  - `ICMFs`
+  - `TAMT` (usually July, Taiwan)
+  - `TPS` (usually January, Taiwan)
+- **program**: overseas programs, research visits, and off-site experiments — including short exchange visits tied to coursework, and domestic off-site experiments. Known programs so far:
+  - 學海築夢 (Overseas Dream Build)
+  - 千里馬 (Chien-Li-Ma Program)
+- **event**: anything else — lab dinners, outings, and similar gatherings.
+
+### Page layout: year-based "album" view
+
+The Gallery page lists years in descending order (newest first). Each year is one block: the left side is a fixed-size frame showing a random photo from that year, rotating on a timer (the frame size never changes as the photo changes); the right side is a 2×2 grid of "album" tiles, always ordered **conference > program > event**. Clicking an album cover expands it into a viewer (one large photo plus a thumbnail strip below it — clicking a thumbnail swaps the large photo).
+
+#### Album count allocation
+
+First count how many albums exist for that year (each activity subfolder — e.g. `conference/tamt/` — counts as one album):
+
+- **Total < 4**: show as many real albums as exist, in conference > program > event order; fill the rest with "coming soon" placeholders.
+- **Total = 4**: use the priority table below to decide how many of the first 3 slots go to conference/program/event; the one album left over (not picked for the first 3) is shown normally in the 4th slot.
+- **Total > 4**: use the same priority table for the first 3 slots; the 4th slot always becomes a "+N More albums" tile (N = total − albums shown in the first 3 slots). Clicking it lists every album for that year as thumbnails; clicking one of those opens the full album viewer.
+
+Priority table (walk top to bottom, use the first combination where all three counts are ≤ what that year actually has):
+
+```text
+conference + program + event =
+1+1+1 > 2+1+0 > 2+0+1 > 1+2+0 > 1+0+2 > 0+2+1 > 0+1+2 > 3+0+0 > 0+3+0 > 0+0+3
+```
+
+A category allocated 0 is skipped entirely — no placeholder tile is shown for it (placeholders are only used in the "total < 4" case).
+
+#### Picking which subfolder represents a category
+
+When a category has more subfolders than the slots it was allocated, pick in this order:
+
+1. **Foreign (non-Taiwan) events first** — based on the conference/program's host country
+2. For conference's domestic options, **TPS before TAMT**
+3. Otherwise, pick at random
+
+Example: 2022 has 4 conference subfolders (icmfs / tamt / tps / XXX). The priority table selects `2+0+1` (conference×2 + event×1), so only 2 conference albums can be shown — icmfs (Japan, foreign) is picked first, then TPS beats TAMT for the domestic slot, giving icmfs + tps. TAMT and XXX get no dedicated album that year (they still appear in the "+N" list and the left-side rotation).
+
+A reference implementation lives in `gallery-testA.html` (an internal preview prototype — it is not linked from the live navigation).
 
 ---
 
