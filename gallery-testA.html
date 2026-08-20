@@ -3,19 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery · NanoMaterials & Spintronics Laboratory</title>
+<title>Gallery · Final Concept (Album View) — Prototype</title>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/images/brand/NMSLab.png">
 
 <!-- Apple/iPhone icon -->
 <link rel="apple-touch-icon" href="assets/images/brand/NMSLab.png">
-
-<!-- Open Graph (社群分享縮圖) -->
-<meta property="og:image" content="assets/images/brand/NMSLab.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NanoMaterials & Spintronics Laboratory">
-<meta property="og:description" content="WC Lin Group | NTNU">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +34,6 @@ html { scroll-behavior: smooth; }
 body { font-family: var(--font-body); background: var(--color-cream); color: var(--color-ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
-body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: 0.035; z-index: 1; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 
 /* Navigation */
 .nav { position: sticky; top: 0; background: rgba(250,247,240,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-rule); z-index: 100; }
@@ -61,13 +54,16 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .nav-links { display: flex; gap: 4px; list-style: none; flex-wrap: wrap; }
 .nav-links a { padding: 8px 14px; font-size: 0.88rem; font-weight: 500; border-radius: 999px; transition: all 0.2s; opacity: 0.72; }
 .nav-links a:hover { opacity: 1; background: var(--color-soft); }
-.nav-links a.active { opacity: 1; background: var(--color-ink); color: var(--color-cream); }
 .nav-toggle { display: none; background: none; border: 1px solid var(--color-rule); padding: 8px 12px; border-radius: 6px; font-size: 1.2rem; cursor: pointer; }
 @media (max-width: 960px) {
   .nav-toggle { display: block; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-cream); flex-direction: column; padding: 12px var(--gutter); gap: 2px; border-bottom: 1px solid var(--color-rule); }
   .nav-links.open { display: flex; }
 }
+
+/* Prototype banner */
+.proto-banner { background: var(--color-ink); color: var(--color-cream); text-align: center; font-size: 0.82rem; padding: 10px var(--gutter); letter-spacing: 0.03em; }
+.proto-banner strong { color: #f2c9d1; }
 
 /* Page header */
 .page-header { max-width: var(--max-width); margin: 0 auto; padding: clamp(50px, 8vw, 80px) var(--gutter) 40px; border-bottom: 1px solid var(--color-rule); }
@@ -100,6 +96,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .filtered-tile-label strong { display: block; font-family: var(--font-display); font-size: 0.88rem; font-weight: 500; margin-bottom: 2px; }
 .filtered-empty { padding: 60px 0; text-align: center; color: var(--color-muted); font-family: var(--font-display); font-style: italic; }
 .year-block.filter-hidden { display: none; }
+
+/* Note box explaining this prototype */
+.hint-box { max-width: var(--max-width); margin: 40px auto 0; padding: 24px 28px; background: var(--color-paper); border-left: 4px solid var(--color-accent); font-size: 0.88rem; color: var(--color-ink); line-height: 1.7; }
+.hint-box h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 500; margin-bottom: 8px; color: var(--color-accent); }
+.hint-box ul { margin: 8px 0 0 20px; }
 
 /* Year block */
 .year-block { max-width: var(--max-width); margin: 0 auto; padding: 60px var(--gutter) 20px; }
@@ -198,7 +199,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .album-thumb:hover { opacity: 0.85; }
 .album-thumb.active { opacity: 1; outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
-/* "+N more" tile (shown in the 4th slot when a year has more albums than fit) */
+/* "+N more" tile (Option A: shown in the 4th slot when a year has 5+ albums) */
 .album-tile-more {
   display: flex;
   align-items: center;
@@ -241,6 +242,8 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 </head>
 <body>
 
+<div class="proto-banner">🧪 <strong>Prototype — Final Concept</strong>：依年份降序排列，左邊大圖隨機輪播、右邊 2×2 相簿。此頁不連結到正式網站，僅供預覽確認。</div>
+
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">WCLin Group</a>
@@ -253,7 +256,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
       <li><a href="exchange-awards.html">Awards</a></li>
-      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="gallery.html">Gallery (live)</a></li>
     </ul>
   </div>
 </nav>
@@ -294,6 +297,22 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="filtered-grid" id="filteredGrid"></div>
   <div class="filtered-empty" id="filteredEmpty" style="display:none;">No albums match this filter yet.</div>
 </section>
+
+<div class="hint-box" style="display:none;">
+  <h4>最終版本說明</h4>
+  <p>每個年份一個區塊，左邊是該年所有照片隨機輪播的大圖(每 4 秒換一張，方框大小固定，不會因為換照片而變動)；右邊 2×2 是「相簿」入口，永遠依 <strong>conference &gt; program &gt; event</strong> 順序排列。</p>
+  <p style="margin-top:10px;"><strong>當該年相簿總數 &gt; 4</strong>：第 4 格固定改成「+N More albums」卡片(N = 總數 − 前 3 格已顯示的相簿數)，點下去可以看到該年全部相簿的清單，點清單裡任一相簿再進入該相簿的完整檢視畫面。前 3 格從下面這張「組合優先表」裡，由上到下找第一個「三類別各自需要的數量都 ≤ 該年實際擁有的相簿數」的組合，套用該組合分配前 3 格(某類別分配到 0 就直接跳過，不放佔位圖)：
+    <br><code>conference+program+event = 1+1+1 &gt; 2+1+0 &gt; 2+0+1 &gt; 1+2+0 &gt; 1+0+2 &gt; 0+2+1 &gt; 0+1+2 &gt; 3+0+0 &gt; 0+3+0 &gt; 0+0+3</code>
+  </p>
+  <p style="margin-top:10px;"><strong>當該年相簿總數 = 4</strong>：套用同一張組合優先表決定前 3 格，剩下沒被選進前 3 格的最後 1 個相簿，直接正常顯示在第 4 格(不用「+N」，因為剛好 4 個都放得下)。</p>
+  <p style="margin-top:10px;"><strong>當該年相簿總數 &lt; 4</strong>(目前 2021、2016 這兩年是這樣)：不套用組合表，有幾個真實相簿就照 conference&gt;program&gt;event 順序放幾個，其餘格子顯示「敬請期待」佔位。</p>
+  <p style="margin-top:10px;">同一類別裡要選哪幾個子資料夾當代表：<strong>國外優先</strong>；conference 的國內選項再依 <strong>TPS &gt; TAMT</strong> 排序；其餘情況隨機挑選。</p>
+  <ul>
+    <li>2022 年總共 5 個相簿(conference: icmfs / tamt / tps / XXX，event: lab-dinner，program: 無)，總數 &gt; 4。組合表第一個滿足「conference 數量 ≤ 4、program 數量 ≤ 0、event 數量 ≤ 1」的組合是 <strong>2+0+1</strong>(conference×2 + program×0 + event×1)，所以前 3 格是 conference 選 2 個(國外優先 → icmfs，國內 TPS &gt; TAMT → tps)+ event 的 lab-dinner；program 這年是 0，整段跳過不放佔位圖。第 4 格顯示「+2 More albums」(tamt、XXX 這兩個沒有獨立相簿，仍會出現在左側輪播跟「+2」清單裡)。</li>
+    <li>2023 年總共 4 個相簿(conference: tps，program: overseas-dream-build，event: graduation-ceremony、lab-dinner)，總數 = 4。組合表第一個滿足的組合是 <strong>1+1+1</strong>，所以前 3 格是 conference(tps)+program(overseas-dream-build)+event(這裡先選 graduation-ceremony)；剩下的 lab-dinner 直接正常顯示在第 4 格。</li>
+    <li>2021、2016 目前每年都只有 1 個真實相簿(總數 &lt; 4)，其餘 3 格顯示「敬請期待」。</li>
+  </ul>
+</div>
 
 <!-- 2026 (placeholder) -->
 <section class="year-block" id="year-2026">
@@ -628,7 +647,7 @@ const ALBUMS = {
   }
 };
 
-// ---- Data: full album list per year, used by the "+N more" overlay ----
+// ---- Data: full album list per year, used by the "+N more" overlay (Option A) ----
 // Order follows conference > program > event.
 const YEAR_ALBUMS = {
   2022: ['y2022-conference-icmfs', 'y2022-conference-tamt', 'y2022-conference-tps', 'y2022-conference-xxx', 'y2022-event-lab-dinner']
@@ -690,7 +709,7 @@ document.getElementById('albumViewer').addEventListener('click', (e) => {
   if (e.target.id === 'albumViewer') closeAlbum();
 });
 
-// ---- "+N more" overlay: lists every album for a year ----
+// ---- "+N more" overlay: lists every album for a year (Option A) ----
 function openAllAlbums(year) {
   const ids = YEAR_ALBUMS[year];
   if (!ids) return;
