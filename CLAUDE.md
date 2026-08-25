@@ -16,7 +16,7 @@ members.html          成員與 Alumni
 research.html         研究方向
 publications.html     論文列表(含搜尋/篩選 JS)
 facilities.html       實驗設備
-exchange-awards.html  交流與獲獎
+honors.html           獲獎、學術會議與移地交流
 gallery.html          相簿
 ```
 

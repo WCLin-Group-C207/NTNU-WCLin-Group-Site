@@ -24,7 +24,7 @@ NTNU-WCLin-Group-Site/
 ├── research.html              # Research directions
 ├── publications.html          # Searchable publication list
 ├── facilities.html            # Instruments / facilities
-├── exchange-awards.html       # Awards, exchange, scholarships, visits
+├── honors.html                 # Honors, conferences, and academic mobility
 ├── gallery.html                # Gallery page; see filename note below
 ├── assets/
 │   └── images/
@@ -143,7 +143,7 @@ Each page has a navigation block similar to:
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
-      <li><a href="exchange-awards.html">Awards</a></li>
+      <li><a href="honors.html">Honors</a></li>
       <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </div>
@@ -839,40 +839,120 @@ Recommended image aspect ratio:
 
 ---
 
-## 12. Awards & Exchange page — `exchange-awards.html`
+## 12. Honors page — `honors.html`
 
-This page uses tab panels and timeline entries.
+Page title: "Honors, Conferences, and Academic Mobility". Two tab panels, each a year-by-year timeline of `.tl-item` entries:
 
-Typical timeline item:
+- **Honors & Awards** — scholarships, fellowships, and competition awards
+- **Conferences & Mobility** — conference attendance, formal exchange programs, and short-term research visits/experiments abroad
+
+Both tabs share the same base item markup:
 
 ```html
-<div class="tl-item">
-  <span class="tl-tag phd">PHD</span>
-  <p class="tl-text">...</p>
+<div class="tl-item" data-category="...">
+  <span class="tl-tag phd">Ph.D.</span>
+  <p class="tl-text"><strong>Name</strong> · Content · Location</p>
 </div>
 ```
 
-### Adding an award or exchange record
-
-1. Find the correct tab panel.
-2. Find the correct year.
-3. Copy one `.tl-item`.
-4. Update the tag and text.
-
-Common tag classes:
+Degree/position tag classes (shared by both tabs):
 
 ```html
-<span class="tl-tag phd">PHD</span>
-<span class="tl-tag msc">MSC</span>
-<span class="tl-tag bsc">BSC</span>
-<span class="tl-tag postdoc">POSTDOC</span>
+<span class="tl-tag phd">Ph.D.</span>
+<span class="tl-tag msc">M.S.</span>
+<span class="tl-tag bsc">B.S.</span>
+<span class="tl-tag postdoc">Postdoc</span>
 ```
 
-If you create a new tag class, add CSS:
+### 12.1 Honors & Awards tab
 
-```css
-.tl-tag.newtag { color: #xxxxxx; }
+Each `.tl-item` carries a `data-category` used by the filter bar above the timeline. A value can hold more than one category separated by a space (e.g. `data-category="national conference"`) if a single award genuinely belongs to two — the filter matches on "any selected category present."
+
+| Category value | Filter label | Meaning |
+|---|---|---|
+| `internal` | Internal | Scholarships issued by the department or college (merit-based, alumni-association, thesis awards, etc.) |
+| `national` | External Funding | Government (NSTC/MOST) or foundation (e.g. CTCI) grants and fellowships |
+| `exchange` | Int'l Exchange | Alumni-association scholarships specifically funding international exchange |
+| `conference` | Conference | Awards won through a conference/competition presentation |
+
+The filter bar is **multi-select**: clicking a category toggles it independently; clicking "All" clears the others; deselecting every category falls back to "All" automatically.
+
+**Routine "Internal" merit scholarships collapse.** A handful of `internal` awards repeat almost every year with no real distinguishing detail (e.g. plain "Alumni Scholarship, NTNU Physics"). To keep the timeline from being dominated by these, each year merges **all** of that year's routine entries into a single collapsible summary, always placed **last** within that year:
+
+```html
+<details class="tl-collapse" data-category="internal">
+  <summary class="tl-collapse-summary">Alumni Scholarship (2)</summary>
+  <div class="tl-items tl-items-collapsed">
+    <div class="tl-item" data-category="internal">...</div>
+    <div class="tl-item" data-category="internal">...</div>
+  </div>
+</details>
 ```
+
+`(N)` is the count of merged entries for that year. The `.tl-collapse` element itself needs the same `data-category` as its contents so the filter can hide the whole block (not just the items inside it) when it doesn't match the active filter.
+
+**Known Chinese award name.** When an award's official Chinese name is known, append it in a muted, non-italic span so it doesn't compete visually with the English name:
+
+```html
+<p class="tl-text"><strong>Name</strong> · Alumni Scholarship, NTNU Physics <span class="tl-zh">「獎學金中文全名」</span></p>
+```
+
+Apply the same Chinese subtitle to **every** occurrence of that exact award name across years — don't leave some instances without it.
+
+### 12.2 Conferences & Mobility tab
+
+Each `.tl-item` carries:
+
+- `data-month=""` — used by the year/month sort script (see below); leave empty when the month is unknown, never guess a number.
+- `data-type="conf" | "prog" | "mob"` — drives the Conference/Program/Mobility filter bar (also multi-select, same mechanics as 12.1).
+
+```html
+<div class="tl-item" data-month="" data-type="conf">
+  <div class="tl-tags">
+    <span class="tl-tag2 conf">Conference</span>
+    <span class="tl-tag phd">Ph.D.</span>
+  </div>
+  <p class="tl-text"><strong>Name</strong> · <span class="tl-hl">Content</span> · <span class="tl-loc">Location</span></p>
+</div>
+```
+
+The attribute (Conference/Program/Mobility) tag always comes **before** the degree tag inside `.tl-tags`.
+
+**Classifying an entry:**
+
+- **Conference** — attending/presenting at a named conference or symposium.
+- **Program** — a formally named exchange program (e.g. "Overseas Dream-Build Program", "Japan-Taiwan Sakura Science Program").
+- **Mobility** — everything else: short-term lab visits, beamtime/experiments abroad, research collaboration exchanges, or an international-exchange trip that happened to include a presentation.
+
+If one trip covers **two separate named conferences**, split it into two `.tl-item` entries (same person/year/location) rather than joining the names with "&".
+
+**Conference/program naming:**
+
+- Recurring numbered conferences: `<Series Name> <Edition>th` (e.g. `ISSS 8th`, `ACSIN 14th`) — name first, then the ordinal edition number. Don't prepend the ordinal (not `8th ISSS`) and don't use a dash-number form (not `ISSS-8`).
+- Don't repeat the year in the name when the entry is already grouped under that year in the timeline (`Intermag 2015` → `Intermag`, `MML-2013` → `MML`).
+- A conference's own well-known short name doesn't need a generic suffix (`MMM Conference` → `MMM`).
+
+**Content field — what goes in the middle segment:**
+
+- **Conference**: `<Report Type> Presentation – <Conference Name>` if a report was given (e.g. `Oral Presentation – MMM`), otherwise just `<Conference Name>`. Highlight (`.tl-hl`) the conference name always; additionally highlight the report-type word (not the word "Presentation") only when the report is **oral or higher** (Oral, Subplenary, Invited, Keynote, Plenary — not Poster).
+- **Program**: just the program's proper name, highlighted.
+- **Mobility**: `<Report Type> Presentation – Short-term Visit` if a report was given, otherwise a duration-based label (highlight nothing in the content field for Mobility — see below):
+  - days to about a month → `Short-term Research Visit`
+  - about a month to about six months → `Research Visit`
+  - six months or longer → `Long-term Research Visit`
+  - a beamtime/instrument run at a facility (not a general lab visit) → `Short-term Research Visit` is still fine, but keep it distinct in your own notes if the visit and the experiment are genuinely different trips.
+
+**Location field:** `<Institution(s)> · <Country>` — use `<span class="tl-loc">`. Keep commas only between an institution's own internal tiers (e.g. `Institute for Solid State Physics (ISSP), University of Tokyo`); always separate the trailing country with `" · "`, and always include the country even when the institution name seems to imply it.
+
+**Highlighting (`.tl-hl`) — what's the "headline" of this entry:**
+
+| Category | What gets `.tl-hl` |
+|---|---|
+| Program | The program name |
+| Mobility | The institution name only (wrap it as `<span class="tl-loc tl-hl">`) — the trailing `, Country` stays a plain `<span class="tl-loc">` |
+| Conference | The conference name, plus the report-type word if oral-or-higher (see above) |
+
+**Year/month sort script.** The tab rebuilds its own timeline on load from each item's `data-month`: newest year first, and within a year, items with a known month sort newest-month-first, with unmonthed items always last for that year. Year headers render as "YYYY年M月" when a month is known, otherwise "YYYY年" — never invent a month to make sorting cleaner.
 
 ---
 
@@ -973,8 +1053,6 @@ When a category has more subfolders than the slots it was allocated, pick in thi
 3. Otherwise, pick at random
 
 Example: 2022 has 4 conference subfolders (icmfs / tamt / tps / XXX). The priority table selects `2+0+1` (conference×2 + event×1), so only 2 conference albums can be shown — icmfs (Japan, foreign) is picked first, then TPS beats TAMT for the domestic slot, giving icmfs + tps. TAMT and XXX get no dedicated album that year (they still appear in the "+N" list and the left-side rotation).
-
-A reference implementation lives in `gallery-testA.html` (an internal preview prototype — it is not linked from the live navigation).
 
 ---
 
@@ -1253,7 +1331,7 @@ members.html
 research.html
 publications.html
 facilities.html
-exchange-awards.html
+honors.html
 gallery.html
 ```
 

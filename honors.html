@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Awards & Exchange · NanoMaterials & Spintronics Laboratory</title>
+<title>Honors, Conferences, and Academic Mobility · NanoMaterials & Spintronics Laboratory</title>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/images/brand/NMSLab.png">
@@ -132,6 +132,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   border-color: var(--color-ink);
 }
 .tl-item.cat-hidden { display: none; }
+.tl-collapse.cat-hidden { display: none; }
 .tl-year.cat-hidden { display: none; }
 
 /* Timeline */
@@ -184,7 +185,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   line-height: 1.6;
   transition: all 0.2s;
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 112px 1fr;
   gap: 16px;
   align-items: center;
 }
@@ -207,16 +208,69 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .tl-tag.msc { color: #b8651a; }
 .tl-tag.bsc { color: #2e7d32; }
 .tl-tag.postdoc { color: var(--color-accent); }
+/* Exchange 分頁專用：屬性標籤（Conference/Program/Mobility），排在學位標籤上方 */
+.tl-tags { display: flex; flex-direction: column; gap: 4px; }
+.tl-tag2 {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  text-align: center;
+  color: var(--color-cream);
+  height: fit-content;
+}
+.tl-tag2.conf { background: #0f6f6f; }
+.tl-tag2.prog { background: #96751a; }
+.tl-tag2.mob { background: #9c4f3a; }
 .tl-text strong { color: var(--color-ink); font-weight: 600; }
 .tl-text em {
   font-family: var(--font-display);
   font-style: italic;
   color: var(--color-accent);
 }
+.tl-zh {
+  color: var(--color-muted);
+  font-style: normal;
+  font-size: 0.85em;
+}
+/* Exchange 分頁專用：地點/機構名稱，跟 Awards 分頁的 <em>（獎項等級）視覺上區隔開來 */
+.tl-loc {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+/* Exchange 分頁專用：醒目字樣——依分類標示這筆資料裡最值得注意的部分
+   （Program → 計畫名稱／Mobility → 機構／Conference → 會議名稱，
+   若有口頭報告或更高等級的發表也一併醒目） */
+.tl-hl {
+  color: var(--color-accent);
+  font-weight: 600;
+}
 @media (max-width: 600px) {
   .tl-item { grid-template-columns: 1fr; gap: 6px; }
   .tl-tag { justify-self: start; }
+  .tl-tags { flex-direction: row; flex-wrap: wrap; }
 }
+
+/* 系友會常態獎助的年度摺疊摘要 */
+.tl-collapse { margin-top: 10px; }
+.tl-collapse-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 6px 18px 6px 16px;
+  border-left: 3px solid var(--color-rule);
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  transition: all 0.2s;
+}
+.tl-collapse-summary::-webkit-details-marker { display: none; }
+.tl-collapse-summary::before { content: '▸ '; }
+.tl-collapse[open] .tl-collapse-summary::before { content: '▾ '; }
+.tl-collapse-summary:hover { color: var(--color-ink); border-left-color: var(--color-accent); }
+.tl-collapse .tl-items { margin-top: 10px; }
 
 /* Footer */
 .footer { background: var(--color-cream); border-top: 1px solid var(--color-rule); padding: 50px var(--gutter) 30px; }
@@ -242,7 +296,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
-      <li><a href="exchange-awards.html" class="active">Awards</a></li>
+      <li><a href="honors.html" class="active">Honors</a></li>
       <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </div>
@@ -250,8 +304,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 
 <header class="page-header">
   <div class="page-kicker">Recognition</div>
-  <h1 class="page-title">Awards &amp; Exchange</h1>
-  <p class="page-lead">Honors received by group members, and international exchanges and conference participation.</p>
+  <h1 class="page-title">Honors, Conferences,<br>and Academic Mobility</h1>
 </header>
 
 <!-- ==========================================================================
@@ -259,7 +312,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
      ========================================================================== -->
 <div class="tabs">
   <button class="tab active" data-panel="awards">Honors &amp; Awards</button>
-  <button class="tab" data-panel="exchange">Exchange &amp; Conferences</button>
+  <button class="tab" data-panel="exchange">Conferences &amp; Mobility</button>
 </div>
 
 <!-- ==========================================================================
@@ -272,12 +325,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
      【屬性分類篩選器】（年份排列不變，只是加篩選）
      ========================================================================== -->
 <div class="cat-filters" role="group" aria-label="Filter by category">
-  <button class="cat-filter active" data-category="all">All</button>
-  <button class="cat-filter" data-category="dept">Departmental</button>
-  <button class="cat-filter" data-category="college">College-Level</button>
-  <button class="cat-filter" data-category="national">External Funding</button>
-  <button class="cat-filter" data-category="exchange">Int'l Exchange</button>
-  <button class="cat-filter" data-category="conference">Conference</button>
+  <button class="cat-filter" data-category="all">All</button>
+  <button class="cat-filter active" data-category="conference">Conference</button>
+  <button class="cat-filter active" data-category="national">External Funding</button>
+  <button class="cat-filter" data-category="exchange">International</button>
+  <button class="cat-filter" data-category="internal">Internal</button>
 </div>
 
 <div class="timeline">
@@ -286,18 +338,23 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2026</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>歐宸毓</strong> · New-Generation Talent Scholarship, NTNU Physics <em>「物理系新世代人才培育獎學金」</em></p>
+        <p class="tl-text"><strong>歐宸毓</strong> · New-Generation Talent Scholarship, NTNU Physics <span class="tl-zh">「物理系新世代人才培育獎學金」</span></p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (2)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳可凡</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <em>「臺師大物理系友會大專生研究計畫獎學金」</em></p>
+        <p class="tl-text"><strong>陳可凡</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <span class="tl-zh">「臺師大物理系友會大專生研究計畫獎學金」</span></p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>陳柏維</strong> · Alumni Scholarship, NTNU Physics</p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -307,19 +364,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     <div class="tl-items">
       <div class="tl-item" data-category="national">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>張紹詮</strong> · NSTC Undergraduate Research Grant <em>「國科會大專生計畫補助」</em></p>
+        <p class="tl-text"><strong>張紹詮</strong> · NSTC Undergraduate Research Grant <span class="tl-zh">「國科會大專生計畫補助」</span></p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>張紹詮</strong> · New-Generation Talent Scholarship, NTNU Physics <em>「物理系新世代人才培育獎學金」</em></p>
+        <p class="tl-text"><strong>張紹詮</strong> · New-Generation Talent Scholarship, NTNU Physics <span class="tl-zh">「物理系新世代人才培育獎學金」</span></p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <em>「許振聲教授紀念獎學金」</em></p>
-      </div>
-      <div class="tl-item" data-category="dept">
-        <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>歐宸毓</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <em>「臺師大物理系友會大專生研究計畫獎學金」</em></p>
+        <p class="tl-text"><strong>陳柏維</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <span class="tl-zh">「許振聲教授紀念獎學金」</span></p>
       </div>
       <div class="tl-item" data-category="exchange">
         <span class="tl-tag phd">Ph.D.</span>
@@ -329,6 +382,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag bsc">B.S.</span>
         <p class="tl-text"><strong>歐宸毓、陳叡</strong> · Alumni International Exchange Scholarship, NTNU Physics</p>
       </div>
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
+        <span class="tl-tag bsc">B.S.</span>
+        <p class="tl-text"><strong>歐宸毓</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <span class="tl-zh">「臺師大物理系友會大專生研究計畫獎學金」</span></p>
+      </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -352,7 +414,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>陳柏維</strong> · NSTC Ph.D. Fellowship</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>陳柏維</strong> · Research Promotion Scholarship, NTNU Physics</p>
       </div>
@@ -363,11 +425,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2023</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許明賢</strong> · Outstanding PhD Research Student Scholarship, NTNU Physics</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>許博翔</strong> · Outstanding Research Student Scholarship, NTNU Physics</p>
       </div>
@@ -375,7 +437,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許明賢</strong> · <em>Honorable Mention</em> · 2023 Taiwan Physical Society Annual Meeting Poster Competition</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>游雅婷</strong> · Dream-Come-True Talent Scholarship</p>
       </div>
@@ -387,7 +449,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag bsc">B.S.</span>
         <p class="tl-text"><strong>陳柏維、劉子齊</strong> · Alumni International Exchange Scholarship, NTNU Physics</p>
       </div>
-      <div class="tl-item" data-category="college">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>陳柏維</strong> · Outstanding Academic Activity Award, College of Science, NTNU</p>
       </div>
@@ -395,18 +457,23 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag bsc">B.S.</span>
         <p class="tl-text"><strong>陳柏維</strong> · <em>First Place, Poster Competition</em> · Yokohama-NTNU-IAMS Joint Symposium</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <em>「許振聲教授紀念獎學金」</em></p>
-      </div>
-      <div class="tl-item" data-category="dept">
-        <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Alumni Outstanding Special Project Student Scholarship, NTNU Physics</p>
+        <p class="tl-text"><strong>陳柏維</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <span class="tl-zh">「許振聲教授紀念獎學金」</span></p>
       </div>
       <div class="tl-item" data-category="national">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>呂席維</strong> · NSTC Undergraduate Research Grant <em>「國科會大專生計畫補助」</em></p>
+        <p class="tl-text"><strong>呂席維</strong> · NSTC Undergraduate Research Grant <span class="tl-zh">「國科會大專生計畫補助」</span></p>
       </div>
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
+        <span class="tl-tag bsc">B.S.</span>
+        <p class="tl-text"><strong>陳柏維</strong> · Alumni Outstanding Special Project Student Scholarship, NTNU Physics</p>
+      </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -414,19 +481,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2022</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="college">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>劉仕渝</strong> · Outstanding PhD Thesis Award, College of Science, NTNU</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>廖黎杰</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <em>「許振聲教授紀念獎學金」</em></p>
+        <p class="tl-text"><strong>廖黎杰</strong> · Prof. Jen-Sheng Hsu Memorial Scholarship <span class="tl-zh">「許振聲教授紀念獎學金」</span></p>
       </div>
-      <div class="tl-item" data-category="dept">
-        <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>廖黎杰</strong> · Alumni Scholarship, NTNU Physics</p>
-      </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>廖黎杰</strong> · Outstanding PhD Research Student Award</p>
       </div>
@@ -438,14 +501,23 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>劉仕渝</strong> · <em>Honorable Mention, Poster Competition</em> · Taiwan Physical Society Annual Meeting</p>
       </div>
-      <div class="tl-item" data-category="dept">
-        <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <em>「臺師大物理系友會大專生研究計畫獎學金」</em></p>
-      </div>
       <div class="tl-item" data-category="national">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · NSTC Undergraduate Research Grant <em>「國科會大專生計畫補助」</em></p>
+        <p class="tl-text"><strong>陳柏維</strong> · NSTC Undergraduate Research Grant <span class="tl-zh">「國科會大專生計畫補助」</span></p>
       </div>
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (2)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
+        <span class="tl-tag phd">Ph.D.</span>
+        <p class="tl-text"><strong>廖黎杰</strong> · Alumni Scholarship, NTNU Physics</p>
+      </div>
+      <div class="tl-item" data-category="internal">
+        <span class="tl-tag bsc">B.S.</span>
+        <p class="tl-text"><strong>陳柏維</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <span class="tl-zh">「臺師大物理系友會大專生研究計畫獎學金」</span></p>
+      </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -453,7 +525,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2021</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>廖黎杰、劉仕渝</strong> · Outstanding PhD Research Student Award</p>
       </div>
@@ -469,7 +541,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>劉仕渝</strong> · MOST Outstanding PhD Student Fellowship</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>尹浚翰</strong> · Outstanding Research Student Scholarship, NTNU Physics</p>
       </div>
@@ -481,10 +553,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>劉仕渝</strong> · Foxconn Scholarship</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <em>「臺師大物理系友會大專生研究計畫獎學金」</em></p>
+        <p class="tl-text"><strong>陳柏維</strong> · Alumni Undergraduate Research Scholarship, NTNU Physics <span class="tl-zh">「臺師大物理系友會大專生研究計畫獎學金」</span></p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -492,21 +569,17 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2020</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>尹浚翰</strong> · Outstanding Research Student Scholarship, NTNU Physics</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>廖黎杰、劉仕渝</strong> · Departmental Distinctive Scholarship, NTNU Physics</p>
       </div>
       <div class="tl-item" data-category="conference">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>劉仕渝</strong> · <em>Honorable Mention</em> · Taiwan Magnetics Technology Association Poster</p>
-      </div>
-      <div class="tl-item" data-category="dept">
-        <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>劉仕渝</strong> · Alumni Scholarship, NTNU Physics</p>
       </div>
       <div class="tl-item" data-category="national">
         <span class="tl-tag phd">Ph.D.</span>
@@ -516,6 +589,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>王韋翔</strong> · <em>CTCI Foundation Science and Technology Research Scholarship (NT$150,000)</em></p>
       </div>
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
+        <span class="tl-tag msc">M.S.</span>
+        <p class="tl-text"><strong>劉仕渝</strong> · Alumni Scholarship, NTNU Physics</p>
+      </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -523,7 +605,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2019</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>廖澤銘</strong> · Outstanding Research Student Scholarship, NTNU Physics</p>
       </div>
@@ -534,7 +616,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2018</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag msc">M.S.</span>
         <p class="tl-text"><strong>廖澤銘</strong> · Departmental Distinctive Scholarship, NTNU Physics</p>
       </div>
@@ -550,10 +632,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許銓喆</strong> · <em>Special Presentation Award</em> · 13th Japan-Nanotechnology Exchange Meeting</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>王韋翔</strong> · Alumni Scholarship, NTNU Physics</p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -577,7 +664,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許銓喆</strong> · <em>Honorable Mention Presentation</em> · 35th Symposium on Spectroscopy and Surface Science</p>
       </div>
-      <div class="tl-item" data-category="college">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許銓喆</strong> · Outstanding Thesis Award, College of Science, NTNU</p>
       </div>
@@ -592,18 +679,23 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2016</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="college">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>張博鈞</strong> · Outstanding Thesis Award, College of Science, NTNU</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>張博鈞</strong> · Outstanding Graduate Research Scholarship, NTNU Physics</p>
       </div>
-      <div class="tl-item" data-category="dept">
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>許銓喆</strong> · 58th-Class Alumni Scholarship, NTNU Physics</p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -611,10 +703,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year">
     <div class="tl-year-label">2015</div>
     <div class="tl-items">
-      <div class="tl-item" data-category="dept">
+      <details class="tl-collapse" data-category="internal">
+        <summary class="tl-collapse-summary">Alumni Scholarship (1)</summary>
+        <div class="tl-items tl-items-collapsed">
+      <div class="tl-item" data-category="internal">
         <span class="tl-tag phd">Ph.D.</span>
         <p class="tl-text"><strong>張博鈞</strong> · 58th-Class Alumni Scholarship, NTNU Physics</p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -646,31 +743,54 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
      ========================================================================== -->
 <div class="tab-panel" id="panel-exchange">
 <div class="timeline-wrap">
+
+<div class="cat-filters" role="group" aria-label="Filter by category">
+  <button class="cat-filter active" data-type="all">All</button>
+  <button class="cat-filter" data-type="conf">Conference</button>
+  <button class="cat-filter" data-type="prog">Program</button>
+  <button class="cat-filter" data-type="mob">Mobility</button>
+</div>
+
 <div class="timeline">
 
   <!-- ▼ 2026 ▼ -->
   <div class="tl-year" data-year="2026">
     <div class="tl-year-label">2026年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="prog">
+        <div class="tl-tags">
+        <span class="tl-tag2 prog">Program</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>賴伯皓</strong> · Overseas Dream-Build Program · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>賴伯皓</strong> · <span class="tl-hl">Overseas Dream-Build Program</span> · <span class="tl-loc">Kyushu University · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>歐宸毓、許晉銓</strong> · International Exchange Presentation · <em>National University of Singapore</em></p>
+        </div>
+        <p class="tl-text"><strong>歐宸毓、許晉銓</strong> · Oral Presentation – Short-term Visit · <span class="tl-loc tl-hl">National University of Singapore</span><span class="tl-loc"> · Singapore</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>陳可凡、何明陽、李睿哲</strong> · International Exchange · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>陳可凡、何明陽、李睿哲</strong> · Oral Presentation – Short-term Visit · <span class="tl-loc tl-hl">Kyushu University</span><span class="tl-loc"> · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>蕭誠穎</strong> · International Exchange Presentation · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>蕭誠穎</strong> · Oral Presentation – Short-term Visit · <span class="tl-loc tl-hl">Kyushu University</span><span class="tl-loc"> · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>林良諭</strong> · Short-term research visit · <em>Charles University</em>, Czech Republic</p>
+        </div>
+        <p class="tl-text"><strong>林良諭</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">Charles University</span><span class="tl-loc"> · Czech Republic</span></p>
       </div>
     </div>
   </div>
@@ -679,21 +799,33 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2025">
     <div class="tl-year-label">2025年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Short-term visit · <em>Institute for Solid State Physics (ISSP)</em>, University of Tokyo</p>
+        </div>
+        <p class="tl-text"><strong>陳柏維</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">Institute for Solid State Physics (ISSP), University of Tokyo</span><span class="tl-loc"> · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="prog">
+        <div class="tl-tags">
+        <span class="tl-tag2 prog">Program</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>朱彥儒、陳新松</strong> · Overseas Dream-Build Program · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>朱彥儒、陳新松</strong> · <span class="tl-hl">Overseas Dream-Build Program</span> · <span class="tl-loc">Kyushu University · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>許明賢</strong> · International Conference · <em>Italy</em></p>
+        </div>
+        <p class="tl-text"><strong>許明賢</strong> · Poster Presentation – <span class="tl-hl">International Conference</span> · <span class="tl-loc">Italy</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>陳柏維、陳叡、歐宸毓</strong> · Short-term experiments · <em>SPring-8 Synchrotron</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>陳柏維、陳叡、歐宸毓</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">SPring-8 Synchrotron</span><span class="tl-loc"> · Japan</span></p>
       </div>
     </div>
   </div>
@@ -702,17 +834,33 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2024">
     <div class="tl-year-label">2024年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>陳柏維</strong> · Short-term visit · <em>Institute for Solid State Physics (ISSP)</em>, University of Tokyo</p>
+        </div>
+        <p class="tl-text"><strong>陳柏維</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">Institute for Solid State Physics (ISSP), University of Tokyo</span><span class="tl-loc"> · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>朱彥儒</strong> · International Conference on Magnetism &amp; ICMFS · <em>Italy</em></p>
+        </div>
+        <p class="tl-text"><strong>朱彥儒</strong> · <span class="tl-hl">Oral</span> Presentation – <span class="tl-hl">International Conference on Magnetism</span> · <span class="tl-loc">Italy</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>朱彥儒</strong> · SPVM National Physics Conference · <em>Philippines</em></p>
+        </div>
+        <p class="tl-text"><strong>朱彥儒</strong> · Poster Presentation – <span class="tl-hl">ICMFS</span> · <span class="tl-loc">Italy</span></p>
+      </div>
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
+        <span class="tl-tag phd">Ph.D.</span>
+        </div>
+        <p class="tl-text"><strong>朱彥儒</strong> · <span class="tl-hl">Subplenary</span> Presentation – <span class="tl-hl">SPVM National Physics Conference</span> · <span class="tl-loc">Philippines</span></p>
       </div>
     </div>
   </div>
@@ -721,17 +869,26 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2023">
     <div class="tl-year-label">2023年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>許博翔、陳柏維、劉子齊</strong> · Short-term experiments · <em>SPring-8 Synchrotron</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>許博翔、陳柏維、劉子齊</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">SPring-8 Synchrotron</span><span class="tl-loc"> · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="prog">
+        <div class="tl-tags">
+        <span class="tl-tag2 prog">Program</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>廖黎杰、劉仕渝、許聖郁、謝濬澤</strong> · Overseas Dream-Build Program · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>廖黎杰、劉仕渝、許聖郁、謝濬澤</strong> · <span class="tl-hl">Overseas Dream-Build Program</span> · <span class="tl-loc">Kyushu University · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="mob">
+        <div class="tl-tags">
+        <span class="tl-tag2 mob">Mobility</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>廖澤銘</strong> · Research Collaboration Exchange · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>廖澤銘</strong> · Short-term Research Visit · <span class="tl-loc tl-hl">Kyushu University</span><span class="tl-loc"> · Japan</span></p>
       </div>
     </div>
   </div>
@@ -740,13 +897,19 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2022">
     <div class="tl-year-label">2022年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
-        <span class="tl-tag postdoc">Post-doc</span>
-        <p class="tl-text"><strong>張博鈞</strong> · ICMFS · <em>Okinawa, Japan</em></p>
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
+        <span class="tl-tag postdoc">Postdoc</span>
+        </div>
+        <p class="tl-text"><strong>張博鈞</strong> · <span class="tl-hl">ICMFS</span> · <span class="tl-loc">Okinawa · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>廖澤銘、廖黎杰、劉仕渝</strong> · ICMFS · <em>Okinawa, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>廖澤銘、廖黎杰、劉仕渝</strong> · <span class="tl-hl">ICMFS</span> · <span class="tl-loc">Okinawa · Japan</span></p>
       </div>
     </div>
   </div>
@@ -755,17 +918,26 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2019">
     <div class="tl-year-label">2019年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
-        <span class="tl-tag postdoc">Post-doc</span>
-        <p class="tl-text"><strong>張博鈞</strong> · Japan-Taiwan Sakura Science Program · <em>Kyushu University</em>, Japan</p>
+      <div class="tl-item" data-month="" data-type="prog">
+        <div class="tl-tags">
+        <span class="tl-tag2 prog">Program</span>
+        <span class="tl-tag postdoc">Postdoc</span>
+        </div>
+        <p class="tl-text"><strong>張博鈞</strong> · <span class="tl-hl">Japan-Taiwan Sakura Science Program</span> · <span class="tl-loc">Kyushu University · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="prog">
+        <div class="tl-tags">
+        <span class="tl-tag2 prog">Program</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>劉仕渝</strong> · Japan-Taiwan Sakura Science Program · <em>Kyushu University</em>, Japan</p>
+        </div>
+        <p class="tl-text"><strong>劉仕渝</strong> · <span class="tl-hl">Japan-Taiwan Sakura Science Program</span> · <span class="tl-loc">Kyushu University · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>廖澤銘</strong> · ICNNN · <em>Kyoto, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>廖澤銘</strong> · <span class="tl-hl">ICNNN</span> · <span class="tl-loc">Kyoto · Japan</span></p>
       </div>
     </div>
   </div>
@@ -774,13 +946,33 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2018">
     <div class="tl-year-label">2018年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>許銓喆、王韋翔</strong> · ACSIN-14 &amp; ICSPM-26 · <em>Sendai, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>許銓喆、王韋翔</strong> · <span class="tl-hl">ACSIN 14th</span> · <span class="tl-loc">Sendai · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
+        <span class="tl-tag phd">Ph.D.</span>
+        </div>
+        <p class="tl-text"><strong>許銓喆、王韋翔</strong> · <span class="tl-hl">ICSPM 26th</span> · <span class="tl-loc">Sendai · Japan</span></p>
+      </div>
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>廖澤銘、馬康耀</strong> · ACSIN-14 &amp; ICSPM-26 · <em>Sendai, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>廖澤銘、馬康耀</strong> · <span class="tl-hl">ACSIN 14th</span> · <span class="tl-loc">Sendai · Japan</span></p>
+      </div>
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
+        <span class="tl-tag msc">M.S.</span>
+        </div>
+        <p class="tl-text"><strong>廖澤銘、馬康耀</strong> · <span class="tl-hl">ICSPM 26th</span> · <span class="tl-loc">Sendai · Japan</span></p>
       </div>
     </div>
   </div>
@@ -789,17 +981,26 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2017">
     <div class="tl-year-label">2017年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · 8th ISSS · <em>Ibaraki, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · <span class="tl-hl">ISSS 8th</span> · <span class="tl-loc">Ibaraki · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>蔡政良、張昀穎</strong> · 8th ISSS · <em>Ibaraki, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>蔡政良、張昀穎</strong> · <span class="tl-hl">ISSS 8th</span> · <span class="tl-loc">Ibaraki · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag bsc">B.S.</span>
-        <p class="tl-text"><strong>廖澤銘、沈怡忻</strong> · 8th ISSS · <em>Ibaraki, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>廖澤銘、沈怡忻</strong> · <span class="tl-hl">ISSS 8th</span> · <span class="tl-loc">Ibaraki · Japan</span></p>
       </div>
     </div>
   </div>
@@ -808,9 +1009,12 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2016">
     <div class="tl-year-label">2016年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · MMM Conference · <em>New Orleans, USA</em></p>
+        </div>
+        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · <span class="tl-hl">MMM</span> · <span class="tl-loc">New Orleans · USA</span></p>
       </div>
     </div>
   </div>
@@ -819,21 +1023,33 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2015">
     <div class="tl-year-label">2015年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>許宏彰</strong> · MMM Conference · <em>San Diego, USA</em></p>
+        </div>
+        <p class="tl-text"><strong>許宏彰</strong> · <span class="tl-hl">MMM</span> · <span class="tl-loc">San Diego · USA</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>徐凱霖</strong> · MMM Conference · <em>San Diego, USA</em></p>
+        </div>
+        <p class="tl-text"><strong>徐凱霖</strong> · <span class="tl-hl">MMM</span> · <span class="tl-loc">San Diego · USA</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · Intermag 2015 · <em>Beijing, China</em></p>
+        </div>
+        <p class="tl-text"><strong>張博鈞、許銓喆</strong> · <span class="tl-hl">Intermag</span> · <span class="tl-loc">Beijing · China</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>陳宜樺、陳昱全</strong> · International Conference · <em>Okinawa, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>陳宜樺、陳昱全</strong> · <span class="tl-hl">International Conference</span> · <span class="tl-loc">Okinawa · Japan</span></p>
       </div>
     </div>
   </div>
@@ -842,13 +1058,19 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2014">
     <div class="tl-year-label">2014年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag phd">Ph.D.</span>
-        <p class="tl-text"><strong>許銓喆、許宏彰</strong> · ISSS-7 · <em>Matsue, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>許銓喆、許宏彰</strong> · <span class="tl-hl">ISSS 7th</span> · <span class="tl-loc">Matsue · Japan</span></p>
       </div>
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>徐凱霖、黃翰元</strong> · ISSS-7 · <em>Matsue, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>徐凱霖、黃翰元</strong> · <span class="tl-hl">ISSS 7th</span> · <span class="tl-loc">Matsue · Japan</span></p>
       </div>
     </div>
   </div>
@@ -857,9 +1079,12 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="tl-year" data-year="2013">
     <div class="tl-year-label">2013年</div>
     <div class="tl-items">
-      <div class="tl-item" data-month="">
+      <div class="tl-item" data-month="" data-type="conf">
+        <div class="tl-tags">
+        <span class="tl-tag2 conf">Conference</span>
         <span class="tl-tag msc">M.S.</span>
-        <p class="tl-text"><strong>薛坤仁</strong> · MML-2013 · <em>Kyoto, Japan</em></p>
+        </div>
+        <p class="tl-text"><strong>薛坤仁</strong> · <span class="tl-hl">MML</span> · <span class="tl-loc">Kyoto · Japan</span></p>
       </div>
     </div>
   </div>
@@ -898,7 +1123,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
       <div>© 2007&ndash;2026 Wen-Chin Lin Group. All rights reserved.</div>
       <div>For privacy concerns regarding content on this site, please contact us and we will address it promptly.</div>
     </div>
-    <div>Designed by Ko-Fan Chen &amp; Po-Wei Chen · Rebuilt 2026</div>
+    <div>Rebuilt. 2026</div>
   </div>
 </footer>
 
@@ -988,30 +1213,108 @@ document.querySelectorAll('.tab').forEach(tab => {
 
   const buttons = Array.from(filterBar.querySelectorAll('.cat-filter'));
   const items = Array.from(panel.querySelectorAll('.tl-item'));
+  const collapses = Array.from(panel.querySelectorAll('.tl-collapse'));
   const yearGroups = Array.from(panel.querySelectorAll('.tl-year'));
 
-  function applyFilter(category) {
+  // 複選篩選：selected 記錄目前選中的分類（可以多個）。
+  // 預設是 {'all'}；只要選了任何一個實際分類，'all' 就會被移除；
+  // 如果使用者把所有分類都取消選取，自動退回 {'all'}（顯示全部）。
+  let selected = new Set(['conference', 'national']);
+
+  function applyFilter() {
+    // data-category 可以放多個值（用空白分隔），例如 data-category="national conference"
+    // 代表這筆資料同時屬於 National 和 Conference 兩種分類，只要其中一種有被選取就會顯示
+    const matches = el => selected.has('all') ||
+      el.dataset.category.split(/\s+/).some(c => selected.has(c));
+
     items.forEach(item => {
-      // data-category 可以放多個值（用空白分隔），例如 data-category="national conference"
-      // 代表這筆資料同時屬於 National 和 Conference 兩種分類，兩邊篩選都會顯示它
-      const itemCategories = item.dataset.category.split(/\s+/);
-      const match = category === 'all' || itemCategories.includes(category);
-      item.classList.toggle('cat-hidden', !match);
+      item.classList.toggle('cat-hidden', !matches(item));
+    });
+    // 摺疊摘要（.tl-collapse）本身也帶 data-category，篩到不相符的分類時要整塊隱藏，
+    // 不然即使裡面沒有任何符合的項目，摘要文字（例如「Alumni Scholarship (2)」）還是會顯示
+    collapses.forEach(el => {
+      el.classList.toggle('cat-hidden', !matches(el));
     });
     yearGroups.forEach(group => {
       const hasVisible = Array.from(group.querySelectorAll('.tl-item'))
         .some(item => !item.classList.contains('cat-hidden'));
       group.classList.toggle('cat-hidden', !hasVisible);
     });
+
+    buttons.forEach(b => b.classList.toggle('active', selected.has(b.dataset.category)));
   }
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter(btn.dataset.category);
+      const category = btn.dataset.category;
+      if (category === 'all') {
+        selected = new Set(['all']);
+      } else {
+        selected.delete('all');
+        if (selected.has(category)) {
+          selected.delete(category);
+        } else {
+          selected.add(category);
+        }
+        if (selected.size === 0) selected = new Set(['all']);
+      }
+      applyFilter();
     });
   });
+
+  applyFilter();
+})();
+
+// ==========================================================================
+// 【Exchange 分頁的 Conference / Program / Mobility 篩選器】
+// 跟 Awards 分頁一樣是複選；篩選依據每筆的 data-type（conf/prog/mob）。
+// ==========================================================================
+(function () {
+  const panel = document.getElementById('panel-exchange');
+  if (!panel) return;
+  const filterBar = panel.querySelector('.cat-filters');
+  if (!filterBar) return;
+
+  const buttons = Array.from(filterBar.querySelectorAll('.cat-filter'));
+  const yearGroups = Array.from(panel.querySelectorAll('.tl-year'));
+
+  let selected = new Set(['all']);
+
+  function applyFilter() {
+    const items = Array.from(panel.querySelectorAll('.tl-item'));
+    const matches = item => selected.has('all') || selected.has(item.dataset.type);
+
+    items.forEach(item => {
+      item.classList.toggle('cat-hidden', !matches(item));
+    });
+    yearGroups.forEach(group => {
+      const hasVisible = Array.from(group.querySelectorAll('.tl-item'))
+        .some(item => !item.classList.contains('cat-hidden'));
+      group.classList.toggle('cat-hidden', !hasVisible);
+    });
+
+    buttons.forEach(b => b.classList.toggle('active', selected.has(b.dataset.type)));
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.type;
+      if (type === 'all') {
+        selected = new Set(['all']);
+      } else {
+        selected.delete('all');
+        if (selected.has(type)) {
+          selected.delete(type);
+        } else {
+          selected.add(type);
+        }
+        if (selected.size === 0) selected = new Set(['all']);
+      }
+      applyFilter();
+    });
+  });
+
+  applyFilter();
 })();
 </script>
 

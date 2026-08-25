@@ -24,7 +24,7 @@ NTNU-WCLin-Group-Site/
 ├── research.html              # 研究方向
 ├── publications.html          # 論文列表與搜尋篩選功能
 ├── facilities.html            # 實驗設備
-├── exchange-awards.html       # 國際交流、獲獎與獎學金
+├── honors.html                 # 獲獎、學術會議與移地交流
 ├── gallery.html                # 相簿 / Gallery 頁面
 ├── assets/
 │   └── images/
@@ -155,7 +155,7 @@ index.html
       <li><a href="research.html">Research</a></li>
       <li><a href="publications.html">Publications</a></li>
       <li><a href="facilities.html">Facilities</a></li>
-      <li><a href="exchange-awards.html">Awards</a></li>
+      <li><a href="honors.html">Honors</a></li>
       <li><a href="gallery.html">Gallery</a></li>
     </ul>
   </div>
@@ -858,40 +858,120 @@ Facilities 頁以卡片顯示設備。
 
 ---
 
-## 12. Awards & Exchange 頁 `exchange-awards.html`
+## 12. Honors 頁 `honors.html`
 
-此頁使用 tabs 與 timeline。
+頁面標題為「Honors, Conferences, and Academic Mobility」，有兩個分頁，各自是一個按年份排列的 `.tl-item` timeline：
 
-典型 timeline item：
+- **Honors & Awards** — 獎學金、研究獎助、競賽獎項
+- **Conferences & Mobility** — 研討會參與、正式交流計畫、短期出國研究訪問/實驗
+
+兩個分頁共用同一種基本 item 結構：
 
 ```html
-<div class="tl-item">
-  <span class="tl-tag phd">PHD</span>
-  <p class="tl-text">...</p>
+<div class="tl-item" data-category="...">
+  <span class="tl-tag phd">Ph.D.</span>
+  <p class="tl-text"><strong>姓名</strong> · 內容 · 地點</p>
 </div>
 ```
 
-### 新增紀錄
-
-1. 找到正確 tab
-2. 找到正確年份
-3. 複製一段 `.tl-item`
-4. 修改 tag 與文字
-
-常見 tag：
+學位/職位標籤（兩個分頁共用）：
 
 ```html
-<span class="tl-tag phd">PHD</span>
-<span class="tl-tag msc">MSC</span>
-<span class="tl-tag bsc">BSC</span>
-<span class="tl-tag postdoc">POSTDOC</span>
+<span class="tl-tag phd">Ph.D.</span>
+<span class="tl-tag msc">M.S.</span>
+<span class="tl-tag bsc">B.S.</span>
+<span class="tl-tag postdoc">Postdoc</span>
 ```
 
-若新增新 tag 類型，需要新增 CSS：
+### 12.1 Honors & Awards 分頁
 
-```css
-.tl-tag.newtag { color: #xxxxxx; }
+每個 `.tl-item` 都有 `data-category`，給時間軸上方的篩選器用。一筆資料如果真的同時屬於兩種分類，可以用空白分隔放兩個值(例如 `data-category="national conference"`)，篩選邏輯是「只要有任一個被選中的分類就顯示」。
+
+| data-category 值 | 篩選標籤 | 意義 |
+|---|---|---|
+| `internal` | Internal | 系上或院上核發的獎學金(資格式獎助、系友會獎學金、論文獎等) |
+| `national` | External Funding | 政府(國科會/教育部)或基金會(如台達電文教基金會)的補助與獎助 |
+| `exchange` | Int'l Exchange | 系友會核發、專門資助國際交流的獎學金 |
+| `conference` | Conference | 靠研討會/競賽發表拿到的獎項 |
+
+篩選器是**複選**：點一個分類會獨立切換選取狀態；點 All 會清空其他選取；如果把所有分類都取消，會自動退回顯示 All。
+
+**系友會常態獎學金摺疊。** 有一批 `internal` 分類的獎項幾乎每年都會出現、沒什麼鑑別度(例如單純的「Alumni Scholarship, NTNU Physics」)。為了不讓這些項目稀釋掉真正有鑑別度的獎項，同一年份內**所有**這類常態獎項會合併成一個可展開的摘要，固定排在該年份的**最後面**：
+
+```html
+<details class="tl-collapse" data-category="internal">
+  <summary class="tl-collapse-summary">Alumni Scholarship (2)</summary>
+  <div class="tl-items tl-items-collapsed">
+    <div class="tl-item" data-category="internal">...</div>
+    <div class="tl-item" data-category="internal">...</div>
+  </div>
+</details>
 ```
+
+`(N)` 是該年份合併的筆數。`.tl-collapse` 本身也要帶上跟裡面項目一樣的 `data-category`，篩選器篩不到的時候才能把整塊(不只是裡面的項目)一起隱藏。
+
+**已知的中文獎項名稱。** 如果某個獎項有已知的官方中文全名，用灰色、不斜體的 span 補在後面，不要跟英文名搶視覺焦點：
+
+```html
+<p class="tl-text"><strong>姓名</strong> · Alumni Scholarship, NTNU Physics <span class="tl-zh">「獎學金中文全名」</span></p>
+```
+
+同一個獎項名稱在**所有**出現的年份都要補上同樣的中文全名，不要有些年份補、有些沒補。
+
+### 12.2 Conferences & Mobility 分頁
+
+每個 `.tl-item` 帶：
+
+- `data-month=""` — 給下面的年-月排序腳本用；月份不確定就留空，不要用猜的填數字。
+- `data-type="conf" | "prog" | "mob"` — 驅動 Conference/Program/Mobility 篩選器(一樣是複選，機制跟 12.1 相同)。
+
+```html
+<div class="tl-item" data-month="" data-type="conf">
+  <div class="tl-tags">
+    <span class="tl-tag2 conf">Conference</span>
+    <span class="tl-tag phd">Ph.D.</span>
+  </div>
+  <p class="tl-text"><strong>姓名</strong> · <span class="tl-hl">內容</span> · <span class="tl-loc">地點</span></p>
+</div>
+```
+
+屬性標籤(Conference/Program/Mobility)永遠排在學位標籤**前面**。
+
+**怎麼判斷分類：**
+
+- **Conference** — 參加/在具體研討會或研習會上發表。
+- **Program** — 有正式名稱的交流計畫(例如「Overseas Dream-Build Program」、「Japan-Taiwan Sakura Science Program」)。
+- **Mobility** — 其餘所有：短期實驗室訪問、出國做實驗(束線時間等)、研究合作交流，或是單純出國交流但剛好有做報告的行程。
+
+如果一趟行程參加了**兩場不同的具體研討會**，要拆成兩筆 `.tl-item`(同人、同年、同地點)，不要用「&」把兩個會議名稱接在一起。
+
+**研討會/計畫命名：**
+
+- 有屆數的常態研討會：用「**會議名稱 屆數th**」(例如 `ISSS 8th`、`ACSIN 14th`)——名稱在前、屆數在後，不要把屆數放前面(不是 `8th ISSS`)，也不要用連字號(不是 `ISSS-8`)。
+- 已經按年份分組顯示在時間軸上時，名稱裡不用再重複年份(`Intermag 2015` → `Intermag`、`MML-2013` → `MML`)。
+- 會議本身有廣為人知的簡稱時，不用再加通用字尾(`MMM Conference` → `MMM`)。
+
+**內容欄位——中間那段要寫什麼：**
+
+- **Conference**：如果有發表，寫「**報告等級** Presentation – **會議名稱**」(例如 `Oral Presentation – MMM`)；沒有發表就只寫會議名稱。會議名稱永遠 highlight(`.tl-hl`)；報告等級的字(不含「Presentation」)只有在**口頭或更高等級**(Oral、Subplenary、Invited、Keynote、Plenary——不含 Poster)時才一併 highlight。
+- **Program**：計畫的正式名稱，要 highlight。
+- **Mobility**：如果有發表，寫「**報告等級** Presentation – Short-term Visit」；沒有發表就依天數選用下面的用詞(Mobility 的內容欄位本身不 highlight，見下方地點欄位的規則)：
+  - 幾天到約一個月 → `Short-term Research Visit`
+  - 約一個月到約半年 → `Research Visit`
+  - 半年以上 → `Long-term Research Visit`
+  - 到特定設施做實驗/使用束線時間(不是一般性的實驗室訪問)也可以用 `Short-term Research Visit`，但如果訪問跟做實驗其實是不同性質的行程，自己在筆記裡留意區分。
+
+**地點欄位：**「**機構(可多層級)** · **國家**」，用 `<span class="tl-loc">`。機構自己內部的層級之間才用逗號(例如 `Institute for Solid State Physics (ISSP), University of Tokyo`)；最後接國家的地方一律用「` · `」分隔，且國家永遠要補上，就算機構名稱看起來已經透露國家也一樣。
+
+**醒目字樣(`.tl-hl`)——這筆資料最值得注意的是什麼：**
+
+| 分類 | 什麼要加 `.tl-hl` |
+|---|---|
+| Program | 計畫名稱 |
+| Mobility | 只有機構名稱(包成 `<span class="tl-loc tl-hl">`)——後面的「, 國家」維持素色的 `<span class="tl-loc">` |
+| Conference | 會議名稱，如果報告等級是 oral 或更高，報告等級的字也一起 highlight(規則同上) |
+
+**年-月排序腳本。** 這個分頁載入時會依每筆的 `data-month` 自己重建時間軸：年份新到舊優先；同一年份內，有月份的依月份新到舊排前面，沒有月份的一律排在該年最後面。年份標題會顯示成「YYYY年M月」(有月份時)或「YYYY年」(只有年份時)——不要為了排序好看就臆測月份。
 
 ---
 
@@ -997,8 +1077,6 @@ conference + program + event =
 3. 其餘情況隨機挑選
 
 範例：2022 年 conference 有 4 個子資料夾(icmfs / tamt / tps / XXX)，組合優先表選中 `2+0+1`(conference×2 + event×1)，conference 只能顯示 2 個 —— icmfs 是國外(日本)優先入選，第二個名額在國內選項裡 TPS 排在 TAMT 前面，所以選 icmfs + tps；tamt 跟 XXX 那年就沒有獨立相簿(在 +N 的清單跟左側輪播裡還是看得到)。
-
-參考實作見 `gallery-testA.html`(僅供內部預覽比對用的原型頁，不連結在正式導覽列裡)。
 
 ---
 
@@ -1252,7 +1330,7 @@ members.html
 research.html
 publications.html
 facilities.html
-exchange-awards.html
+honors.html
 gallery.html
 ```
 
