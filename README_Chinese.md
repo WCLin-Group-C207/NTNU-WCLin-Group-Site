@@ -1014,23 +1014,25 @@ assets/images/
 `assets/images/gallery/{年份}/...` 底下的照片，檔名一律照下面格式命名：
 
 ```text
-AAAABBB-CCCC-DDD-EE.jpg
+AAAABBB_CCCC_DDD_EE.jpg
 ```
+
+底線 `_` 是**主要欄位分隔符**(共 4 個欄位)；連字號 `-` 只用在**單一欄位內部**需要區隔多個英文單字時，不能拿來當欄位分隔符。
 
 | 欄位 | 意義 | 範例 |
 |---|---|---|
 | `AAAA` | 西元年，4 碼 | `2022` |
 | `BBB`  | 月份縮寫，3 碼(Jan/Feb/Mar/…/Dec) | `Jul` |
-| `CCCC` | 會議 / 計畫 / 活動名稱，會議優先用縮寫，沒有縮寫才打全名 | `TPS`、`TAMT`、`MMM` |
+| `CCCC` | 會議 / 計畫 / 活動名稱，會議優先用縮寫，沒有縮寫才打全名；多個英文單字用連字號 `-` 分隔 | `TPS`、`TAMT`、`MMM`、`Lab-dinner` |
 | `DDD`  | 國家縮寫 | `TW`、`JP`、`KR`、`US` |
 | `EE`   | 兩位數流水號，同一場活動有多張照片時遞增 | `01`、`02` |
 
-範例：`2022Jul-TAMT-TW-01.jpg`
+範例：`2022Jul_TAMT_TW_01.jpg`、`2026Dec_Lab-dinner_TW_01.jpg`
 
 **未知的欄位一律用 `XXX` 代替**，不要留空、不要用問號、不要用猜測值頂替。例如月份不確定：
 
 ```text
-2016XXX-MMM-US-01.jpg
+2016XXX_MMM_US_01.jpg
 ```
 
 ### 三大分類定義（conference / program / event）

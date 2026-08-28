@@ -990,23 +990,25 @@ Typical structure:
 Photos under `assets/images/gallery/{year}/...` must follow this filename format:
 
 ```text
-AAAABBB-CCCC-DDD-EE.jpg
+AAAABBB_CCCC_DDD_EE.jpg
 ```
+
+The underscore `_` is the **primary field separator** (4 fields total); the hyphen `-` is only for separating multiple English words **inside a single field** — it must never be used as a field separator.
 
 | Field | Meaning | Example |
 |---|---|---|
 | `AAAA` | 4-digit year | `2022` |
 | `BBB`  | 3-letter month abbreviation (Jan/Feb/Mar/…/Dec) | `Jul` |
-| `CCCC` | Conference / program / event name — prefer a known abbreviation, otherwise the full name | `TPS`, `TAMT`, `MMM` |
+| `CCCC` | Conference / program / event name — prefer a known abbreviation, otherwise the full name; hyphenate multiple words | `TPS`, `TAMT`, `MMM`, `Lab-dinner` |
 | `DDD`  | Country abbreviation | `TW`, `JP`, `KR`, `US` |
 | `EE`   | 2-digit sequence number, increments for multiple photos from the same event | `01`, `02` |
 
-Example: `2022Jul-TAMT-TW-01.jpg`
+Example: `2022Jul_TAMT_TW_01.jpg`, `2026Dec_Lab-dinner_TW_01.jpg`
 
 **Use `XXX` for any unknown field** — never leave it blank, use a question mark, or guess a value. Example with unknown month:
 
 ```text
-2016XXX-MMM-US-01.jpg
+2016XXX_MMM_US_01.jpg
 ```
 
 ### Three category definitions (conference / program / event)

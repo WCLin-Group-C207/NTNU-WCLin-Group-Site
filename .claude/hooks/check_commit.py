@@ -59,7 +59,7 @@ LETTER_CODE = {
 # 3. 圖片檔名規則：只針對 assets/images/ 底下「新增或改名」的檔案
 IMAGE_PATH_PREFIX = "assets/images/"
 IMAGE_EXT_RE = re.compile(r"\.(jpg|jpeg|png)$", re.IGNORECASE)
-IMAGE_NAME_RE = re.compile(r"^[A-Za-z0-9-]+$")
+IMAGE_NAME_RE = re.compile(r"^[A-Za-z0-9_-]+$")
 
 # 4-6. 警告類（不擋下）
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
@@ -184,7 +184,7 @@ def check_image_filenames():
         if not IMAGE_EXT_RE.search(filename):
             findings.append(f'[圖片檔名規則] {rel_path}: 副檔名 "{ext}" 不在允許清單 (.jpg/.jpeg/.png)')
         if not IMAGE_NAME_RE.match(name):
-            findings.append(f'[圖片檔名規則] {rel_path}: 檔名 "{name}" 含有不允許的字元（只能英文字母、數字、連字號 -）')
+            findings.append(f'[圖片檔名規則] {rel_path}: 檔名 "{name}" 含有不允許的字元（只能英文字母、數字、底線 _、連字號 -）')
     return findings
 
 

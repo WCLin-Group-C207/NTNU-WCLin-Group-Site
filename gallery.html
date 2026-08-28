@@ -280,6 +280,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
       <button type="button" class="filter-tag" data-filter-year="2022">2022</button>
       <button type="button" class="filter-tag" data-filter-year="2021">2021</button>
       <button type="button" class="filter-tag" data-filter-year="2016">2016</button>
+      <button type="button" class="filter-tag" data-filter-year="2013">2013</button>
     </span>
     <button type="button" class="filter-tag filter-tag-toggle" id="yearToggleBtn">More years ▾</button>
   </div>
@@ -295,56 +296,112 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="filtered-empty" id="filteredEmpty" style="display:none;">No albums match this filter yet.</div>
 </section>
 
-<!-- 2026 (placeholder) -->
+<!-- 2026 -->
 <section class="year-block" id="year-2026">
   <div class="year-head">
     <span class="year-num">01</span>
     <h2 class="year-title">2026</h2>
-    <span class="year-meta">Coming soon</span>
+    <span class="year-meta">Conference × 2 · Program × 1 · Event × 5</span>
   </div>
   <div class="year-layout">
-    <div class="year-hero-frame"><div class="placeholder-frame">Photos coming soon</div></div>
+    <div class="year-hero-frame">
+      <img class="year-hero-img" data-year="2026" src="" alt="">
+    </div>
     <div class="album-grid">
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile" onclick="openAlbum('y2026-conference-tps')">
+        <img src="assets/images/gallery/2026/conference/tps/2026Jan_TPS_TW_01.jpg" alt="TPS 2026">
+        <span class="album-tile-count">2</span>
+        <div class="album-tile-label"><strong>Conference</strong>TPS</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2026-conference-tamt')">
+        <img src="assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_01.jpg" alt="TAMT 2026">
+        <span class="album-tile-count">9</span>
+        <div class="album-tile-label"><strong>Conference</strong>TAMT</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2026-event-kyushu-university-visit')">
+        <img src="assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_01.jpg" alt="Kyushu University Visit 2026">
+        <span class="album-tile-count">5</span>
+        <div class="album-tile-label"><strong>Event</strong>Kyushu University Visit</div>
+      </div>
+      <div class="album-tile album-tile-more" onclick="openAllAlbums(2026)">
+        <div>
+          <span class="more-count">+5</span>
+          <span class="more-label">More albums</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 2025 (placeholder) -->
+<!-- 2025 -->
 <section class="year-block" id="year-2025">
   <div class="year-head">
     <span class="year-num">02</span>
     <h2 class="year-title">2025</h2>
-    <span class="year-meta">Coming soon</span>
+    <span class="year-meta">Conference × 1 · Program × 1 · Event × 2</span>
   </div>
   <div class="year-layout">
-    <div class="year-hero-frame"><div class="placeholder-frame">Photos coming soon</div></div>
+    <div class="year-hero-frame">
+      <img class="year-hero-img" data-year="2025" src="" alt="">
+    </div>
     <div class="album-grid">
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile" onclick="openAlbum('y2025-conference-tps')">
+        <img src="assets/images/gallery/2025/conference/tps/2025Jan_TPS_TW_01.jpg" alt="TPS 2025">
+        <span class="album-tile-count">2</span>
+        <div class="album-tile-label"><strong>Conference</strong>TPS</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2025-program-overseas-dream-build')">
+        <img src="assets/images/gallery/2025/program/overseas-dream-build/2025Apr_Overseas-dream-build_JP_01.jpg" alt="Overseas Dream Build 2025">
+        <span class="album-tile-count">3</span>
+        <div class="album-tile-label"><strong>Program</strong>Overseas Dream Build</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2025-event-dinner-with-alumni')">
+        <img src="assets/images/gallery/2025/event/dinner-with-alumni/2025Jan_Dinner-with-alumni_TW_01.jpg" alt="Dinner with Alumni 2025">
+        <span class="album-tile-count">1</span>
+        <div class="album-tile-label"><strong>Event</strong>Dinner with Alumni</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2025-event-lab-dinner')">
+        <img src="assets/images/gallery/2025/event/lab-dinner/2025Jun_Lab-dinner_TW_01.jpg" alt="Laboratory Dinner 2025">
+        <span class="album-tile-count">2</span>
+        <div class="album-tile-label"><strong>Event</strong>Laboratory Dinner</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 2024 (placeholder) -->
+<!-- 2024 -->
 <section class="year-block" id="year-2024">
   <div class="year-head">
     <span class="year-num">03</span>
     <h2 class="year-title">2024</h2>
-    <span class="year-meta">Coming soon</span>
+    <span class="year-meta">Conference × 1 · Program × 1 · Event × 3</span>
   </div>
   <div class="year-layout">
-    <div class="year-hero-frame"><div class="placeholder-frame">Photos coming soon</div></div>
+    <div class="year-hero-frame">
+      <img class="year-hero-img" data-year="2024" src="" alt="">
+    </div>
     <div class="album-grid">
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile" onclick="openAlbum('y2024-conference-tps')">
+        <img src="assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_01.jpg" alt="TPS 2024">
+        <span class="album-tile-count">8</span>
+        <div class="album-tile-label"><strong>Conference</strong>TPS</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2024-program-overseas-dream-build')">
+        <img src="assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_01.jpg" alt="Overseas Dream Build 2024">
+        <span class="album-tile-count">4</span>
+        <div class="album-tile-label"><strong>Program</strong>Overseas Dream Build</div>
+      </div>
+      <div class="album-tile" onclick="openAlbum('y2024-event-graduation-season')">
+        <img src="assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_01.jpg" alt="Graduation Season 2024">
+        <span class="album-tile-count">6</span>
+        <div class="album-tile-label"><strong>Event</strong>Graduation Season</div>
+      </div>
+      <div class="album-tile album-tile-more" onclick="openAllAlbums(2024)">
+        <div>
+          <span class="more-count">+2</span>
+          <span class="more-label">More albums</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -354,7 +411,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="year-head">
     <span class="year-num">04</span>
     <h2 class="year-title">2023</h2>
-    <span class="year-meta">Conference × 1 · Program × 1 · Event × 2</span>
+    <span class="year-meta">Conference × 2 · Program × 1 · Event × 5</span>
   </div>
   <div class="year-layout">
     <div class="year-hero-frame">
@@ -362,24 +419,25 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     </div>
     <div class="album-grid">
       <div class="album-tile" onclick="openAlbum('y2023-conference-tps')">
-        <img src="assets/images/gallery/2023/conference/tps/2023Jan-TPS-TW-01.jpg" alt="TPS 2023">
+        <img src="assets/images/gallery/2023/conference/tps/2023Jan_TPS_TW_01.jpg" alt="TPS 2023">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Conference</strong>TPS</div>
       </div>
       <div class="album-tile" onclick="openAlbum('y2023-program-overseas-dream-build')">
-        <img src="assets/images/gallery/2023/program/overseas-dream-build/2023XXX-OverseasDreamBuild-JP-01.jpg" alt="Overseas Dream Build 2023">
+        <img src="assets/images/gallery/2023/program/overseas-dream-build/2023XXX_Overseas-dream-build_JP_01.jpg" alt="Overseas Dream Build 2023">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Program</strong>Overseas Dream Build</div>
       </div>
       <div class="album-tile" onclick="openAlbum('y2023-event-graduation-ceremony')">
-        <img src="assets/images/gallery/2023/event/graduation-ceremony/2023XXX-Graduation-TW-01.jpg" alt="Graduation Ceremony 2023">
+        <img src="assets/images/gallery/2023/event/graduation-ceremony/2023XXX_Graduation_TW_01.jpg" alt="Graduation Ceremony 2023">
         <span class="album-tile-count">2</span>
         <div class="album-tile-label"><strong>Event</strong>Graduation Ceremony</div>
       </div>
-      <div class="album-tile" onclick="openAlbum('y2023-event-lab-dinner')">
-        <img src="assets/images/gallery/2023/event/lab-dinner/2023XXX-LabDinner-TW-01.jpg" alt="Laboratory Dinner 2023">
-        <span class="album-tile-count">1</span>
-        <div class="album-tile-label"><strong>Event</strong>Laboratory Dinner</div>
+      <div class="album-tile album-tile-more" onclick="openAllAlbums(2023)">
+        <div>
+          <span class="more-count">+5</span>
+          <span class="more-label">More albums</span>
+        </div>
       </div>
     </div>
   </div>
@@ -390,7 +448,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="year-head">
     <span class="year-num">05</span>
     <h2 class="year-title">2022</h2>
-    <span class="year-meta">Conference × 4 · Event × 1</span>
+    <span class="year-meta">Conference × 3 · Event × 3</span>
   </div>
   <div class="year-layout">
     <div class="year-hero-frame">
@@ -398,23 +456,23 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     </div>
     <div class="album-grid">
       <div class="album-tile" onclick="openAlbum('y2022-conference-icmfs')">
-        <img src="assets/images/gallery/2022/conference/icmfs/2022XXX-ICMFs-JP-01.jpg" alt="ICMFS 2022">
+        <img src="assets/images/gallery/2022/conference/icmfs/2022XXX_ICMFs_JP_01.jpg" alt="ICMFS 2022">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Conference</strong>ICMFs</div>
       </div>
       <div class="album-tile" onclick="openAlbum('y2022-conference-tps')">
-        <img src="assets/images/gallery/2022/conference/tps/2022Jan-TPS-TW-01.jpg" alt="TPS 2022">
+        <img src="assets/images/gallery/2022/conference/tps/2022Jan_TPS_TW_01.jpg" alt="TPS 2022">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Conference</strong>TPS</div>
       </div>
       <div class="album-tile" onclick="openAlbum('y2022-event-lab-dinner')">
-        <img src="assets/images/gallery/2022/event/lab-dinner/2022XXX-LabDinner-TW-01.jpg" alt="Laboratory Dinner 2022">
+        <img src="assets/images/gallery/2022/event/lab-dinner/2022XXX_Lab-dinner_TW_01.jpg" alt="Laboratory Dinner 2022">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Event</strong>Laboratory Dinner</div>
       </div>
       <div class="album-tile album-tile-more" onclick="openAllAlbums(2022)">
         <div>
-          <span class="more-count">+2</span>
+          <span class="more-count">+3</span>
           <span class="more-label">More albums</span>
         </div>
       </div>
@@ -427,7 +485,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   <div class="year-head">
     <span class="year-num">06</span>
     <h2 class="year-title">2021</h2>
-    <span class="year-meta">Event × 1</span>
+    <span class="year-meta">Event × 2</span>
   </div>
   <div class="year-layout">
     <div class="year-hero-frame">
@@ -435,11 +493,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     </div>
     <div class="album-grid">
       <div class="album-tile" onclick="openAlbum('y2021-event-lab-dinner')">
-        <img src="assets/images/gallery/2021/event/lab-dinner/2021XXX-LabDinner-TW-01.jpg" alt="Laboratory Dinner 2021">
+        <img src="assets/images/gallery/2021/event/lab-dinner/2021XXX_Lab-dinner_TW_01.jpg" alt="Laboratory Dinner 2021">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Event</strong>Laboratory Dinner</div>
       </div>
-      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile" onclick="openAlbum('y2021-event-lab-surfing')">
+        <img src="assets/images/gallery/2021/event/lab-surfing/2021XXX_Lab-surfing_TW_01.png" alt="Lab Surfing 2021">
+        <span class="album-tile-count">1</span>
+        <div class="album-tile-label"><strong>Event</strong>Lab Surfing</div>
+      </div>
       <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
       <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
     </div>
@@ -459,9 +521,33 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     </div>
     <div class="album-grid">
       <div class="album-tile" onclick="openAlbum('y2016-conference-mmm')">
-        <img src="assets/images/gallery/2016/conference/mmm/2016XXX-MMM-US-01.jpg" alt="MMM 2016">
+        <img src="assets/images/gallery/2016/conference/mmm/2016XXX_MMM_US_01.jpg" alt="MMM 2016">
         <span class="album-tile-count">1</span>
         <div class="album-tile-label"><strong>Conference</strong>MMM</div>
+      </div>
+      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+      <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2013 -->
+<section class="year-block" id="year-2013">
+  <div class="year-head">
+    <span class="year-num">08</span>
+    <h2 class="year-title">2013</h2>
+    <span class="year-meta">Event × 1</span>
+  </div>
+  <div class="year-layout">
+    <div class="year-hero-frame">
+      <img class="year-hero-img" data-year="2013" src="" alt="">
+    </div>
+    <div class="album-grid">
+      <div class="album-tile" onclick="openAlbum('y2013-event-prof-birthday')">
+        <img src="assets/images/gallery/2013/event/prof-birthday/2013XXX_Prof-birthday_TW_01.jpg" alt="Professor's Birthday 2013">
+        <span class="album-tile-count">1</span>
+        <div class="album-tile-label"><strong>Event</strong>Professor's Birthday</div>
       </div>
       <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
       <div class="album-tile"><div class="placeholder-frame">Coming soon</div></div>
@@ -522,108 +608,375 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 <script>
 // ---- Data: all photos per year (for the left hero slideshow) ----
 const YEAR_PHOTOS = {
+  2026: [
+    { src: 'assets/images/gallery/2026/conference/tps/2026Jan_TPS_TW_01.jpg', alt: 'TPS 2026', label: 'TPS 2026' },
+    { src: 'assets/images/gallery/2026/conference/tps/2026Jan_TPS_TW_02.jpg', alt: 'TPS 2026', label: 'TPS 2026' },
+    { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_01.jpg', alt: 'TAMT 2026', label: 'TAMT 2026' },
+    { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_05.jpg', alt: 'TAMT 2026', label: 'TAMT 2026' },
+    { src: 'assets/images/gallery/2026/program/overseas-dream-build/2026Jun_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2026', label: 'Overseas Dream Build · Kyushu University' },
+    { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_01.jpg', alt: 'Kyushu University Visit 2026', label: 'Kyushu University Visit' },
+    { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_03.jpg', alt: 'Kyushu University Visit 2026', label: 'Kyushu University Visit' },
+    { src: 'assets/images/gallery/2026/event/lab-dinner/2026Jan_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2026', label: 'Laboratory Dinner' },
+    { src: 'assets/images/gallery/2026/event/lab-dinner/2026Jun_Lab-dinner_TW_02.jpg', alt: 'Laboratory Dinner 2026', label: 'Laboratory Dinner' },
+    { src: 'assets/images/gallery/2026/event/farewell-dinner-for-marek/2026Apr_Farewell-dinner-for-Marek_TW_01.jpg', alt: 'Farewell Dinner for Marek 2026', label: 'Farewell Dinner for Marek' },
+    { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_01.jpg', alt: 'Graduation Season 2026', label: 'Graduation Season' },
+    { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_01.jpg', alt: 'Dinner with Alumni 2026', label: 'Dinner with Alumni' }
+  ],
+  2025: [
+    { src: 'assets/images/gallery/2025/conference/tps/2025Jan_TPS_TW_01.jpg', alt: 'TPS 2025', label: 'TPS 2025' },
+    { src: 'assets/images/gallery/2025/program/overseas-dream-build/2025Apr_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2025', label: 'Overseas Dream Build · Kyushu University' },
+    { src: 'assets/images/gallery/2025/event/dinner-with-alumni/2025Jan_Dinner-with-alumni_TW_01.jpg', alt: 'Dinner with Alumni 2025', label: 'Dinner with Alumni' },
+    { src: 'assets/images/gallery/2025/event/lab-dinner/2025Jun_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2025', label: 'Laboratory Dinner' }
+  ],
+  2024: [
+    { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_01.jpg', alt: 'TPS 2024', label: 'TPS 2024' },
+    { src: 'assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2024', label: 'Overseas Dream Build · Kyushu University' },
+    { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_01.jpg', alt: 'Graduation Season 2024', label: 'Graduation Season' },
+    { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_01.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024', label: 'IAMS-NTNU-YCU Autumn Workshop' },
+    { src: 'assets/images/gallery/2024/event/lab-dinner/2024Jun_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2024', label: 'Laboratory Dinner' }
+  ],
   2023: [
-    { src: 'assets/images/gallery/2023/conference/tps/2023Jan-TPS-TW-01.jpg', alt: 'TPS 2023', label: 'TPS 2023' },
-    { src: 'assets/images/gallery/2023/program/overseas-dream-build/2023XXX-OverseasDreamBuild-JP-01.jpg', alt: 'Overseas Dream Build 2023', label: 'Overseas Dream Build · Kyushu University' },
-    { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX-Graduation-TW-01.jpg', alt: 'Graduation Ceremony 2023', label: 'Graduation Ceremony' },
-    { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX-Graduation-TW-02.jpg', alt: 'Graduation Ceremony 2023', label: 'Graduation Ceremony' },
-    { src: 'assets/images/gallery/2023/event/lab-dinner/2023XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2023', label: 'Laboratory Dinner' }
+    { src: 'assets/images/gallery/2023/conference/tps/2023Jan_TPS_TW_01.jpg', alt: 'TPS 2023', label: 'TPS 2023' },
+    { src: 'assets/images/gallery/2023/conference/tamt/2023Jul_TAMT_TW_01.jpg', alt: 'TAMT 2023', label: 'TAMT 2023' },
+    { src: 'assets/images/gallery/2023/program/overseas-dream-build/2023XXX_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2023', label: 'Overseas Dream Build · Kyushu University' },
+    { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX_Graduation_TW_01.jpg', alt: 'Graduation Ceremony 2023', label: 'Graduation Ceremony' },
+    { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX_Graduation_TW_02.jpg', alt: 'Graduation Ceremony 2023', label: 'Graduation Ceremony' },
+    { src: 'assets/images/gallery/2023/event/lab-dinner/2023Apr_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2023', label: 'Laboratory Dinner' },
+    { src: 'assets/images/gallery/2023/event/lab-christmas-dinner/2023Dec_Lab-christmas-dinner_TW_01.jpg', alt: 'Lab Christmas Dinner 2023', label: 'Lab Christmas Dinner' },
+    { src: 'assets/images/gallery/2023/event/skiing/2023XXX_Skiing_TW_01.jpg', alt: 'Skiing 2023', label: 'Skiing' },
+    { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_01.jpg', alt: 'Camping 2023', label: 'Camping' }
   ],
   2022: [
-    { src: 'assets/images/gallery/2022/conference/icmfs/2022XXX-ICMFs-JP-01.jpg', alt: 'ICMFS 2022', label: 'ICMFS 2022' },
-    { src: 'assets/images/gallery/2022/conference/tamt/2022Jul-TAMT-TW-01.jpg', alt: 'TAMT 2022', label: 'TAMT 2022' },
-    { src: 'assets/images/gallery/2022/conference/tamt/2022Jul-TAMT-TW-02.jpg', alt: 'TAMT 2022', label: 'TAMT 2022' },
-    { src: 'assets/images/gallery/2022/conference/tps/2022Jan-TPS-TW-01.jpg', alt: 'TPS 2022', label: 'TPS 2022' },
-    { src: 'assets/images/gallery/2022/conference/XXX/2022XXX-XXX-XXX-01.jpg', alt: 'Generation A Conference 2022', label: 'Generation A Conference' },
-    { src: 'assets/images/gallery/2022/event/lab-dinner/2022XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2022', label: 'Laboratory Dinner' }
+    { src: 'assets/images/gallery/2022/conference/icmfs/2022XXX_ICMFs_JP_01.jpg', alt: 'ICMFS 2022', label: 'ICMFS 2022' },
+    { src: 'assets/images/gallery/2022/conference/tamt/2022Jul_TAMT_TW_01.jpg', alt: 'TAMT 2022', label: 'TAMT 2022' },
+    { src: 'assets/images/gallery/2022/conference/tamt/2022Jul_TAMT_TW_02.jpg', alt: 'TAMT 2022', label: 'TAMT 2022' },
+    { src: 'assets/images/gallery/2022/conference/tps/2022Jan_TPS_TW_01.jpg', alt: 'TPS 2022', label: 'TPS 2022' },
+    { src: 'assets/images/gallery/2022/event/angstrom-semiconductor-initiative/2022XXX_Angstrom-semiconductor-initiative_TW_01.jpg', alt: 'Angstrom Semiconductor Initiative 2022', label: 'Angstrom Semiconductor Initiative' },
+    { src: 'assets/images/gallery/2022/event/lab-dinner/2022XXX_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2022', label: 'Laboratory Dinner' },
+    { src: 'assets/images/gallery/2022/event/new-taipei-christmasland/2022XXX_NewTaipei-christmasland_TW_01.jpg', alt: 'New Taipei Christmasland 2022', label: 'New Taipei Christmasland' }
   ],
   2021: [
-    { src: 'assets/images/gallery/2021/event/lab-dinner/2021XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2021', label: 'Laboratory Dinner' }
+    { src: 'assets/images/gallery/2021/event/lab-dinner/2021XXX_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2021', label: 'Laboratory Dinner' },
+    { src: 'assets/images/gallery/2021/event/lab-surfing/2021XXX_Lab-surfing_TW_01.png', alt: 'Lab Surfing 2021', label: 'Lab Surfing' }
   ],
   2016: [
-    { src: 'assets/images/gallery/2016/conference/mmm/2016XXX-MMM-US-01.jpg', alt: 'MMM 2016', label: 'MMM 2016' }
+    { src: 'assets/images/gallery/2016/conference/mmm/2016XXX_MMM_US_01.jpg', alt: 'MMM 2016', label: 'MMM 2016' }
+  ],
+  2013: [
+    { src: 'assets/images/gallery/2013/event/prof-birthday/2013XXX_Prof-birthday_TW_01.jpg', alt: "Professor's Birthday 2013", label: "Professor's Birthday" }
   ]
 };
 
 // ---- Data: albums (for the 2x2 tiles + expanded viewer) ----
 const ALBUMS = {
-  'y2023-event-graduation-ceremony': {
-    year: 2023,
-    category: 'event',
-    title: 'Event · Graduation Ceremony · 2023',    photos: [
-      { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX-Graduation-TW-01.jpg', alt: 'Graduation Ceremony 2023' },
-      { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX-Graduation-TW-02.jpg', alt: 'Graduation Ceremony 2023 group photo' }
+  'y2026-conference-tps': {
+    year: 2026,
+    category: 'conference',
+    title: 'Conference · TPS · January 2026',    photos: [
+      { src: 'assets/images/gallery/2026/conference/tps/2026Jan_TPS_TW_01.jpg', alt: 'TPS 2026' },
+      { src: 'assets/images/gallery/2026/conference/tps/2026Jan_TPS_TW_02.jpg', alt: 'TPS 2026' }
     ]
   },
-  'y2023-event-lab-dinner': {
-    year: 2023,
+  'y2026-conference-tamt': {
+    year: 2026,
+    category: 'conference',
+    title: 'Conference · TAMT · July 2026',    photos: [
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_01.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_02.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_03.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_04.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_05.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_06.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_07.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_08.jpg', alt: 'TAMT 2026' },
+      { src: 'assets/images/gallery/2026/conference/tamt/2026Jul_TAMT_TW_09.jpg', alt: 'TAMT 2026' }
+    ]
+  },
+  'y2026-program-overseas-dream-build': {
+    year: 2026,
+    category: 'program',
+    title: 'Program · Overseas Dream Build · June 2026',    photos: [
+      { src: 'assets/images/gallery/2026/program/overseas-dream-build/2026Jun_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2026 · Kyushu University' },
+      { src: 'assets/images/gallery/2026/program/overseas-dream-build/2026Jun_Overseas-dream-build_JP_02.jpg', alt: 'Overseas Dream Build 2026 · Kyushu University' }
+    ]
+  },
+  'y2026-event-kyushu-university-visit': {
+    year: 2026,
     category: 'event',
-    title: 'Event · Laboratory Dinner · 2023',    photos: [
-      { src: 'assets/images/gallery/2023/event/lab-dinner/2023XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2023' }
+    title: 'Event · Kyushu University Visit · June 2026',    photos: [
+      { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_01.jpg', alt: 'Kyushu University Visit 2026' },
+      { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_02.jpg', alt: 'Kyushu University Visit 2026' },
+      { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_03.jpg', alt: 'Kyushu University Visit 2026' },
+      { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_04.jpg', alt: 'Kyushu University Visit 2026' },
+      { src: 'assets/images/gallery/2026/event/kyushu-university-visit/2026Jun_Kyushu-visit_JP_05.jpg', alt: 'Kyushu University Visit 2026' }
+    ]
+  },
+  'y2026-event-lab-dinner': {
+    year: 2026,
+    category: 'event',
+    title: 'Event · Laboratory Dinner · 2026',    photos: [
+      { src: 'assets/images/gallery/2026/event/lab-dinner/2026Jan_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2026' },
+      { src: 'assets/images/gallery/2026/event/lab-dinner/2026Jun_Lab-dinner_TW_02.jpg', alt: 'Laboratory Dinner 2026' }
+    ]
+  },
+  'y2026-event-farewell-dinner-for-marek': {
+    year: 2026,
+    category: 'event',
+    title: 'Event · Farewell Dinner for Marek · April 2026',    photos: [
+      { src: 'assets/images/gallery/2026/event/farewell-dinner-for-marek/2026Apr_Farewell-dinner-for-Marek_TW_01.jpg', alt: 'Farewell Dinner for Marek 2026' },
+      { src: 'assets/images/gallery/2026/event/farewell-dinner-for-marek/2026Apr_Farewell-dinner-for-Marek_TW_02.jpg', alt: 'Farewell Dinner for Marek 2026' }
+    ]
+  },
+  'y2026-event-graduation-season': {
+    year: 2026,
+    category: 'event',
+    title: 'Event · Graduation Season · June 2026',    photos: [
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_01.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_02.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_03.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_04.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_05.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_06.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_07.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_08.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_09.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_10.jpg', alt: 'Graduation Season 2026' },
+      { src: 'assets/images/gallery/2026/event/graduation-season/2026Jun_Graduation-season_TW_11.jpg', alt: 'Graduation Season 2026' }
+    ]
+  },
+  'y2026-event-dinner-with-alumni': {
+    year: 2026,
+    category: 'event',
+    title: 'Event · Dinner with Alumni · March 2026',    photos: [
+      { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_01.jpg', alt: 'Dinner with Alumni 2026' },
+      { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_02.jpg', alt: 'Dinner with Alumni 2026' },
+      { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_03.jpg', alt: 'Dinner with Alumni 2026' },
+      { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_04.jpg', alt: 'Dinner with Alumni 2026' },
+      { src: 'assets/images/gallery/2026/event/dinner-with-alumni/2026Mar_Dinner-with-alumni_TW_05.jpg', alt: 'Dinner with Alumni 2026' }
+    ]
+  },
+  'y2025-conference-tps': {
+    year: 2025,
+    category: 'conference',
+    title: 'Conference · TPS · January 2025',    photos: [
+      { src: 'assets/images/gallery/2025/conference/tps/2025Jan_TPS_TW_01.jpg', alt: 'TPS 2025' },
+      { src: 'assets/images/gallery/2025/conference/tps/2025Jan_TPS_TW_02.jpg', alt: 'TPS 2025' }
+    ]
+  },
+  'y2025-program-overseas-dream-build': {
+    year: 2025,
+    category: 'program',
+    title: 'Program · Overseas Dream Build · April 2025',    photos: [
+      { src: 'assets/images/gallery/2025/program/overseas-dream-build/2025Apr_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2025 · Kyushu University' },
+      { src: 'assets/images/gallery/2025/program/overseas-dream-build/2025Apr_Overseas-dream-build_JP_02.jpg', alt: 'Overseas Dream Build 2025 · Kyushu University' },
+      { src: 'assets/images/gallery/2025/program/overseas-dream-build/2025Apr_Overseas-dream-build_JP_03.jpg', alt: 'Overseas Dream Build 2025 · Kyushu University' }
+    ]
+  },
+  'y2025-event-dinner-with-alumni': {
+    year: 2025,
+    category: 'event',
+    title: 'Event · Dinner with Alumni · January 2025',    photos: [
+      { src: 'assets/images/gallery/2025/event/dinner-with-alumni/2025Jan_Dinner-with-alumni_TW_01.jpg', alt: 'Dinner with Alumni 2025' }
+    ]
+  },
+  'y2025-event-lab-dinner': {
+    year: 2025,
+    category: 'event',
+    title: 'Event · Laboratory Dinner · June 2025',    photos: [
+      { src: 'assets/images/gallery/2025/event/lab-dinner/2025Jun_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2025' },
+      { src: 'assets/images/gallery/2025/event/lab-dinner/2025Jun_Lab-dinner_TW_02.jpg', alt: 'Laboratory Dinner 2025' }
+    ]
+  },
+  'y2024-conference-tps': {
+    year: 2024,
+    category: 'conference',
+    title: 'Conference · TPS · January 2024',    photos: [
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_01.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_02.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_03.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_04.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_05.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_06.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_07.jpg', alt: 'TPS 2024' },
+      { src: 'assets/images/gallery/2024/conference/tps/2024Jan_TPS_TW_08.jpg', alt: 'TPS 2024' }
+    ]
+  },
+  'y2024-program-overseas-dream-build': {
+    year: 2024,
+    category: 'program',
+    title: 'Program · Overseas Dream Build · December 2024',    photos: [
+      { src: 'assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2024 · Kyushu University' },
+      { src: 'assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_02.jpg', alt: 'Overseas Dream Build 2024 · Kyushu University' },
+      { src: 'assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_03.jpg', alt: 'Overseas Dream Build 2024 · Kyushu University' },
+      { src: 'assets/images/gallery/2024/program/overseas-dream-build/2024Dec_Overseas-dream-build_JP_04.jpg', alt: 'Overseas Dream Build 2024 · Kyushu University' }
+    ]
+  },
+  'y2024-event-graduation-season': {
+    year: 2024,
+    category: 'event',
+    title: 'Event · Graduation Season · May 2024',    photos: [
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_01.jpg', alt: 'Graduation Season 2024' },
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_02.jpg', alt: 'Graduation Season 2024' },
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_03.jpg', alt: 'Graduation Season 2024' },
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_04.jpg', alt: 'Graduation Season 2024' },
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_05.jpg', alt: 'Graduation Season 2024' },
+      { src: 'assets/images/gallery/2024/event/graduation-season/2024May_Graduation-season_TW_06.jpg', alt: 'Graduation Season 2024' }
+    ]
+  },
+  'y2024-event-iams-ntnu-ycu-autumn-workshop': {
+    year: 2024,
+    category: 'event',
+    title: 'Event · IAMS-NTNU-YCU Autumn Workshop · August 2024',    photos: [
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_01.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' },
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_02.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' },
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_03.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' },
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_04.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' },
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_05.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' },
+      { src: 'assets/images/gallery/2024/event/iams-ntnu-ycu-autumn-workshop/2024Aug_IAMS-NTNU-YCU-autumn-workshop_TW_06.jpg', alt: 'IAMS-NTNU-YCU Autumn Workshop 2024' }
+    ]
+  },
+  'y2024-event-lab-dinner': {
+    year: 2024,
+    category: 'event',
+    title: 'Event · Laboratory Dinner · 2024',    photos: [
+      { src: 'assets/images/gallery/2024/event/lab-dinner/2024Jun_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2024' },
+      { src: 'assets/images/gallery/2024/event/lab-dinner/2024Dec_Lab-dinner_TW_02.jpg', alt: 'Laboratory Dinner 2024' }
     ]
   },
   'y2023-conference-tps': {
     year: 2023,
     category: 'conference',
-    title: 'Conference · TPS · 2023',    photos: [
-      { src: 'assets/images/gallery/2023/conference/tps/2023Jan-TPS-TW-01.jpg', alt: 'TPS 2023' }
+    title: 'Conference · TPS · January 2023',    photos: [
+      { src: 'assets/images/gallery/2023/conference/tps/2023Jan_TPS_TW_01.jpg', alt: 'TPS 2023' }
+    ]
+  },
+  'y2023-conference-tamt': {
+    year: 2023,
+    category: 'conference',
+    title: 'Conference · TAMT · July 2023',    photos: [
+      { src: 'assets/images/gallery/2023/conference/tamt/2023Jul_TAMT_TW_01.jpg', alt: 'TAMT 2023' },
+      { src: 'assets/images/gallery/2023/conference/tamt/2023Jul_TAMT_TW_02.jpg', alt: 'TAMT 2023' }
     ]
   },
   'y2023-program-overseas-dream-build': {
     year: 2023,
     category: 'program',
     title: 'Program · Overseas Dream Build · 2023',    photos: [
-      { src: 'assets/images/gallery/2023/program/overseas-dream-build/2023XXX-OverseasDreamBuild-JP-01.jpg', alt: 'Overseas Dream Build 2023 · Kyushu University' }
+      { src: 'assets/images/gallery/2023/program/overseas-dream-build/2023XXX_Overseas-dream-build_JP_01.jpg', alt: 'Overseas Dream Build 2023 · Kyushu University' }
+    ]
+  },
+  'y2023-event-graduation-ceremony': {
+    year: 2023,
+    category: 'event',
+    title: 'Event · Graduation Ceremony · 2023',    photos: [
+      { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX_Graduation_TW_01.jpg', alt: 'Graduation Ceremony 2023' },
+      { src: 'assets/images/gallery/2023/event/graduation-ceremony/2023XXX_Graduation_TW_02.jpg', alt: 'Graduation Ceremony 2023 group photo' }
+    ]
+  },
+  'y2023-event-lab-dinner': {
+    year: 2023,
+    category: 'event',
+    title: 'Event · Laboratory Dinner · 2023',    photos: [
+      { src: 'assets/images/gallery/2023/event/lab-dinner/2023Apr_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2023' },
+      { src: 'assets/images/gallery/2023/event/lab-dinner/2023Jul_Lab-dinner_TW_02.jpg', alt: 'Laboratory Dinner 2023' },
+      { src: 'assets/images/gallery/2023/event/lab-dinner/2023Jul_Lab-dinner_TW_03.jpg', alt: 'Laboratory Dinner 2023' }
+    ]
+  },
+  'y2023-event-lab-christmas-dinner': {
+    year: 2023,
+    category: 'event',
+    title: 'Event · Lab Christmas Dinner · December 2023',    photos: [
+      { src: 'assets/images/gallery/2023/event/lab-christmas-dinner/2023Dec_Lab-christmas-dinner_TW_01.jpg', alt: 'Lab Christmas Dinner 2023' }
+    ]
+  },
+  'y2023-event-skiing': {
+    year: 2023,
+    category: 'event',
+    title: 'Event · Skiing · 2023',    photos: [
+      { src: 'assets/images/gallery/2023/event/skiing/2023XXX_Skiing_TW_01.jpg', alt: 'Skiing 2023' }
+    ]
+  },
+  'y2023-event-camping': {
+    year: 2023,
+    category: 'event',
+    title: 'Event · Camping · May 2023',    photos: [
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_01.jpg', alt: 'Camping 2023' },
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_02.jpg', alt: 'Camping 2023' },
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_03.jpg', alt: 'Camping 2023' },
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_04.jpg', alt: 'Camping 2023' },
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_05.jpg', alt: 'Camping 2023' },
+      { src: 'assets/images/gallery/2023/event/camping/2023May_Camping_TW_06.jpg', alt: 'Camping 2023' }
     ]
   },
   'y2022-conference-tamt': {
     year: 2022,
     category: 'conference',
-    title: 'Conference · TAMT · 2022',    photos: [
-      { src: 'assets/images/gallery/2022/conference/tamt/2022Jul-TAMT-TW-01.jpg', alt: 'TAMT 2022' },
-      { src: 'assets/images/gallery/2022/conference/tamt/2022Jul-TAMT-TW-02.jpg', alt: 'TAMT 2022 group photo' }
+    title: 'Conference · TAMT · July 2022',    photos: [
+      { src: 'assets/images/gallery/2022/conference/tamt/2022Jul_TAMT_TW_01.jpg', alt: 'TAMT 2022' },
+      { src: 'assets/images/gallery/2022/conference/tamt/2022Jul_TAMT_TW_02.jpg', alt: 'TAMT 2022 group photo' }
     ]
   },
   'y2022-conference-icmfs': {
     year: 2022,
     category: 'conference',
     title: 'Conference · ICMFs · 2022',    photos: [
-      { src: 'assets/images/gallery/2022/conference/icmfs/2022XXX-ICMFs-JP-01.jpg', alt: 'ICMFS 2022' }
+      { src: 'assets/images/gallery/2022/conference/icmfs/2022XXX_ICMFs_JP_01.jpg', alt: 'ICMFS 2022' }
     ]
   },
   'y2022-conference-tps': {
     year: 2022,
     category: 'conference',
-    title: 'Conference · TPS · 2022',    photos: [
-      { src: 'assets/images/gallery/2022/conference/tps/2022Jan-TPS-TW-01.jpg', alt: 'TPS 2022' }
+    title: 'Conference · TPS · January 2022',    photos: [
+      { src: 'assets/images/gallery/2022/conference/tps/2022Jan_TPS_TW_01.jpg', alt: 'TPS 2022' }
     ]
   },
-  'y2022-conference-xxx': {
+  'y2022-event-angstrom-semiconductor-initiative': {
     year: 2022,
-    category: 'conference',
-    title: 'Conference · XXX · 2022',    photos: [
-      { src: 'assets/images/gallery/2022/conference/XXX/2022XXX-XXX-XXX-01.jpg', alt: 'Generation A Conference 2022' }
+    category: 'event',
+    title: 'Event · Angstrom Semiconductor Initiative · 2022',    photos: [
+      { src: 'assets/images/gallery/2022/event/angstrom-semiconductor-initiative/2022XXX_Angstrom-semiconductor-initiative_TW_01.jpg', alt: 'Angstrom Semiconductor Initiative 2022' }
     ]
   },
   'y2022-event-lab-dinner': {
     year: 2022,
     category: 'event',
     title: 'Event · Laboratory Dinner · 2022',    photos: [
-      { src: 'assets/images/gallery/2022/event/lab-dinner/2022XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2022' }
+      { src: 'assets/images/gallery/2022/event/lab-dinner/2022XXX_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2022' }
+    ]
+  },
+  'y2022-event-new-taipei-christmasland': {
+    year: 2022,
+    category: 'event',
+    title: 'Event · New Taipei Christmasland · 2022',    photos: [
+      { src: 'assets/images/gallery/2022/event/new-taipei-christmasland/2022XXX_NewTaipei-christmasland_TW_01.jpg', alt: 'New Taipei Christmasland 2022' }
     ]
   },
   'y2021-event-lab-dinner': {
     year: 2021,
     category: 'event',
     title: 'Event · Laboratory Dinner · 2021',    photos: [
-      { src: 'assets/images/gallery/2021/event/lab-dinner/2021XXX-LabDinner-TW-01.jpg', alt: 'Laboratory Dinner 2021' }
+      { src: 'assets/images/gallery/2021/event/lab-dinner/2021XXX_Lab-dinner_TW_01.jpg', alt: 'Laboratory Dinner 2021' }
+    ]
+  },
+  'y2021-event-lab-surfing': {
+    year: 2021,
+    category: 'event',
+    title: 'Event · Lab Surfing · 2021',    photos: [
+      { src: 'assets/images/gallery/2021/event/lab-surfing/2021XXX_Lab-surfing_TW_01.png', alt: 'Lab Surfing 2021' }
     ]
   },
   'y2016-conference-mmm': {
     year: 2016,
     category: 'conference',
     title: 'Conference · MMM · 2016',    photos: [
-      { src: 'assets/images/gallery/2016/conference/mmm/2016XXX-MMM-US-01.jpg', alt: 'MMM 2016 · New Orleans, USA' }
+      { src: 'assets/images/gallery/2016/conference/mmm/2016XXX_MMM_US_01.jpg', alt: 'MMM 2016 · New Orleans, USA' }
+    ]
+  },
+  'y2013-event-prof-birthday': {
+    year: 2013,
+    category: 'event',
+    title: "Event · Professor's Birthday · 2013",    photos: [
+      { src: 'assets/images/gallery/2013/event/prof-birthday/2013XXX_Prof-birthday_TW_01.jpg', alt: "Professor's Birthday 2013" }
     ]
   }
 };
@@ -631,7 +984,10 @@ const ALBUMS = {
 // ---- Data: full album list per year, used by the "+N more" overlay ----
 // Order follows conference > program > event.
 const YEAR_ALBUMS = {
-  2022: ['y2022-conference-icmfs', 'y2022-conference-tamt', 'y2022-conference-tps', 'y2022-conference-xxx', 'y2022-event-lab-dinner']
+  2026: ['y2026-conference-tps', 'y2026-conference-tamt', 'y2026-program-overseas-dream-build', 'y2026-event-kyushu-university-visit', 'y2026-event-lab-dinner', 'y2026-event-farewell-dinner-for-marek', 'y2026-event-graduation-season', 'y2026-event-dinner-with-alumni'],
+  2024: ['y2024-conference-tps', 'y2024-program-overseas-dream-build', 'y2024-event-graduation-season', 'y2024-event-iams-ntnu-ycu-autumn-workshop', 'y2024-event-lab-dinner'],
+  2023: ['y2023-conference-tps', 'y2023-conference-tamt', 'y2023-program-overseas-dream-build', 'y2023-event-graduation-ceremony', 'y2023-event-lab-dinner', 'y2023-event-lab-christmas-dinner', 'y2023-event-skiing', 'y2023-event-camping'],
+  2022: ['y2022-conference-icmfs', 'y2022-conference-tamt', 'y2022-conference-tps', 'y2022-event-lab-dinner', 'y2022-event-new-taipei-christmasland', 'y2022-event-angstrom-semiconductor-initiative']
 };
 
 // ---- Left hero: pick a random photo, rotate every 4s ----
