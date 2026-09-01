@@ -16,17 +16,41 @@ members.html          成員與 Alumni
 research.html         研究方向
 publications.html     論文列表(含搜尋/篩選 JS)
 facilities.html       實驗設備
-exchange-awards.html  交流與獲獎
+honors.html           獲獎、學術會議與移地交流
 gallery.html          相簿
 ```
 
 ## 硬性命名規則（務必遵守）
 
-- 圖片檔名只能用**英文字母、數字、連字號 `-`**，禁止空白、中文字、`(1)` 這類重複標記。
+- 圖片檔名只能用**英文字母、數字、底線 `_`、連字號 `-`**，禁止空白、中文字、`(1)` 這類重複標記。
 - 圖片副檔名限定 `.jpg` / `.jpeg` / `.png`，不要用其他副檔名(即使檔案內容其實是圖片)。
 - GitHub Pages 對檔名**大小寫敏感**——`Po-Wei.jpg`、`po-wei.jpg`、`Po-Wei.JPG` 是三個不同檔案，改圖或加圖時要特別注意大小寫一致。
 - 所有圖片統一放在 `assets/images/`(或其子資料夾)，HTML/CSS 一律用相對路徑引用。
 - 若要重新命名任何 HTML 或圖片檔案，必須同步更新所有引用它的地方(nav、footer、`<img src>`、CSS `url(...)`)。
+
+## Gallery 照片命名規則（`assets/images/gallery/` 底下務必遵守）
+
+檔名統一格式：`AAAABBB_CCCC_DDD_EE.jpg`
+
+底線 `_` 是**主要欄位分隔符**(共 4 個欄位)；連字號 `-` 只在**單一欄位內部**需要區隔多個英文單字時使用，不能拿來當欄位分隔符。
+
+| 欄位 | 意義 | 範例 |
+|---|---|---|
+| `AAAA` | 西元年，4 碼 | `2022` |
+| `BBB`  | 月份縮寫，3 碼(Jan/Feb/Mar/…/Dec) | `Jul` |
+| `CCCC` | 會議 / 計畫 / 活動名稱，會議優先用縮寫，沒有縮寫才打全名；多個英文單字用連字號 `-` 分隔 | `TPS`、`TAMT`、`MMM`、`Lab-dinner` |
+| `DDD`  | 國家縮寫 | `TW`、`JP`、`KR`、`US` |
+| `EE`   | 兩位數流水號，同一場活動有多張照片時遞增 | `01`、`02` |
+
+範例：`2022Jul_TAMT_TW_01.jpg`、`2026Dec_Lab-dinner_TW_01.jpg`
+
+**未知的欄位一律用 `XXX` 代替**，不要留空、不要用問號、不要用猜測值頂替。例如月份不確定：`2016XXX_MMM_US_01.jpg`。
+
+### 三大分類定義（conference / program / event）
+
+- **conference**：國內外學術會議。目前已知：`MMM`、`ICMFs`、`TAMT`(通常七月，台灣)、`TPS`(通常一月，台灣)。
+- **program**：出國計畫、國外參訪、移地實驗，含修課附帶的短期出國參訪、國內移地實驗。目前已知：學海築夢、千里馬。
+- **event**：除了 conference、program 以外的任何活動，例如實驗室聚餐、出遊等。
 
 ## 設計風格禁止事項
 
